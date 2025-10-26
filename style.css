@@ -28,12 +28,12 @@ body {
     font-family: 'Blanka';
     font-size: 2rem;
     font-weight: 700;
-    color: #bf0b0b;
+    color: #f70b19;
 }
 
 /* Accent */
 .accent-gold {
-    background-color: #bb1919;
+    background-color: #f70b19;
     color: #000;
 }
 
