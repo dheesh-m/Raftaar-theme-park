@@ -18,122 +18,78 @@
 
         /* --- Top Right Corner Logo Styling (Medium size for wider bar) --- */
         .header-corner-logo {
-            width: 36px; /* Increased from 32px */
-            height: 36px; /* Increased from 32px */
+            width: 36px;
+            height: 36px;
             object-fit: cover;
             border-radius: 9999px; 
-            margin-left: 1.5rem; 
         }
         @media (min-width: 1024px) {
             .header-corner-logo {
-                width: 44px; /* Increased from 40px */
-                height: 44px; /* Increased from 40px */
+                width: 44px;
+                height: 44px;
             }
         }
     </style>
 
     <script>
-        // Move and style the logo so it appears centered above the site name in the header
         document.addEventListener('DOMContentLoaded', function () {
-            // NOTE: The selector now targets the first-child of the *inner* container
             const headerLeft = document.querySelector('#main-header .max-w-7xl > div:first-child');
             if (!headerLeft) return;
 
-            // Switch to vertical layout so logo sits above the text
             headerLeft.classList.remove('items-center', 'space-x-3');
             headerLeft.classList.add('flex', 'flex-col', 'items-center', 'space-y-2');
 
-            // Create the image element
             const img = document.createElement('img');
             img.src = 'logo.jpg';
-            img.alt = 'Raftaar Theme Park logo circular emblem showing a racing helmet and checkered flag centered above the site name energetic and bold';
+            img.alt = 'Raftaar Theme Park logo circular emblem';
             img.className = 'header-logo-img';
             img.onerror = function () { this.style.display = 'none'; };
 
-            // Insert the logo at the top of the header-left block
             headerLeft.insertBefore(img, headerLeft.firstChild);
         });
     </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raftaar Karting - RACE . REST . REVIVE</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-
     <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // NOTE: The selector now targets the first-child of the *inner* container
-        const headerLeft = document.querySelector('#main-header .max-w-7xl > div:first-child');
-        if (!headerLeft) return;
-
-        // Remove any SVG icons or other elements except the logo image and the site text
-        Array.from(headerLeft.querySelectorAll('svg, [data-remove-before-raftaar]')).forEach(el => el.remove());
-
-        // Ensure there's a single span with the exact text required
-        let span = headerLeft.querySelector('span');
-        if (!span) {
-            span = document.createElement('span');
-            headerLeft.appendChild(span);
-        }
-        span.textContent = 'Raftaar Theme Park';
-
-        // Remove any extra elements that are not the img or the span
-        Array.from(headerLeft.children).forEach(child => {
-            if (child.tagName !== 'IMG' && child.tagName !== 'SPAN') child.remove();
-        });
-
-        // Clean up stray text nodes
-        Array.from(headerLeft.childNodes).forEach(node => {
-            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) node.textContent = '';
-        });
-    });
-    </script>
-    
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 p-4 md:px-8 flex justify-center header-transparent">
         <div class="flex justify-center items-center w-full max-w-7xl relative">
-            
             <div class="flex items-center space-x-3 md:hidden md:absolute md:inset-y-0 md:left-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-grey md:hidden">
-                    <path d="M15.5 2.2a2 2 0 0 0-1.2.4L6.9 9.3a2 2 0 0 0-.9 1.6V17a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6.1a2 2 0 0 0-.9-1.6L16.7 2.6a2 2 0 0 0-1.2-.4zM4.2 10.7l3.8-3.3 3.8 3.3M16 19v-5.5a2.5 2.5 0 0 0-5 0V19"/>
-                </svg>
                 <span class="font-bold text-lg uppercase md:hidden">Raftaar Theme Park</span>
             </div>
-            
-            <nav class="hidden md:flex items-center space-x-8 font-bold uppercase text-sm">
-                <a href="#karts" class="hover:text-red-900 transition-colors">Track</a>
-                <a href="#track" class="hover:text-red-900 transition-colors">Karts</a>
+            <nav class="hidden md:flex items-center space-x-8 font-bold uppercase text-sm z-20">
+                <a href="#track" class="hover:text-red-900 transition-colors">Track</a>
+                <a href="#karts" class="hover:text-red-900 transition-colors">Karts</a>
                 <a href="#book" class="hover:text-red-900 transition-colors">Contact</a>
             </nav>
-            
-            <div class="flex items-center space-x-4 md:absolute md:inset-y-0 md:right-0">
-                <img src="logo.jpg" alt="Raftaar Theme Park emblem" class="header-corner-logo hidden md:block" onerror="this.style.display='none'">
-
-                <i data-lucide="search" class="w-5 h-5 cursor-pointer hover:text-yellow-400 transition-colors md:hidden"></i>
-                <i data-lucide="map-pin" class="w-5 h-5 cursor-pointer hover:text-yellow-400 transition-colors md:hidden"></i>
-                <i data-lucide="menu" class="w-6 h-6 cursor-pointer md:hidden"></i>
-            </div>
+        </div>
+        <div class="absolute inset-y-0 right-0 z-50 flex items-center pr-4 md:pr-8 space-x-4">
+            <img src="logo.jpg" alt="Raftaar Theme Park emblem" class="header-corner-logo hidden md:block" onerror="this.style.display='none'">
         </div>
     </header>
 
     <main>
         <section class="h-screen min-h-[700px] flex items-center justify-center text-center relative overflow-hidden pt-32">
-            <div class="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1559033469-0740a1607c3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
-                    alt="Go-kart racing on a track"
-                    class="w-full h-full object-cover opacity-30 hero-fade-in"
-                    onerror="this.style.display='none'">
+            <div class="absolute inset-0 z-0 flex justify-center items-center">
+                <div class="w-full h-[65vh] relative overflow-hidden">
+                    <video autoplay loop muted playsinline poster="logo.jpg" class="hero-video-bg hero-fade-in absolute inset-0" onerror="this.style.display='none'">
+                        <source src="trialvid.mp4" type="video/mp4">
+                        <source src="hero-video.webm" type="video/webm">
+                        <img src="https://images.unsplash.com/photo-1559033469-0740a1607c3c?auto=format&fit=crop&w=1740&q=80" 
+                            alt="Go-kart racing on a track" class="w-full h-full object-cover opacity-0">
+                    </video>
+                </div>
             </div>
-            
             <div class="z-10 px-4">
                 <div class="flex justify-center hero-slide-up" style="animation-delay: .8s;">
                     <img src="logo.jpg" alt="Raftaar Theme Park circular logo" class="header-logo-img" onerror="this.style.display='none'">
@@ -143,6 +99,45 @@
                 <a href="#book" class="inline-block accent-gold font-bold uppercase tracking-widest text-sm px-8 py-4 mt-8 rounded-lg hero-slide-up hover:bg-red-300 transition-colors" style="animation-delay: 1.5s;">
                     Discover more &rarr;
                 </a>
+            </div>
+        </section>
+
+        <section id="track" class="py-24 md:py-32 text-center bg-gray-900 text-white overflow-x-hidden">
+            <div class="container mx-auto px-4 fade-in-element">
+                <h2 class="heading-secondary">The Track</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-gray-400">Experience the state-of-the-art 1.2 mile course with challenging hairpins and high-speed straights.</p>
+
+                <div class="relative w-full max-w-7xl mx-auto mt-12">
+                    <div class="track-carousel-wrapper overflow-hidden">
+                        <div id="track-carousel-inner" class="flex transition-transform duration-500 ease-out items-center" style="height: 500px;">
+                            
+                            <div id="track-slide-1" class="track-slide shrink-0 w-full md:w-1/3 p-2 active">
+                                <img src="1.jpg" alt="A go-kart track surrounded by city buildings at sunset" class="track-img-3d rounded-xl shadow-xl">
+                                <h3 class="track-caption text-xl font-bold uppercase mt-4">The Apex of Speed</h3>
+                            </div>
+                            <div id="track-slide-2" class="track-slide shrink-0 w-full md:w-1/3 p-2">
+                                <img src="2.jpg" alt="Aerial view of Raftaar Karting track layout" class="track-img-3d rounded-xl shadow-xl">
+                                <h3 class="track-caption text-xl font-bold uppercase mt-4">High-Speed Straight</h3>
+                            </div>
+                            <div id="track-slide-3" class="track-slide shrink-0 w-full md:w-1/3 p-2">
+                                <img src="3.jpg" alt="A challenging hairpin turn on the go-kart track" class="track-img-3d rounded-xl shadow-xl">
+                                <h3 class="track-caption text-xl font-bold uppercase mt-4">Challenging Hairpin</h3>
+                            </div>
+
+                            <div class="track-slide shrink-0 w-full md:w-1/3 p-2" aria-hidden="true">
+                                <img src="1.jpg" alt="A go-kart track surrounded by city buildings at sunset" class="track-img-3d rounded-xl shadow-xl">
+                                <h3 class="track-caption text-xl font-bold uppercase mt-4">The Apex of Speed</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="prev-track" class="absolute top-1/2 left-0 md:left-4 transform -translate-y-1/2 z-20 p-3 text-white transition-colors bg-red-800 rounded-full hover:bg-red-900 shadow-xl">
+                        <i data-lucide="chevron-left" class="w-8 h-8"></i>
+                    </button>
+                    <button id="next-track" class="absolute top-1/2 right-0 md:right-4 transform -translate-y-1/2 z-20 p-3 text-white transition-colors bg-red-800 rounded-full hover:bg-red-900 shadow-xl">
+                        <i data-lucide="chevron-right" class="w-8 h-8"></i>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -174,16 +169,6 @@
                         <i data-lucide="chevron-right" class="w-6 h-6"></i>
                     </button>
                 </div>
-            </div>
-        </section>
-
-        <section id="track" class="h-[60vh] min-h-[500px] parallax-section flex items-center justify-center text-center">
-            <div class="relative z-10 px-4 fade-in-element">
-                <h2 class="heading-secondary">Find Our Track</h2>
-                <p class="text-lg mt-4 max-w-lg mx-auto">State-of-the-art 1.2 mile course with challenging hairpins and high-speed straights.</p>
-                <a href="#" class="inline-block accent-gold font-bold uppercase tracking-widest text-sm px-8 py-4 mt-8 rounded-lg hover:bg-yellow-300 transition-colors">
-                    View Track Map
-                </a>
             </div>
         </section>
     </main>
