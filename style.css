@@ -1,0 +1,87 @@
+/* Body & fonts */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000;
+    color: #ffffff;
+}
+
+@font-face {
+  font-family: 'Blanka'; /* Choose a name for your font */
+  src: url('Blanka-Regular.otf') format('opentype');
+  font-weight: 400; /* Adjust if the font has different weights */
+  font-style: normal;
+
+}
+
+/* Headings */
+.heading-primary {
+    font-family: 'Blanka';
+    font-size: clamp(3rem, 20vw, 6rem);
+    font-weight: 100;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    word-spacing: -0.1em;
+}
+.heading-secondary {
+    font-family: 'Blanka', sans-serif;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1;
+}
+.heading-tertiary {
+    font-family: 'Blanka';
+    font-size: 2.0rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #bf0b0b;
+}
+
+/* Gold accent */
+.accent-gold {
+    background-color: #bb1919;
+    color: #000;
+}
+
+/* Header styles */
+.header-transparent {
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+}
+.header-solid {
+    background-color: rgba(255, 0, 0, 0.9); /* Change navbar color here */
+    backdrop-filter: blur(10px);
+}
+
+/* Hero Animations */
+.hero-fade-in { animation: fadeIn 1s ease-out 0.5s forwards; opacity: 0; }
+@keyframes fadeIn { to { opacity: 1; } }
+.hero-slide-up { animation: slideUp 1s ease-out 0.8s forwards; opacity: 0; transform: translateY(20px); }
+@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+
+/* Fade-in on scroll */
+.fade-in-element { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.fade-in-element.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Kart carousel */
+.kart-slide { transition: all 0.5s ease-in-out; opacity: 0.3; transform: scale(0.8); position: absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center;}
+.kart-slide.active { opacity:1; transform: scale(1); z-index:10; position:relative;}
+.kart-name { opacity:0; transform: translateY(10px); transition: opacity 0.5s ease-out 0.3s, transform 0.5s ease-out 0.3s; }
+.kart-slide.active .kart-name { opacity:1; transform: translateY(0); }
+
+/* Parallax Track Section */
+.parallax-section {
+    background-image: url('https://images.unsplash.com/photo-1549591505-1869a19c60e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.parallax-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left:0; right:0; bottom:0;
+    background-color: rgba(0,0,0,0.5);
+}
