@@ -2,7 +2,7 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <style>
-        /* Logo sizing and circular style */
+        /* Logo sizing and circular style for the main logo inserted by JS/displayed in hero */
         .header-logo-img {
             width: 90px;
             height: 90px;
@@ -15,12 +15,28 @@
         @media (min-width: 800px) {
             .header-logo-img { width: 96px; height: 96px; }
         }
+
+        /* --- Top Right Corner Logo Styling (Medium size for wider bar) --- */
+        .header-corner-logo {
+            width: 36px; /* Increased from 32px */
+            height: 36px; /* Increased from 32px */
+            object-fit: cover;
+            border-radius: 9999px; 
+            margin-left: 1.5rem; 
+        }
+        @media (min-width: 1024px) {
+            .header-corner-logo {
+                width: 44px; /* Increased from 40px */
+                height: 44px; /* Increased from 40px */
+            }
+        }
     </style>
 
     <script>
         // Move and style the logo so it appears centered above the site name in the header
         document.addEventListener('DOMContentLoaded', function () {
-            const headerLeft = document.querySelector('#main-header > div:first-child');
+            // NOTE: The selector now targets the first-child of the *inner* container
+            const headerLeft = document.querySelector('#main-header .max-w-7xl > div:first-child');
             if (!headerLeft) return;
 
             // Switch to vertical layout so logo sits above the text
@@ -42,26 +58,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raftaar Karting - RACE . REST . REVIVE</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide-react@latest/dist/umd/lucide.js"></script>
 
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header -->
     <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const headerLeft = document.querySelector('#main-header > div:first-child');
+        // NOTE: The selector now targets the first-child of the *inner* container
+        const headerLeft = document.querySelector('#main-header .max-w-7xl > div:first-child');
         if (!headerLeft) return;
 
         // Remove any SVG icons or other elements except the logo image and the site text
@@ -73,7 +85,7 @@
             span = document.createElement('span');
             headerLeft.appendChild(span);
         }
-        span.textContent = 'Raftaar Theme park';
+        span.textContent = 'Raftaar Theme Park';
 
         // Remove any extra elements that are not the img or the span
         Array.from(headerLeft.children).forEach(child => {
@@ -86,35 +98,40 @@
         });
     });
     </script>
-    <header id="main-header" class="fixed top-0 left-12 right-60 z-50 p-6 md:px-12 flex justify-between items-center header-transparent">
-        <div class="flex items-center space-x-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-grey">
-                <path d="M15.5 2.2a2 2 0 0 0-1.2.4L6.9 9.3a2 2 0 0 0-.9 1.6V17a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6.1a2 2 0 0 0-.9-1.6L16.7 2.6a2 2 0 0 0-1.2-.4zM4.2 10.7l3.8-3.3 3.8 3.3M16 19v-5.5a2.5 2.5 0 0 0-5 0V19"/>
-            </svg>
-            <span class="font-bold text-lg uppercase">Raftaar Theme Park</span>
-        </div>
-        <nav class="hidden md:flex items-left space-x-8 font-bold uppercase text-sm">
+    
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 p-4 md:px-8 flex justify-center header-transparent">
+        <div class="flex justify-center items-center w-full max-w-7xl relative">
             
-            <a href="#karts" class="hover:text-red-900 transition-colors">Track</a>
-            <a href="#track" class="hover:text-red-900 transition-colors">Karts</a>
+            <div class="flex items-center space-x-3 md:hidden md:absolute md:inset-y-0 md:left-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-grey md:hidden">
+                    <path d="M15.5 2.2a2 2 0 0 0-1.2.4L6.9 9.3a2 2 0 0 0-.9 1.6V17a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6.1a2 2 0 0 0-.9-1.6L16.7 2.6a2 2 0 0 0-1.2-.4zM4.2 10.7l3.8-3.3 3.8 3.3M16 19v-5.5a2.5 2.5 0 0 0-5 0V19"/>
+                </svg>
+                <span class="font-bold text-lg uppercase md:hidden">Raftaar Theme Park</span>
+            </div>
             
-            <a href="#book" class="hover:text-red-900 transition-colors">Contact</a>
-        </nav>
-        <div class="flex items-center space-x-4">
-            <i data-lucide="search" class="w-5 h-5 cursor-pointer hover:text-yellow-400 transition-colors"></i>
-            <i data-lucide="map-pin" class="w-5 h-5 cursor-pointer hover:text-yellow-400 transition-colors"></i>
-            <i data-lucide="menu" class="w-6 h-6 cursor-pointer md:hidden"></i>
+            <nav class="hidden md:flex items-center space-x-8 font-bold uppercase text-sm">
+                <a href="#karts" class="hover:text-red-900 transition-colors">Track</a>
+                <a href="#track" class="hover:text-red-900 transition-colors">Karts</a>
+                <a href="#book" class="hover:text-red-900 transition-colors">Contact</a>
+            </nav>
+            
+            <div class="flex items-center space-x-4 md:absolute md:inset-y-0 md:right-0">
+                <img src="logo.jpg" alt="Raftaar Theme Park emblem" class="header-corner-logo hidden md:block" onerror="this.style.display='none'">
+
+                <i data-lucide="search" class="w-5 h-5 cursor-pointer hover:text-yellow-400 transition-colors md:hidden"></i>
+                <i data-lucide="map-pin" class="w-5 h-5 cursor-pointer hover:text-yellow-400 transition-colors md:hidden"></i>
+                <i data-lucide="menu" class="w-6 h-6 cursor-pointer md:hidden"></i>
+            </div>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="h-screen min-h-[700px] flex items-center justify-center text-center relative overflow-hidden">
+        <section class="h-screen min-h-[700px] flex items-center justify-center text-center relative overflow-hidden pt-32">
             <div class="absolute inset-0 z-0">
                 <img src="https://images.unsplash.com/photo-1559033469-0740a1607c3c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" 
-                     alt="Go-kart racing on a track"
-                     class="w-full h-full object-cover opacity-30 hero-fade-in"
-                     onerror="this.style.display='none'">
+                    alt="Go-kart racing on a track"
+                    class="w-full h-full object-cover opacity-30 hero-fade-in"
+                    onerror="this.style.display='none'">
             </div>
             
             <div class="z-10 px-4">
@@ -129,7 +146,6 @@
             </div>
         </section>
 
-        <!-- Karts Section -->
         <section id="karts" class="py-24 md:py-32 bg-white text-black text-center overflow-x-hidden">
             <div class="container mx-auto px-4 fade-in-element">
                 <h2 class="heading-secondary">Our Karts</h2>
@@ -161,7 +177,6 @@
             </div>
         </section>
 
-        <!-- Track Section (Parallax) -->
         <section id="track" class="h-[60vh] min-h-[500px] parallax-section flex items-center justify-center text-center">
             <div class="relative z-10 px-4 fade-in-element">
                 <h2 class="heading-secondary">Find Our Track</h2>
@@ -173,14 +188,12 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer id="book" class="py-20 px-4 md:px-12 bg-zinc-900 text-gray-400">
         <div class="container mx-auto text-center">
             © 2025 Raftaar Theme Park. All rights reserved.
         </div>
     </footer>
 
-    <!-- Custom JS -->
     <script src="script.js"></script>
 </body>
 </html>
