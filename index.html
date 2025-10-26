@@ -104,73 +104,326 @@
 
         <section id="track" class="py-24 md:py-32 text-center bg-gray-900 text-white overflow-x-hidden">
             <div class="container mx-auto px-4 fade-in-element">
-                <h2 class="heading-secondary">The Track</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-gray-400">Experience the state-of-the-art 1.2 mile course with challenging hairpins and high-speed straights.</p>
+            <h2 class="heading-secondary">The Track</h2>
+            <p class="mt-4 max-w-2xl mx-auto text-gray-400">Experience the state-of-the-art 1.2 mile course with challenging hairpins and high-speed straights.</p>
 
-                <div class="relative w-full max-w-7xl mx-auto mt-12">
-                    <div class="track-carousel-wrapper overflow-hidden">
-                        <div id="track-carousel-inner" class="flex transition-transform duration-500 ease-out items-center" style="height: 500px;">
-                            
-                            <div id="track-slide-1" class="track-slide shrink-0 w-full md:w-1/3 p-2 active">
-                                <img src="1.jpg" alt="A go-kart track surrounded by city buildings at sunset" class="track-img-3d rounded-xl shadow-xl">
-                                <h3 class="track-caption text-xl font-bold uppercase mt-4">The Apex of Speed</h3>
-                            </div>
-                            <div id="track-slide-2" class="track-slide shrink-0 w-full md:w-1/3 p-2">
-                                <img src="2.jpg" alt="Aerial view of Raftaar Karting track layout" class="track-img-3d rounded-xl shadow-xl">
-                                <h3 class="track-caption text-xl font-bold uppercase mt-4">High-Speed Straight</h3>
-                            </div>
-                            <div id="track-slide-3" class="track-slide shrink-0 w-full md:w-1/3 p-2">
-                                <img src="3.jpg" alt="A challenging hairpin turn on the go-kart track" class="track-img-3d rounded-xl shadow-xl">
-                                <h3 class="track-caption text-xl font-bold uppercase mt-4">Challenging Hairpin</h3>
-                            </div>
+            <div class="relative w-full max-w-7xl mx-auto mt-12">
+            <style>
+            /* tighter, consistent spacing and smooth button press effect */
+            .track-carousel-wrapper { padding: 0 1rem; }
+            #track-carousel-inner { gap: 24px; will-change: transform; }
+            .track-slide { flex: 0 0 auto; box-sizing: border-box; display: flex; flex-direction: column; height: 100%; }
+            /* make the image take the available vertical space and keep caption visible below it */
+            .track-slide .track-img-3d { width: 100%; object-fit: cover; display: block; flex: 1 1 auto; height: auto; }
+            .track-caption { margin-top: 0.75rem; color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
 
-                            <div class="track-slide shrink-0 w-full md:w-1/3 p-2" aria-hidden="true">
-                                <img src="1.jpg" alt="A go-kart track surrounded by city buildings at sunset" class="track-img-3d rounded-xl shadow-xl">
-                                <h3 class="track-caption text-xl font-bold uppercase mt-4">The Apex of Speed</h3>
-                            </div>
-                        </div>
-                    </div>
+            /* button visual + smooth press feedback */
+            .track-nav-btn {
+              transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+              box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+            }
+            .track-nav-btn:active { transform: scale(.96); }
+            .track-nav-btn:focus { outline: 3px solid rgba(255,255,255,.12); outline-offset: 3px; }
+            </style>
 
-                    <button id="prev-track" class="absolute top-1/2 left-0 md:left-4 transform -translate-y-1/2 z-20 p-3 text-white transition-colors bg-red-800 rounded-full hover:bg-red-900 shadow-xl">
-                        <i data-lucide="chevron-left" class="w-8 h-8"></i>
-                    </button>
-                    <button id="next-track" class="absolute top-1/2 right-0 md:right-4 transform -translate-y-1/2 z-20 p-3 text-white transition-colors bg-red-800 rounded-full hover:bg-red-900 shadow-xl">
-                        <i data-lucide="chevron-right" class="w-8 h-8"></i>
-                    </button>
-                </div>
+            <div class="track-carousel-wrapper overflow-hidden">
+            <div id="track-carousel-inner" class="flex transition-transform duration-500 ease-out items-center" style="height: 500px;">
+            <div id="track-slide-1" class="track-slide shrink-0 w-full md:w-1/3 p-2 active" style="max-width:420px;">
+            <img src="1.jpg" alt="A go-kart track surrounded by city buildings at sunset" class="track-img-3d rounded-xl shadow-xl">
+            <h3 class="track-caption text-xl font-bold uppercase mt-4">The Apex of Speed</h3>
+            </div>
+            <div id="track-slide-2" class="track-slide shrink-0 w-full md:w-1/3 p-2" style="max-width:420px;">
+            <img src="2.jpg" alt="Aerial view of Raftaar Karting track layout" class="track-img-3d rounded-xl shadow-xl">
+            <h3 class="track-caption text-xl font-bold uppercase mt-4">High-Speed Straight</h3>
+            </div>
+            <div id="track-slide-3" class="track-slide shrink-0 w-full md:w-1/3 p-2" style="max-width:420px;">
+            <img src="3.jpg" alt="A challenging hairpin turn on the go-kart track" class="track-img-3d rounded-xl shadow-xl">
+            <h3 class="track-caption text-xl font-bold uppercase mt-4">Challenging Hairpin</h3>
+            </div>
+            </div>
+            </div>
+
+            <button id="prev-track" class="absolute top-1/2 left-0 md:left-4 transform -translate-y-1/2 z-20 p-3 text-white transition-colors bg-red-800 rounded-full hover:bg-red-900 shadow-xl track-nav-btn" aria-label="Previous track image">
+            <!-- small left arrow -->
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            </button>
+            <button id="next-track" class="absolute top-1/2 right-5 md:right-6 transform -translate-y-1/2 z-20 p-3 text-white transition-colors bg-red-800 rounded-full hover:bg-red-900 shadow-xl track-nav-btn" aria-label="Next track image">
+            <!-- small right arrow -->
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            </button>
+            
+
+            <script>
+            (function () {
+            var inner = document.getElementById('track-carousel-inner');
+            if (!inner) return;
+            var slides = Array.from(inner.querySelectorAll('.track-slide'));
+            var prevBtn = document.getElementById('prev-track');
+            var nextBtn = document.getElementById('next-track');
+            var index = 0;
+            var gap = 24; // matches CSS gap
+
+            function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+            function computeStep() {
+            // use first slide width as step. If viewport is small, slides are full-width so step adjusts.
+            if (!slides.length) return 0;
+            var rect = slides[0].getBoundingClientRect();
+            return Math.round(rect.width + gap);
+            }
+
+            function update() {
+            var step = computeStep();
+            var maxIndex = Math.max(0, slides.length - 1);
+            index = clamp(index, 0, maxIndex);
+            var translate = -index * step;
+            inner.style.transform = 'translateX(' + translate + 'px)';
+            }
+
+            // smooth keyboard & mouse feedback
+            function pressFeedback(btn) {
+            btn.classList.add('pressed');
+            // small visual nudge handled by :active in CSS; keep for programmatic press
+            btn.style.transform = 'scale(.96)';
+            setTimeout(function () {
+            btn.style.transform = '';
+            btn.classList.remove('pressed');
+            }, 140);
+            }
+
+            nextBtn.addEventListener('click', function (e) {
+            index = index + 1;
+            pressFeedback(nextBtn);
+            update();
+            nextBtn.blur();
+            });
+
+            prevBtn.addEventListener('click', function (e) {
+            index = index - 1;
+            pressFeedback(prevBtn);
+            update();
+            prevBtn.blur();
+            });
+
+            // handle resize - keep spacing consistent and avoid overlap
+            var resizeId;
+            window.addEventListener('resize', function () {
+            clearTimeout(resizeId);
+            resizeId = setTimeout(update, 120);
+            });
+
+            // initialize - center first slide on load for larger viewports
+            window.addEventListener('load', function () {
+            // ensure images that define size are loaded before computing
+            var imgs = inner.querySelectorAll('img');
+            var loaded = 0;
+            if (!imgs.length) return update();
+            imgs.forEach(function (img) {
+            if (img.complete) {
+            loaded++;
+            } else {
+            img.addEventListener('load', function () { loaded++; if (loaded === imgs.length) update(); });
+            img.addEventListener('error', function () { loaded++; if (loaded === imgs.length) update(); });
+            }
+            });
+            if (loaded === imgs.length) update();
+            });
+
+            // allow arrow keys for accessibility when focus within the track section
+            document.getElementById('track').addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') { nextBtn.click(); }
+            if (e.key === 'ArrowLeft') { prevBtn.click(); }
+            });
+            })();
+            </script>
+            </div>
             </div>
         </section>
-
         <section id="karts" class="py-24 md:py-32 bg-white text-black text-center overflow-x-hidden">
             <div class="container mx-auto px-4 fade-in-element">
-                <h2 class="heading-secondary">Our Karts</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-gray-600">Engineered for performance. Choose your machine and conquer the track.</p>
-                <div class="relative w-full max-w-4xl mx-auto mt-12" style="height: 400px;">
-                    <div id="kart-slide-1" class="kart-slide active">
-                        <img src="https://placehold.co/600x400/111111/FFFFFF?text=Pro+Kart" alt="Pro Kart" class="w-full max-w-lg object-contain">
-                        <h3 class="text-2xl font-bold uppercase mt-4 kart-name">The Viper (Pro Kart)</h3>
-                        <p class="text-gray-500 kart-name">Max Speed: 55 MPH</p>
-                    </div>
-                    <div id="kart-slide-2" class="kart-slide">
-                        <img src="https://placehold.co/600x400/333333/FFFFFF?text=Standard+Kart" alt="Standard Kart" class="w-full max-w-lg object-contain">
-                        <h3 class="text-2xl font-bold uppercase mt-4 kart-name">The Arrow (Standard)</h3>
-                        <p class="text-gray-500 kart-name">Max Speed: 40 MPH</p>
-                    </div>
-                    <div id="kart-slide-3" class="kart-slide">
-                        <img src="https://placehold.co/600x400/555555/FFFFFF?text=Junior+Kart" alt="Junior Kart" class="w-full max-w-lg object-contain">
-                        <h3 class="text-2xl font-bold uppercase mt-4 kart-name">The Comet (Junior)</h3>
-                        <p class="text-gray-500 kart-name">Safe & Fun for Kids</p>
-                    </div>
+            <h2 class="heading-secondary">Our Gallery</h2>
+            <p class="mt-4 max-w-2xl mx-auto text-gray-600">Engineered for performance. Choose your machine and conquer the track.</p>
 
-                    <button id="prev-kart" class="absolute top-1/2 left-0 md:-left-16 transform -translate-y-1/2 z-20 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
-                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
-                    </button>
-                    <button id="next-kart" class="absolute top-1/2 right-0 md:-right-16 transform -translate-y-1/2 z-20 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
-                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
-                    </button>
+            <div class="relative w-full max-w-4xl mx-auto mt-12">
+                <!-- 2x2 grid of equal-looking cards, responsive and spaced -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8 justify-items-center">
+                <!-- Card 1 -->
+                <div class="kart-card rounded-xl shadow-xl p-4 flex flex-col items-center transition-transform duration-300 ease-out transform-gpu hover:scale-105 hover:-translate-y-1"
+                     style="width:100%; max-width:560px; background-color: rgba(0,0,0,0.65); perspective:1000px; -webkit-perspective:1000px;">
+                    <div class="relative overflow-hidden rounded-md w-full" style="height:380px;">
+                    <img
+                        class="kart-image w-full h-full object-cover block"
+                        src="kart.jpg"
+                        alt="Pro Kart"
+                        data-images="kart5.jpg"
+                        data-index="0"
+                        style="opacity:1; transition:opacity .36s ease;"
+                    >
+                    <button type="button" class="prev-image absolute left-3 bottom-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm transform transition-transform duration-150 active:scale-95 active:translate-y-[2px]">Prev</button>
+                    <button type="button" class="next-image absolute right-3 bottom-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm transform transition-transform duration-150 active:scale-95 active:translate-y-[2px]">Next</button>
+                    </div>
+                    <h3 class="text-2xl font-bold uppercase mt-4 kart-name text-white">The Viper (Pro Kart)</h3>
+                    <p class="text-gray-300 kart-meta">Max Speed: 55 MPH</p>
+                    <p class="mt-3 w-full max-w-[560px] text-gray-200">High-performance kart tuned for experienced drivers — lightweight chassis, advanced brakes and precision steering for competitive laps.</p>
                 </div>
+
+                <!-- Card 2 -->
+                <div class="kart-card rounded-xl shadow-xl p-4 flex flex-col items-center transition-transform duration-300 ease-out transform-gpu hover:scale-105 hover:-translate-y-1"
+                     style="width:100%; max-width:560px; background-color: rgba(0,0,0,0.65); perspective:1000px; -webkit-perspective:1000px;">
+                    <div class="relative overflow-hidden rounded-md w-full" style="height:380px;">
+                    <img
+                        class="kart-image w-full h-full object-cover block"
+                        src="2.jpg"
+                        alt="Standard Kart"
+                        data-images="kart2.jpg"
+                        data-index="0"
+                        style="opacity:1; transition:opacity .36s ease;"
+                    >
+                    <button type="button" class="prev-image absolute left-3 bottom-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm transform transition-transform duration-150 active:scale-95 active:translate-y-[2px]">Prev</button>
+                    <button type="button" class="next-image absolute right-3 bottom-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm transform transition-transform duration-150 active:scale-95 active:translate-y-[2px]">Next</button>
+                    </div>
+                    <h3 class="text-2xl font-bold uppercase mt-4 kart-name text-white">The Arrow (Standard)</h3>
+                    <p class="text-gray-300 kart-meta">Max Speed: 40 MPH</p>
+                    <p class="mt-3 w-full max-w-[560px] text-gray-200">Reliable and balanced — ideal for casual racers and group sessions with easy handling and steady performance.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="kart-card rounded-xl shadow-xl p-4 flex flex-col items-center transition-transform duration-300 ease-out transform-gpu hover:scale-105 hover:-translate-y-1 mt-6 md:mt-0"
+                     style="width:100%; max-width:560px; background-color: rgba(0,0,0,0.65); perspective:1000px; -webkit-perspective:1000px;">
+                    <div class="relative overflow-hidden rounded-md w-full" style="height:380px;">
+                    <img
+                        class="kart-image w-full h-full object-cover block"
+                        src="kart5.jpg"
+                        alt="Junior Kart"
+                        data-images="1.jpg"
+                        data-index="0"
+                        style="opacity:1; transition:opacity .36s ease;"
+                    >
+                    <button type="button" class="prev-image absolute left-3 bottom-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm transform transition-transform duration-150 active:scale-95 active:translate-y-[2px]">Prev</button>
+                    <button type="button" class="next-image absolute right-3 bottom-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm transform transition-transform duration-150 active:scale-95 active:translate-y-[2px]">Next</button>
+                    </div>
+                    <h3 class="text-2xl font-bold uppercase mt-4 kart-name text-white">The Comet (Junior)</h3>
+                    <p class="text-gray-300 kart-meta">Safe &amp; Fun for Kids</p>
+                    <p class="mt-3 w-full max-w-[560px] text-gray-200">Designed for younger drivers with reduced speed and built-in stability features to keep the experience safe and enjoyable.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="kart-card rounded-xl shadow-xl p-4 flex flex-col items-center transition-transform duration-300 ease-out transform-gpu hover:scale-105 hover:-translate-y-1 mt-6 md:mt-0"
+                     style="width:100%; max-width:560px; background-color: rgba(0,0,0,0.65); perspective:1000px; -webkit-perspective:1000px;">
+                    <div class="relative overflow-hidden rounded-md w-full" style="height:380px;">
+                    <img
+                        class="kart-image w-full h-full object-cover block"
+                        src="kart4.jpg"
+                        alt="Club Kart"
+                        data-images="kart6.jpg"
+                        data-index="0"
+                        style="opacity:1; transition:opacity .36s ease;"
+                    >
+                    <button type="button" class="prev-image absolute left-3 bottom-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm transform transition-transform duration-150 active:scale-95 active:translate-y-[2px]">Prev</button>
+                    <button type="button" class="next-image absolute right-3 bottom-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-md text-sm transform transition-transform duration-150 active:scale-95 active:translate-y-[2px]">Next</button>
+                    </div>
+                    <h3 class="text-2xl font-bold uppercase mt-4 kart-name text-white">The Falcon (Club)</h3>
+                    <p class="text-gray-300 kart-meta">Balanced Performance</p>
+                    <p class="mt-3 w-full max-w-[560px] text-gray-200">A great all-rounder for club racers: predictable grip, tunable balance and comfortable ergonomics for longer sessions.</p>
+                </div>
+                </div>
+
+                <script>
+                (function () {
+                // Scope only to kart cards to avoid picking unrelated .relative nodes
+                document.querySelectorAll('.kart-card .relative').forEach(function (wrapper) {
+                    var img = wrapper.querySelector('.kart-image');
+                    if (!img) return;
+                    var base = (img.getAttribute('src') || '').trim();
+                    var list = (img.getAttribute('data-images') || '').split(',').map(s => s.trim()).filter(Boolean);
+                    var images = [base].concat(list).filter(Boolean);
+                    images = images.filter((v, i) => images.indexOf(v) === i);
+                    wrapper.__images = images;
+                    img.setAttribute('data-index', img.getAttribute('data-index') || '0');
+
+                    // ensure a clean opacity transition baseline
+                    img.style.transition = img.style.transition || 'opacity .36s ease';
+                    img.style.opacity = img.style.opacity || '1';
+                });
+
+                function showImage(img, wrapper, idx) {
+                    var images = wrapper.__images || [(img.getAttribute('src') || '')];
+                    if (!images.length) return;
+                    idx = ((idx % images.length) + images.length) % images.length;
+                    var nextSrc = images[idx];
+
+                    // preload then swap with a fade for smoothness
+                    var tmp = new Image();
+                    tmp.onload = function () {
+                    // fade out
+                    img.style.opacity = '0';
+                    // small delay so the fade-out is perceptible before swapping
+                    setTimeout(function () {
+                        img.src = nextSrc;
+                        img.setAttribute('data-index', idx);
+                        // when the new image finishes loading show it
+                        img.onload = function () {
+                        // ensure visible
+                        requestAnimationFrame(function () {
+                            img.style.opacity = '1';
+                        });
+                        };
+                    }, 70);
+                    };
+                    tmp.src = nextSrc;
+                }
+
+                document.querySelectorAll('.next-image').forEach(function (btn) {
+                    btn.addEventListener('click', function (e) {
+                    var wrapper = e.target.closest('.kart-card').querySelector('.relative');
+                    if (!wrapper) return;
+                    var img = wrapper.querySelector('.kart-image');
+                    if (!img) return;
+                    var idx = parseInt(img.getAttribute('data-index') || '0', 10);
+                    idx = idx + 1;
+                    showImage(img, wrapper, idx);
+
+                    // quick tactile feedback: small button press animation handled via CSS classes (active:)
+                    // additionally ensure keyboard users get focus outline
+                    btn.blur();
+                    });
+                });
+
+                document.querySelectorAll('.prev-image').forEach(function (btn) {
+                    btn.addEventListener('click', function (e) {
+                    var wrapper = e.target.closest('.kart-card').querySelector('.relative');
+                    if (!wrapper) return;
+                    var img = wrapper.querySelector('.kart-image');
+                    if (!img) return;
+                    var idx = parseInt(img.getAttribute('data-index') || '0', 10);
+                    idx = idx - 1;
+                    showImage(img, wrapper, idx);
+                    btn.blur();
+                    });
+                });
+
+                // hide broken images gracefully
+                document.querySelectorAll('.kart-image').forEach(function (img) {
+                    img.addEventListener('error', function () {
+                    this.style.display = 'none';
+                    });
+                });
+                })();
+                </script>
+
+                <button id="prev-kart" class="absolute top-1/2 left-0 md:-left-16 transform -translate-y-1/2 z-20 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                </button>
+                <button id="next-kart" class="absolute top-1/2 right-0 md:-right-16 transform -translate-y-1/2 z-20 p-3 rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                </button>
             </div>
-        </section>
+            </div>
+        </section></button>
     </main>
 
     <footer id="book" class="py-20 px-4 md:px-12 bg-zinc-900 text-gray-400">
