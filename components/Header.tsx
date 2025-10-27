@@ -113,7 +113,6 @@ const Header: React.FC = () => {
                 width={40}
                 height={40}
                 className="rounded-full object-cover ring-2 ring-red-500/50 group-hover:ring-red-500 transition-all duration-300"
-                priority
               />
             </div>
             <div className="hidden sm:block ml-2">
