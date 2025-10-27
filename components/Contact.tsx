@@ -34,7 +34,7 @@ const Contact: React.FC = () => {
   ];
 
   return (
-        <section id="contact" className="py-16 sm:py-20 px-4 md:px-12 bg-black text-white snap-start">
+    <section id="contact" className="py-16 sm:py-20 px-4 md:px-12 bg-black text-white snap-start">
       <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
