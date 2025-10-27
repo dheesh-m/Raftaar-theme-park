@@ -83,23 +83,23 @@ body {
     width: 100%;
     height: 400px; 
     object-fit: cover;
-    /* Scale down side images and fade them */
-    transform: scale(0.9);
-    opacity: 0.4;
+    /* All images are now in focus */
+    transform: scale(1);
+    opacity: 1;
     transition: all 0.5s ease-out;
 }
 
-/* The active (center) slide gets full size and clarity */
+/* All slides maintain full size and clarity */
 .track-slide.active .track-img-3d {
     transform: scale(1);
     opacity: 1;
     z-index: 10;
 }
 
-/* Caption styling: absolute position relative to the slide (not the image) */
+/* Caption styling: all captions are now visible */
 .track-caption {
-    opacity: 0;
-    transform: translateY(10px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
     z-index: 15;
 }
@@ -109,6 +109,40 @@ body {
     transform: translateY(0);
 }
 
+
+/* Gallery Images with Black Box Styling */
+.kart-image {
+    border: 3px solid #000;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.kart-card:hover .kart-image {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border-color: #f70b19;
+}
+
+.kart-card {
+    transition: all 0.3s ease;
+}
+
+.kart-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Contact Section Styling */
+.contact-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    border-color: #f70b19;
+    box-shadow: 0 10px 25px rgba(247, 11, 25, 0.2);
+}
 
 /* Karts */
 .kart-slide {

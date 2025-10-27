@@ -68,9 +68,10 @@
                 <span class="font-bold text-lg uppercase md:hidden">Raftaar Theme Park</span>
             </div>
             <nav class="hidden md:flex items-center space-x-8 font-bold uppercase text-sm z-20">
+                <a href="#home" class="hover:text-red-900 transition-colors">Home</a>
                 <a href="#track" class="hover:text-red-900 transition-colors">Track</a>
                 <a href="#karts" class="hover:text-red-900 transition-colors">Karts</a>
-                <a href="#book" class="hover:text-red-900 transition-colors">Contact</a>
+                <a href="#contact" class="hover:text-red-900 transition-colors">Contact</a>
             </nav>
         </div>
         <div class="absolute inset-y-0 right-0 z-50 flex items-center pr-4 md:pr-8 space-x-4">
@@ -79,7 +80,7 @@
     </header>
 
     <main>
-        <section class="h-screen min-h-[700px] flex items-center justify-center text-center relative overflow-hidden pt-32">
+        <section id="home" class="h-screen min-h-[700px] flex items-center justify-center text-center relative overflow-hidden pt-32">
             <div class="absolute inset-0 z-0 flex justify-center items-center">
                 <div class="w-full h-[65vh] relative overflow-hidden">
                     <video autoplay loop muted playsinline poster="logo.jpg" class="hero-video-bg hero-fade-in absolute inset-0" onerror="this.style.display='none'">
@@ -96,7 +97,7 @@
                 </div>
                 <h2 class="heading-tertiary hero-slide-up" style="animation-delay: 1s;">Raftaar Theme Park</h2>
                 <h1 class="heading-primary mt-4 hero-slide-up" style="animation-delay: 1.2s;">RACE • REST • REVIVE<br></h1>
-                <a href="#book" class="inline-block accent-gold font-bold uppercase tracking-widest text-sm px-8 py-4 mt-8 rounded-lg hero-slide-up hover:bg-red-300 transition-colors" style="animation-delay: 1.5s;">
+                <a href="#contact" class="inline-block accent-gold font-bold uppercase tracking-widest text-sm px-8 py-4 mt-8 rounded-lg hero-slide-up hover:bg-red-300 transition-colors" style="animation-delay: 1.5s;">
                     Discover more &rarr;
                 </a>
             </div>
@@ -429,9 +430,46 @@
         </section></button>
     </main>
 
-    <footer id="book" class="py-20 px-4 md:px-12 bg-zinc-900 text-gray-400">
+    <footer id="contact" class="py-20 px-4 md:px-12 bg-zinc-900 text-gray-400">
         <div class="container mx-auto text-center">
-            © 2025 Raftaar Theme Park. All rights reserved.
+            <h2 class="heading-secondary text-white mb-8">Contact Us</h2>
+            <p class="text-lg mb-12 max-w-2xl mx-auto">Get in touch with us for bookings, inquiries, or just to say hello!</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
+                <!-- WhatsApp -->
+                <div class="contact-card bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-colors">
+                    <div class="text-4xl mb-4">📱</div>
+                    <h3 class="text-xl font-bold text-white mb-2">WhatsApp</h3>
+                    <p class="text-gray-300 mb-4">Quick messaging</p>
+                    <a href="https://wa.me/1234567890" target="_blank" class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition-colors">
+                        Chat Now
+                    </a>
+                </div>
+                
+                <!-- Instagram -->
+                <div class="contact-card bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-colors">
+                    <div class="text-4xl mb-4">📸</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Instagram</h3>
+                    <p class="text-gray-300 mb-4">Follow our adventures</p>
+                    <a href="https://instagram.com/raftaarkarting" target="_blank" class="inline-block bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg transition-colors">
+                        Follow Us
+                    </a>
+                </div>
+                
+                <!-- Email -->
+                <div class="contact-card bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-colors">
+                    <div class="text-4xl mb-4">✉️</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Email</h3>
+                    <p class="text-gray-300 mb-4">Send us a message</p>
+                    <a href="mailto:info@raftaarkarting.com" class="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition-colors">
+                        Email Us
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <p class="text-gray-500">© 2025 Raftaar Theme Park. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
