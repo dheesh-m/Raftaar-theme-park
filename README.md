@@ -33,25 +33,33 @@ A modern, responsive website for Raftaar Theme Park built with Next.js, React, a
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
-cd raftaar-theme-park
+git clone https://github.com/dheesh-m/Raftaar-theme-park.git
+cd Raftaar-theme-park
 ```
 
 2. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
 ```
 
 3. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Quick Start
+
+```bash
+# Clone and setup in one go
+git clone https://github.com/dheesh-m/Raftaar-theme-park.git
+cd Raftaar-theme-park
+npm install
+npm run dev
+```
+
+The website will be available at `http://localhost:3000`
 
 ## Project Structure
 
@@ -68,6 +76,7 @@ raftaar-theme-park/
 │   └── Footer.tsx      # Footer component
 ├── pages/              # Next.js pages
 │   ├── _app.tsx        # App wrapper
+│   ├── _document.tsx   # Document wrapper (for fonts)
 │   └── index.tsx       # Home page
 ├── public/             # Static assets
 │   ├── *.jpg          # Images
@@ -124,6 +133,35 @@ npm start
 - Lazy loading for gallery images
 - Smooth scroll behavior
 - Efficient animations with Framer Motion
+
+## Troubleshooting
+
+### Common Issues
+
+**Port already in use:**
+```bash
+# If port 3000 is busy, Next.js will automatically use 3001
+# Or specify a different port:
+npm run dev -- -p 3001
+```
+
+**Dependencies issues:**
+```bash
+# Clear npm cache and reinstall
+npm cache clean --force
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**Build files in git:**
+The repository is configured to ignore build files (`.next/`, `node_modules/`). If you see build files in git status, they will be automatically ignored.
+
+### Development Tips
+
+- The project uses Next.js 14.2.3 with React 18.2.0 for optimal compatibility
+- All images are optimized using Next.js Image component
+- Fonts are loaded through `_document.tsx` for better performance
+- The project is configured for Vercel deployment
 
 ## License
 
