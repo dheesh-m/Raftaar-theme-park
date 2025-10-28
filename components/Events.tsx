@@ -158,7 +158,7 @@ const Events: React.FC = () => {
                     <div className="bg-pink-500 text-white text-xs px-3 py-1 rounded-full font-bold">
                       INDIA
                     </div>
-                    <span className="text-pink-400 text-sm font-semibold">at Raftaar</span>
+                    <span className="text-pink-400 text-sm font-semibold">AT RAFTAAR</span>
                   </div>
                 </div>
               </div>

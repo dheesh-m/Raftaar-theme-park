@@ -43,10 +43,12 @@ const Header: React.FC = () => {
 
   const dropdownItems = [
     { href: '#home', label: 'Home', icon: '🏠' },
-    { href: '#track', label: 'Track', icon: '🏁' },
+    { href: '#track', label: 'Go Karting', icon: '🏁' },
+    { href: '#shooting', label: 'Shooting Range', icon: '🎯' },
     { href: '#arcade', label: 'Arcade', icon: '🎮' },
     { href: '#events', label: 'Events', icon: '📅' },
-    { href: '#gallery', label: 'Gallery', icon: '📸' },
+    { href: '#experience', label: 'Experience', icon: '⭐' },
+    { href: '#faq', label: 'FAQ', icon: '❓' },
     { href: '#contact', label: 'Contact', icon: '📞' },
   ];
 

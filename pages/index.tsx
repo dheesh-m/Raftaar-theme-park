@@ -3,9 +3,9 @@ import Layout from '../components/Layout';
 import LoadingScreen from '../components/LoadingScreen';
 import Hero from '../components/Hero';
 import Track from '../components/Track';
+import ShootingRange from '../components/ShootingRange';
 import Arcade from '../components/Arcade';
 import Events from '../components/Events';
-import Gallery from '../components/Gallery';
 import StackedCards from '../components/StackedCards';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
@@ -30,9 +30,9 @@ const Home: React.FC = () => {
     <Layout>
       <Hero />
       <Track />
+      <ShootingRange />
       <Arcade />
       <Events />
-      <Gallery />
       <StackedCards />
       <FAQ />
       <Contact />

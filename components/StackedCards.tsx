@@ -43,6 +43,27 @@ const StackedCards: React.FC = () => {
       description: 'Enjoy our premium facilities with comfortable seating, refreshments, and top-notch customer service.',
       image: '/kart6.jpg',
       color: 'from-orange-500 to-orange-600'
+    },
+    {
+      id: 6,
+      title: 'Track Views',
+      description: 'Experience breathtaking views of our professional racing circuit with challenging turns and high-speed straights.',
+      image: '/1.jpg',
+      color: 'from-cyan-500 to-cyan-600'
+    },
+    {
+      id: 7,
+      title: 'Racing Circuit',
+      description: 'Master the art of precision driving on our state-of-the-art track designed for maximum excitement.',
+      image: '/2.jpg',
+      color: 'from-pink-500 to-pink-600'
+    },
+    {
+      id: 8,
+      title: 'Professional Track',
+      description: 'Feel the thrill of professional racing on our meticulously designed track with safety-first approach.',
+      image: '/3.jpg',
+      color: 'from-indigo-500 to-indigo-600'
     }
   ];
 
@@ -68,7 +89,7 @@ const StackedCards: React.FC = () => {
   };
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-black to-gray-900 text-white">
+    <section id="experience" className="py-24 md:py-32 bg-gradient-to-b from-black to-gray-900 text-white">
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
@@ -134,7 +155,7 @@ const StackedCards: React.FC = () => {
                     />
                     
                     {/* Gradient Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-80`} />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-50`} />
                     
                     {/* Content */}
                     <div className="absolute inset-0 flex flex-col justify-end p-8">

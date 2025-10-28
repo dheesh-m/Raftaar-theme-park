@@ -1,11 +1,47 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Gamepad2, Target, Zap, Users, Trophy, Star } from 'lucide-react';
+import { Gamepad2, Car, Zap, Users, Trophy, Star } from 'lucide-react';
 
 const Arcade: React.FC = () => {
+  // Dynamic stats that increase every 24 hours
+  const [dynamicStats, setDynamicStats] = useState({
+    activePlayers: 500,
+    tournamentsWon: 150,
+    averageRating: 4.9,
+    gamingHours: 10000
+  });
+
+  useEffect(() => {
+    const calculateDynamicStats = () => {
+      const now = new Date();
+      const startDate = new Date('2024-01-01'); // Starting date
+      const daysPassed = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+      
+      // Calculate increases based on days passed
+      const playerIncrease = Math.floor(daysPassed * 2.3); // ~2.3 new players per day
+      const tournamentIncrease = Math.floor(daysPassed * 0.8); // ~0.8 tournaments per day
+      const ratingIncrease = Math.min(daysPassed * 0.001, 0.1); // Small rating increase, capped at 0.1
+      const hoursIncrease = Math.floor(daysPassed * 45); // ~45 hours per day
+      
+      setDynamicStats({
+        activePlayers: 500 + playerIncrease,
+        tournamentsWon: 150 + tournamentIncrease,
+        averageRating: Math.min(4.9 + ratingIncrease, 5.0),
+        gamingHours: 10000 + hoursIncrease
+      });
+    };
+
+    calculateDynamicStats();
+    
+    // Update every hour to keep stats fresh
+    const interval = setInterval(calculateDynamicStats, 60 * 60 * 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
+
   const arcadeFeatures = [
     {
       icon: Gamepad2,
@@ -15,19 +51,26 @@ const Arcade: React.FC = () => {
       features: ['Latest PS5 Games', '4K Gaming', 'Comfortable Seating', 'Multiplayer Support']
     },
     {
-      icon: Target,
-      title: 'Shooting Range',
-      description: 'Test your precision and accuracy in our state-of-the-art shooting range.',
-      image: 'range-1.jpg',
-      features: ['Laser Shooting', 'Safety First', 'Multiple Targets', 'Score Tracking']
+      icon: Car,
+      title: 'F1 Simulator',
+      description: 'Experience the thrill of Formula 1 racing with our professional-grade simulators.',
+      image: '/kart2.jpg',
+      features: ['Realistic F1 Experience', 'Professional Setup', 'Multiple Tracks', 'Competitive Racing']
+    },
+    {
+      icon: Zap,
+      title: 'Other Arcade Games',
+      description: 'Classic and modern arcade games for all ages and skill levels.',
+      image: '/kart4.jpg',
+      features: ['Classic Games', 'Modern Titles', 'Prize System', 'All Ages Welcome']
     }
   ];
 
   const gamingStats = [
-    { icon: Users, label: 'Active Players', value: '500+' },
-    { icon: Trophy, label: 'Tournaments Won', value: '150+' },
-    { icon: Star, label: 'Average Rating', value: '4.9/5' },
-    { icon: Zap, label: 'Gaming Hours', value: '10K+' }
+    { icon: Users, label: 'Active Players', value: `${dynamicStats.activePlayers}+` },
+    { icon: Trophy, label: 'Tournaments Won', value: `${dynamicStats.tournamentsWon}+` },
+    { icon: Star, label: 'Average Rating', value: `${dynamicStats.averageRating.toFixed(1)}/5` },
+    { icon: Zap, label: 'Gaming Hours', value: `${Math.floor(dynamicStats.gamingHours / 1000)}K+` }
   ];
 
   return (
@@ -50,7 +93,7 @@ const Arcade: React.FC = () => {
         </motion.div>
 
         {/* Main Features Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-16 sm:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 mb-16 sm:mb-20">
           {arcadeFeatures.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -143,31 +186,6 @@ const Arcade: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mt-12 sm:mt-16"
-        >
-          <div className="bg-gradient-to-r from-red-500/10 to-purple-600/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-red-500/20">
-            <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-white">
-              Ready to Game?
-            </h3>
-            <p className="text-gray-300 mb-4 sm:mb-6 text-base sm:text-lg max-w-2xl mx-auto">
-              Join our gaming community and experience the ultimate arcade adventure. 
-              From competitive tournaments to casual gaming sessions.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 text-base sm:text-lg"
-            >
-              Start Gaming Now
-            </motion.button>
-          </div>
-        </motion.div>
       </div>
     </section>
   );

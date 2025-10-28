@@ -5,39 +5,39 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
-const Track: React.FC = () => {
+const ShootingRange: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const trackData = [
+  const shootingData = [
     {
       id: 1,
-      image: '/1.jpg',
-      title: 'Main Track View',
-      description: 'Our professional 1.2-mile racing circuit designed for maximum excitement and safety.',
-      specs: 'Professional Grade • Safety Certified'
+      image: '/kart.jpg',
+      title: 'Laser Shooting Range',
+      description: 'Test your precision and accuracy with our state-of-the-art laser shooting range.',
+      specs: 'Laser Technology • Safety First'
     },
     {
       id: 2,
-      image: '/2.jpg',
-      title: 'Track Overview',
-      description: 'Experience the thrill of high-speed racing on our state-of-the-art track facility.',
+      image: '/kart2.jpg',
+      title: 'Rifle Shooting',
+      description: 'Experience the thrill of rifle shooting with professional-grade equipment and safety measures.',
       specs: 'Professional Grade • Safety Certified'
     },
     {
       id: 3,
-      image: '/3.jpg',
-      title: 'Racing Circuit',
-      description: 'Master the art of precision driving on our challenging and exciting race track.',
-      specs: 'Professional Grade • Safety Certified'
+      image: '/kart4.jpg',
+      title: 'Target Practice',
+      description: 'Master your shooting skills with various target challenges and difficulty levels.',
+      specs: 'Multiple Targets • Score Tracking'
     }
   ];
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % trackData.length);
+    setCurrentSlide((prev) => (prev + 1) % shootingData.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + trackData.length) % trackData.length);
+    setCurrentSlide((prev) => (prev - 1 + shootingData.length) % shootingData.length);
   };
 
   const goToSlide = (index: number) => {
@@ -45,7 +45,7 @@ const Track: React.FC = () => {
   };
 
   return (
-        <section id="track" className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-gray-900 to-black text-white snap-start">
+        <section id="shooting" className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-gray-900 to-black text-white snap-start">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -55,10 +55,10 @@ const Track: React.FC = () => {
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent">
-            Go Karting
+            Shooting Range
           </h2>
           <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">
-            Experience the state-of-the-art 1.2 mile course with challenging hairpins and high-speed straights.
+            Experience precision shooting with our professional laser and rifle shooting ranges.
           </p>
         </motion.div>
 
@@ -81,8 +81,8 @@ const Track: React.FC = () => {
                 className="absolute inset-0"
               >
                   <Image
-                    src={trackData[currentSlide].image}
-                    alt={trackData[currentSlide].title}
+                    src={shootingData[currentSlide].image}
+                    alt={shootingData[currentSlide].title}
                     fill
                   className="object-cover transition-transform duration-700 ease-out"
                     priority
@@ -105,13 +105,13 @@ const Track: React.FC = () => {
                   className="text-center px-4 sm:px-8"
                 >
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                      {trackData[currentSlide].title}
+                      {shootingData[currentSlide].title}
                   </h3>
                   <p className="text-sm sm:text-base md:text-lg text-gray-200 mb-4 sm:mb-6 max-w-2xl mx-auto px-2 sm:px-4">
-                      {trackData[currentSlide].description}
+                      {shootingData[currentSlide].description}
                   </p>
                   <span className="inline-block bg-gradient-to-r from-red-600 to-red-500 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
-                        {trackData[currentSlide].specs}
+                        {shootingData[currentSlide].specs}
                       </span>
                     </motion.div>
                   </div>
@@ -146,7 +146,7 @@ const Track: React.FC = () => {
 
           {/* Dots Indicator */}
           <div className="hidden sm:flex justify-center space-x-2 mt-6 sm:mt-8">
-            {trackData.map((_, index) => (
+            {shootingData.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
@@ -165,4 +165,4 @@ const Track: React.FC = () => {
   );
 };
 
-export default Track;
+export default ShootingRange;

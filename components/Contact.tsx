@@ -33,7 +33,7 @@ const Contact: React.FC = () => {
   const socialLinks = [
     { icon: Facebook, href: 'https://www.facebook.com/people/Raftaarwin/61555175682926/?mibextid=LQQJ4d&rdid=ssskiU9BczyA5OQR&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FhTzj7XnsFJjADZi9%2F%3Fmibextid%3DLQQJ4d', label: 'Facebook' },
     { icon: Instagram, href: 'https://www.instagram.com/raftaar.win/?igsh=MmlranhxamQxc2Fm&utm_source=qr#', label: 'Instagram' },
-    { icon: MessageCircle, href: 'https://wa.me/918766741673', label: 'WhatsApp' }
+    { icon: MessageCircle, href: 'https://wa.me/918766741673?text=Hi', label: 'WhatsApp' }
   ];
 
   return (

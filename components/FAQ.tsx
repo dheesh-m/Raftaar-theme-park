@@ -39,7 +39,7 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-gray-900 to-black text-white">
+    <section id="faq" className="py-24 md:py-32 bg-gradient-to-b from-gray-900 to-black text-white">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Header */}
         <motion.div
