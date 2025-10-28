@@ -1,19 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
+import LoadingScreen from '../components/LoadingScreen';
 import Hero from '../components/Hero';
 import Track from '../components/Track';
+import Arcade from '../components/Arcade';
 import Events from '../components/Events';
 import Gallery from '../components/Gallery';
+import StackedCards from '../components/StackedCards';
+import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
+import Footer from '../components/Footer';
 
 const Home: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Loading screen will automatically complete after 3 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <LoadingScreen onComplete={() => setIsLoading(false)} />;
+  }
+
   return (
     <Layout>
       <Hero />
       <Track />
+      <Arcade />
       <Events />
       <Gallery />
+      <StackedCards />
+      <FAQ />
       <Contact />
+      <Footer />
     </Layout>
   );
 };

@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, Clock, MapPin, Users } from 'lucide-react';
+import Image from 'next/image';
 
 const Events: React.FC = () => {
   const events = [
@@ -121,11 +122,179 @@ const Events: React.FC = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
+        {/* Eats & Treats Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-16"
+        >
+          <div className="bg-gradient-to-r from-red-500/10 to-purple-600/10 backdrop-blur-sm rounded-2xl p-8 border border-red-500/20">
+            <div className="text-center mb-8">
+              <div className="text-sm uppercase tracking-wider text-gray-400 mb-4">EATS & TREATS</div>
+              <h3 className="text-3xl font-bold mb-4 text-white">Snacks that score</h3>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                Burgers, fries, and drinks made fresh—ready when you are. Grab a bite, chill out, and get back in the game.
+              </p>
+            </div>
+            
+            {/* Food Grid and Snack Attack Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              {/* Food Images Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                {/* Smoothie Bowl */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="relative group"
+                >
+                  <div className="aspect-square bg-gray-800 rounded-xl overflow-hidden border border-gray-700 relative">
+                    <Image
+                      src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=400&fit=crop&crop=center"
+                      alt="Fresh Fruit Smoothie Bowl"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="absolute bottom-2 left-2 right-2">
+                      <div className="bg-black/70 backdrop-blur-sm rounded-lg p-2">
+                        <div className="text-white text-xs font-semibold text-center">Fresh Fruit Smoothie</div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Pasta */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="relative group"
+                >
+                  <div className="aspect-square bg-gray-800 rounded-xl overflow-hidden border border-gray-700 relative">
+                    <Image
+                      src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=400&fit=crop&crop=center"
+                      alt="Delicious Pasta"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="absolute bottom-2 left-2 right-2">
+                      <div className="bg-black/70 backdrop-blur-sm rounded-lg p-2">
+                        <div className="text-white text-xs font-semibold text-center">Authentic Pasta</div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Fries with Price */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="relative group"
+                >
+                  <div className="aspect-square bg-gray-800 rounded-xl overflow-hidden border border-gray-700 relative">
+                    <Image
+                      src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400&h=400&fit=crop&crop=center"
+                      alt="Crispy French Fries"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded font-bold">
+                      ₹199
+                    </div>
+                    <div className="absolute bottom-2 left-2 right-2">
+                      <div className="bg-black/70 backdrop-blur-sm rounded-lg p-2">
+                        <div className="text-white text-xs font-semibold text-center">Crispy Fries</div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Bubble Tea */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="relative group"
+                >
+                  <div className="aspect-square bg-gray-800 rounded-xl overflow-hidden border border-gray-700 relative">
+                    <Image
+                      src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400&h=400&fit=crop&crop=center"
+                      alt="Bubble Tea"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="absolute bottom-2 left-2 right-2">
+                      <div className="bg-black/70 backdrop-blur-sm rounded-lg p-2">
+                        <div className="text-white text-xs font-semibold text-center">Bubble Tea</div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Snack Attack Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700"
+              >
+                <h4 className="text-xl font-bold text-white mb-4">Snack attack</h4>
+                <p className="text-gray-300 mb-4">Grab a quick bite or a drink.</p>
+                <p className="text-gray-300 mb-6">Perfect for mid-game munchies.</p>
+                
+                <div className="mb-6">
+                  <p className="text-gray-300 text-sm mb-3">Available on:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Noon', 'Careem', 'Deliveroo', 'Talabat'].map((platform, index) => (
+                      <span
+                        key={index}
+                        className="bg-gray-700 text-gray-300 text-xs px-3 py-1 rounded-full"
+                      >
+                        {platform}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <motion.a
+                  href="https://bubit.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300"
+                >
+                  Order Now
+                </motion.a>
+              </motion.div>
+            </div>
+            
+            <div className="text-center">
+              <p className="text-xl text-white font-semibold mb-6">
+                Grab a bite out, and get back in the game
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true }}
           className="text-center mt-16"
         >
