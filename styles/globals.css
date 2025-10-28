@@ -62,28 +62,28 @@ html {
 
 /* Headings */
 .heading-primary {
-  font-family: 'Rajdhani', 'Orbitron', sans-serif;
+  font-family: 'Blanka', 'Rajdhani', 'Orbitron', sans-serif;
   font-size: clamp(3rem, 20vw, 6rem);
   text-transform: uppercase;
   line-height: 1;
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .heading-secondary {
   font-family: 'Rajdhani', 'Orbitron', sans-serif;
   font-size: clamp(2rem, 6vw, 3.5rem);
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.01em;
 }
 
 .heading-tertiary {
-  font-family: 'Rajdhani', 'Orbitron', sans-serif;
+  font-family: 'Blanka', 'Rajdhani', 'Orbitron', sans-serif;
   font-size: 2rem;
   font-weight: 600;
   color: #ef4444; /* Red accent color */
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 
 /* Accent */
