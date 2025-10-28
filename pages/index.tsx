@@ -9,7 +9,6 @@ import Gallery from '../components/Gallery';
 import StackedCards from '../components/StackedCards';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
-import Footer from '../components/Footer';
 
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,7 +36,6 @@ const Home: React.FC = () => {
       <StackedCards />
       <FAQ />
       <Contact />
-      <Footer />
     </Layout>
   );
 };

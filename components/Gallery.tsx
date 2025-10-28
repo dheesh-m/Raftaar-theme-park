@@ -48,23 +48,23 @@ const Gallery: React.FC = () => {
   };
 
   return (
-        <section id="gallery" className="py-24 md:py-32 bg-gray-800 text-white snap-start" style={{ marginTop: '80px' }}>
+        <section id="gallery" className="py-16 sm:py-24 md:py-32 bg-gray-800 text-white snap-start" style={{ marginTop: '70px' }}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <h2 className="heading-secondary text-white mb-4">Gallery</h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
             Take a look at our state-of-the-art karts, professional track, and the excitement that awaits you.
           </p>
         </motion.div>
 
         {/* Modern Gallery with Masonry Layout */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 max-w-7xl mx-auto">
+        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6 max-w-7xl mx-auto">
           {galleryImages.map((image, index) => (
             <motion.div
               key={index}
@@ -76,7 +76,7 @@ const Gallery: React.FC = () => {
                 ease: "easeOut"
               }}
               viewport={{ once: true }}
-              className="group relative break-inside-avoid mb-6 rounded-2xl overflow-hidden cursor-pointer shadow-2xl hover:shadow-red-500/20 transition-all duration-500"
+              className="group relative break-inside-avoid mb-4 sm:mb-6 rounded-2xl overflow-hidden cursor-pointer shadow-2xl hover:shadow-red-500/20 transition-all duration-500"
               whileHover={{ 
                 scale: 1.05,
                 rotateY: 5,
@@ -88,7 +88,7 @@ const Gallery: React.FC = () => {
                 border: '1px solid rgba(239, 68, 68, 0.1)'
               }}
             >
-              <div className="relative h-80 w-full overflow-hidden">
+              <div className="relative h-64 sm:h-80 w-full overflow-hidden">
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -110,8 +110,8 @@ const Gallery: React.FC = () => {
               </div>
               
               {/* Image Info */}
-              <div className="p-4 bg-gradient-to-r from-gray-900 to-gray-800">
-                <h4 className="text-white font-semibold text-sm mb-1 truncate">
+              <div className="p-3 sm:p-4 bg-gradient-to-r from-gray-900 to-gray-800">
+                <h4 className="text-white font-semibold text-xs sm:text-sm mb-1 truncate">
                   {image.alt}
                 </h4>
                 <div className="flex items-center justify-between">
@@ -135,8 +135,8 @@ const Gallery: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-              style={{ paddingTop: '100px' }}
+              className="gallery-lightbox fixed inset-0 bg-black/95 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+              style={{ paddingTop: '70px' }}
               onKeyDown={handleKeyDown}
               tabIndex={0}
             >
@@ -145,17 +145,17 @@ const Gallery: React.FC = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="relative max-w-7xl max-h-[80vh] w-full h-full flex flex-col"
+                className="relative max-w-7xl max-h-[85vh] sm:max-h-[80vh] w-full h-full flex flex-col"
               >
                 {/* Close Button */}
                 <motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={closeLightbox}
-                  className="absolute top-4 right-4 z-10 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-colors duration-300"
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-black/80 hover:bg-black text-white p-3 sm:p-3 rounded-2xl shadow-xl transition-all duration-300 sm:bg-red-500 sm:hover:bg-red-600"
                   aria-label="Close lightbox"
                 >
-                  <X size={24} />
+                  <X size={24} className="sm:w-6 sm:h-6" />
                 </motion.button>
                 
                 {/* Image Container */}
@@ -168,37 +168,33 @@ const Gallery: React.FC = () => {
                     transition={{ duration: 0.3 }}
                     src={selectedImage}
                     alt={galleryImages[selectedIndex].alt}
-                    className="lightbox-image shadow-2xl"
+                    className="lightbox-image shadow-2xl border-4 border-white/20 rounded-2xl"
                     style={{ 
-                      width: '100%',
-                      height: '70vh',
-                      maxWidth: '1000px',
-                      maxHeight: '70vh',
+                      width: '800px',
+                      height: '600px',
+                      maxWidth: '800px',
+                      maxHeight: '600px',
                       objectFit: 'cover',
                       objectPosition: 'center'
                     }}
                   />
                   
                   {/* Navigation Buttons */}
-                  <motion.button
-                    whileHover={{ scale: 1.1, x: -5 }}
-                    whileTap={{ scale: 0.9 }}
+                  <button
                     onClick={prevImage}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-black p-3 rounded-full shadow-lg transition-all duration-300"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/80 hover:bg-black text-white p-3 sm:p-3 rounded-2xl shadow-xl transition-all duration-300 z-10 sm:left-4 sm:bg-white/95 sm:hover:bg-white sm:text-black"
                     aria-label="Previous image"
                   >
-                    <ChevronLeft size={24} />
-                  </motion.button>
+                    <ChevronLeft size={24} className="sm:w-6 sm:h-6" />
+                  </button>
                   
-                  <motion.button
-                    whileHover={{ scale: 1.1, x: 5 }}
-                    whileTap={{ scale: 0.9 }}
+                  <button
                     onClick={nextImage}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-black p-3 rounded-full shadow-lg transition-all duration-300"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/80 hover:bg-black text-white p-3 sm:p-3 rounded-2xl shadow-xl transition-all duration-300 z-10 sm:right-4 sm:bg-white/95 sm:hover:bg-white sm:text-black"
                     aria-label="Next image"
                   >
-                    <ChevronRight size={24} />
-                  </motion.button>
+                    <ChevronRight size={24} className="sm:w-6 sm:h-6" />
+                  </button>
                 </div>
                 
                 {/* Image Info */}
@@ -206,12 +202,12 @@ const Gallery: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-center mt-4 bg-black/50 backdrop-blur-sm rounded-lg p-4"
+                  className="text-center mt-2 sm:mt-4 bg-black/50 backdrop-blur-sm rounded-lg p-3 sm:p-4"
                 >
-                  <p className="text-white text-lg font-semibold">
+                  <p className="text-white text-base sm:text-lg font-semibold">
                     {selectedIndex + 1} of {galleryImages.length}
                   </p>
-                  <p className="text-gray-300 mt-1">
+                  <p className="text-gray-300 mt-1 text-sm sm:text-base">
                     {galleryImages[selectedIndex].alt}
                   </p>
                 </motion.div>

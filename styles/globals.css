@@ -1,5 +1,8 @@
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind base;
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind components;
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 
 @font-face {
@@ -108,6 +111,14 @@ html {
   min-height: 70px !important;
   max-height: 70px !important;
   overflow: visible !important;
+}
+
+/* Mobile Navigation Bar */
+@media (max-width: 768px) {
+  .nav-bar {
+    min-height: 60px !important;
+    max-height: 60px !important;
+  }
 }
 
 /* Solid Navigation Bar (Initial State) */
@@ -235,6 +246,25 @@ html {
   min-width: 100%;
   min-height: 100%;
   z-index: 1;
+}
+
+/* Mobile Video Optimization */
+@media (max-width: 768px) {
+  .hero-video-bg {
+    object-fit: cover;
+    object-position: center;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+  }
+  
+  /* Ensure video container is properly sized on mobile */
+  video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
 }
 
 /* Animations */
@@ -409,26 +439,82 @@ html {
 
 /* Lightbox Image Uniformity */
 .lightbox-image {
-  width: 100% !important;
-  height: 60vh !important;
-  max-width: 1000px !important;
-  max-height: 60vh !important;
+  width: 800px !important;
+  height: 600px !important;
+  max-width: 800px !important;
+  max-height: 600px !important;
   object-fit: cover !important;
   object-position: center !important;
-  border-radius: 12px;
+  border-radius: 16px !important;
+  border: 4px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+@media (max-width: 1024px) {
+  .lightbox-image {
+    width: 700px !important;
+    height: 525px !important;
+    max-width: 700px !important;
+    max-height: 525px !important;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .lightbox-image {
+    width: 700px !important;
+    height: 525px !important;
+    max-width: 700px !important;
+    max-height: 525px !important;
+  }
 }
 
 @media (max-width: 768px) {
   .lightbox-image {
-    height: 50vh !important;
-    max-height: 50vh !important;
+    width: 85vw !important;
+    height: 63.75vw !important;
+    max-width: 85vw !important;
+    max-height: 63.75vw !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .lightbox-image {
+    width: 90vw !important;
+    height: 67.5vw !important;
+    max-width: 90vw !important;
+    max-height: 67.5vw !important;
+  }
+  
+  /* Mobile gallery arrows - better touch targets */
+  .gallery-lightbox .carousel-nav-button {
+    width: 44px !important;
+    height: 44px !important;
+    padding: 10px !important;
   }
 }
 
 @media (max-width: 480px) {
   .lightbox-image {
-    height: 40vh !important;
-    max-height: 40vh !important;
+    width: 95vw !important;
+    height: 71.25vw !important;
+    max-width: 95vw !important;
+    max-height: 71.25vw !important;
+  }
+  
+  /* Mobile gallery arrows positioning */
+  .gallery-lightbox .carousel-nav-button {
+    left: 8px !important;
+    right: 8px !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 8px !important;
+  }
+  
+  .gallery-lightbox .carousel-nav-button.left-4 {
+    left: 8px !important;
+  }
+  
+  .gallery-lightbox .carousel-nav-button.right-4 {
+    right: 8px !important;
   }
 }
 
@@ -660,15 +746,18 @@ section {
 /* Mobile-specific optimizations */
 @media (max-width: 640px) {
   .heading-primary {
-    font-size: clamp(2rem, 15vw, 4rem);
+    font-size: clamp(1.8rem, 12vw, 3.5rem);
+    line-height: 1.1;
   }
   
   .heading-secondary {
-    font-size: clamp(1.5rem, 8vw, 2.5rem);
+    font-size: clamp(1.4rem, 7vw, 2.2rem);
+    line-height: 1.2;
   }
   
   .heading-tertiary {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    line-height: 1.3;
   }
   
   /* Improve touch targets */
@@ -679,8 +768,8 @@ section {
   
   /* Better mobile spacing */
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
   
   /* Mobile video optimization */
@@ -690,7 +779,7 @@ section {
   
   /* Mobile gallery improvements */
   .gallery-item {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   
   #gallery {
@@ -707,14 +796,129 @@ section {
     max-height: 60px !important;
   }
   
+  .solid-nav {
+    min-height: 60px !important;
+    max-height: 60px !important;
+  }
+  
   /* Ensure hero content doesn't hide behind nav */
   #home {
-    padding-top: 80px !important;
+    padding-top: 70px !important;
   }
   
   #home .hero-video-bg {
-    top: 80px !important;
-    height: calc(100vh - 80px) !important;
+    top: 70px !important;
+    height: calc(100vh - 70px) !important;
+  }
+  
+  /* Mobile menu improvements */
+  .mobile-menu {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  
+  /* Mobile button improvements */
+  .mobile-menu-button {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Mobile text sizing */
+  .text-xs {
+    font-size: 0.7rem;
+  }
+  
+  .text-sm {
+    font-size: 0.8rem;
+  }
+  
+  .text-base {
+    font-size: 0.9rem;
+  }
+  
+  /* Mobile button sizing */
+  .btn-mobile {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Mobile card spacing */
+  .card-mobile {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Mobile grid improvements */
+  .grid-mobile {
+    gap: 0.75rem;
+  }
+  
+  /* Mobile image optimization */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Mobile scroll improvements */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile focus improvements */
+  button:focus,
+  a:focus {
+    outline: 2px solid #ef4444;
+    outline-offset: 2px;
+  }
+  
+  /* Mobile carousel arrow improvements */
+  .carousel-arrow {
+    min-width: 44px;
+    min-height: 44px;
+    z-index: 10;
+  }
+  
+  /* Prevent overlapping in gallery lightbox */
+  .gallery-lightbox .carousel-arrow {
+    position: absolute;
+    z-index: 20;
+  }
+  
+  /* Better mobile touch targets */
+  .mobile-arrow {
+    padding: 12px;
+    min-width: 48px;
+    min-height: 48px;
+  }
+  
+  /* Fix arrow positioning and prevent movement */
+  .carousel-nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  
+  .carousel-nav-button:active {
+    transform: translateY(-50%) !important;
+  }
+  
+  .carousel-nav-button:focus {
+    transform: translateY(-50%) !important;
+    outline: 2px solid #ef4444;
+    outline-offset: 2px;
   }
 }
 
@@ -722,14 +926,32 @@ section {
 @media (min-width: 641px) and (max-width: 1024px) {
   .heading-primary {
     font-size: clamp(2.5rem, 12vw, 5rem);
+    line-height: 1.1;
   }
   
   .heading-secondary {
     font-size: clamp(2rem, 6vw, 3rem);
+    line-height: 1.2;
   }
   
   #gallery {
     margin-top: 75px !important;
+  }
+  
+  /* Tablet spacing improvements */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Tablet button sizing */
+  button {
+    padding: 0.75rem 1.5rem;
+  }
+  
+  /* Tablet card improvements */
+  .card {
+    padding: 1.5rem;
   }
 }
 

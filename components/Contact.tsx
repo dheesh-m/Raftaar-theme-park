@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 md:py-32 px-4 md:px-12 bg-gradient-to-b from-gray-900 to-black text-white snap-start">
+    <section id="contact" className="py-16 sm:py-24 md:py-32 px-3 sm:px-4 md:px-12 bg-gradient-to-b from-gray-900 to-black text-white snap-start">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -45,13 +45,13 @@ const Contact: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
           <div className="text-sm uppercase tracking-wider text-gray-400 mb-4">GET IN TOUCH</div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 text-white">
             Game on or just want to chat?
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">
             Questions, bookings, or just want to talk games? We're all ears.
           </p>
         </motion.div>
@@ -62,7 +62,7 @@ const Contact: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16"
         >
           {contactInfo.map((info, index) => (
             <motion.a
@@ -75,24 +75,24 @@ const Contact: React.FC = () => {
               whileHover={{ scale: 1.02, y: -5 }}
               className="group"
             >
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 hover:bg-gray-700/50 transition-all duration-300 border border-gray-700 hover:border-purple-500/50 h-full">
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 hover:bg-gray-700/50 transition-all duration-300 border border-gray-700 hover:border-purple-500/50 h-full">
                 {/* Icon */}
-                <div className="w-16 h-16 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-500/30 transition-colors duration-300">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-purple-500/30 transition-colors duration-300">
                   <info.icon size={24} className="text-white" />
                 </div>
                 
                 {/* Title */}
-                <h3 className="text-xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 group-hover:text-purple-400 transition-colors duration-300">
                   {info.title}
                 </h3>
                 
                 {/* Description */}
-                <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+                <p className="text-gray-300 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed">
                   {info.description}
                 </p>
                 
                 {/* Contact Details */}
-                <p className="text-purple-400 text-sm font-medium group-hover:text-purple-300 transition-colors duration-300">
+                <p className="text-purple-400 text-xs sm:text-sm font-medium group-hover:text-purple-300 transition-colors duration-300">
                   {info.details}
                 </p>
               </div>
@@ -108,8 +108,8 @@ const Contact: React.FC = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h4 className="text-2xl font-bold text-white mb-8">Follow Us</h4>
-          <div className="flex justify-center space-x-6">
+          <h4 className="text-xl sm:text-2xl font-bold text-white mb-6 sm:mb-8">Follow Us</h4>
+          <div className="flex justify-center space-x-4 sm:space-x-6">
             {socialLinks.map((social, index) => (
               <motion.a
                 key={social.label}
@@ -118,7 +118,7 @@ const Contact: React.FC = () => {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-4 bg-gray-800/50 rounded-2xl hover:bg-purple-500/20 transition-all duration-300 group border border-gray-700 hover:border-purple-500/50"
+                className="p-3 sm:p-4 bg-gray-800/50 rounded-2xl hover:bg-purple-500/20 transition-all duration-300 group border border-gray-700 hover:border-purple-500/50"
                 aria-label={social.label}
               >
                 <social.icon size={24} className="text-gray-400 group-hover:text-purple-400 transition-colors duration-300" />

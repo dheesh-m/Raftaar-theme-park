@@ -173,10 +173,10 @@ const StackedCards: React.FC = () => {
           <div className="flex justify-center items-center space-x-4 mt-8">
             <button
               onClick={prevCard}
-              className="p-3 bg-gray-800/50 hover:bg-gray-700/50 rounded-full transition-all duration-300 hover:scale-110"
+              className="p-3 sm:p-3 bg-gray-800/70 hover:bg-gray-700/70 rounded-full transition-colors duration-300 shadow-lg"
               aria-label="Previous card"
             >
-              <ChevronLeft size={20} className="text-white" />
+              <ChevronLeft size={22} className="text-white sm:w-5 sm:h-5" />
             </button>
 
             {/* Dots Indicator */}
@@ -185,9 +185,9 @@ const StackedCards: React.FC = () => {
                 <button
                   key={index}
                   onClick={() => goToCard(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                     index === currentIndex
-                      ? 'bg-red-500 scale-125'
+                      ? 'bg-red-500 scale-110 sm:scale-125'
                       : 'bg-gray-600 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to card ${index + 1}`}
@@ -197,10 +197,10 @@ const StackedCards: React.FC = () => {
 
             <button
               onClick={nextCard}
-              className="p-3 bg-gray-800/50 hover:bg-gray-700/50 rounded-full transition-all duration-300 hover:scale-110"
+              className="p-3 sm:p-3 bg-gray-800/70 hover:bg-gray-700/70 rounded-full transition-colors duration-300 shadow-lg"
               aria-label="Next card"
             >
-              <ChevronRight size={20} className="text-white" />
+              <ChevronRight size={22} className="text-white sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>

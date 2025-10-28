@@ -58,8 +58,8 @@ const FAQ: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* FAQ Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* FAQ List */}
+        <div className="max-w-4xl mx-auto space-y-6">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}

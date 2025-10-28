@@ -98,7 +98,7 @@ const Header: React.FC = () => {
         width: '100%'
       }}
     >
-      <div className="w-full px-4 md:px-8 py-3">
+      <div className="w-full px-4 sm:px-4 md:px-8 py-3 sm:py-3">
         <div className="flex justify-between items-center w-full">
           {/* Logo Section - Far Left */}
           <motion.div 
@@ -111,13 +111,13 @@ const Header: React.FC = () => {
               <Image
                 src="/logo.jpg"
                 alt="Raftaar Theme Park logo"
-                width={40}
-                height={40}
-                className="rounded-full object-cover ring-2 ring-red-500/50 group-hover:ring-red-500 transition-all duration-300"
+                width={36}
+                height={36}
+                className="rounded-full object-cover ring-2 ring-red-500/50 group-hover:ring-red-500 transition-all duration-300 sm:w-10 sm:h-10"
               />
             </div>
             <div className="hidden sm:block ml-2">
-              <h1 className="text-lg font-bold text-white group-hover:text-red-500 transition-colors duration-300">
+              <h1 className="text-sm sm:text-lg font-bold text-white group-hover:text-red-500 transition-colors duration-300">
                 RAFTAAR
               </h1>
               <p className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
@@ -128,14 +128,14 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden z-50 p-2 hover:bg-red-500/20 rounded-lg transition-all duration-300"
+            className="md:hidden z-50 p-2 hover:bg-red-500/20 rounded-lg transition-all duration-300 active:bg-red-500/30"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
-            <div className="flex flex-col space-y-1">
-              <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
+            <div className="flex flex-col space-y-1.5">
+              <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
               <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
-              <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+              <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
             </div>
           </button>
 
@@ -187,15 +187,29 @@ const Header: React.FC = () => {
         </div>
       </div>
 
+      {/* Mobile Menu Backdrop */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Simple Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/98 backdrop-blur-xl border-t border-red-500/20 absolute top-full left-0 right-0 z-50"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="md:hidden bg-black/95 backdrop-blur-xl border-t border-red-500/30 absolute top-full left-0 right-0 z-50 shadow-2xl"
             style={{
               position: 'absolute',
               top: '100%',
@@ -205,15 +219,18 @@ const Header: React.FC = () => {
             }}
           >
             <nav className="p-6">
-              <div className="space-y-2">
-                {dropdownItems.map((item) => (
-                  <button
+              <div className="space-y-3">
+                {dropdownItems.map((item, index) => (
+                  <motion.button
                     key={item.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.3 }}
                     onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left text-gray-300 hover:text-red-500 transition-colors duration-300 py-3 text-lg"
+                    className="block w-full text-left text-gray-300 hover:text-red-500 transition-all duration-300 py-3 text-lg font-medium hover:bg-red-500/10 rounded-lg px-3 -mx-3"
                   >
                     {item.label}
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </nav>
