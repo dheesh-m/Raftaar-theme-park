@@ -3,41 +3,66 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Gamepad2, Car, Zap, Users, Trophy, Star } from 'lucide-react';
+import { Gamepad2, Car, Zap, Users, Gamepad, Star } from 'lucide-react';
 
 const Arcade: React.FC = () => {
   // Dynamic stats that increase every 24 hours
   const [dynamicStats, setDynamicStats] = useState({
-    activePlayers: 500,
-    tournamentsWon: 150,
-    averageRating: 4.9,
+    activePlayers: 200,
+    gamesPlayed: 2500,
+    averageRating: 4.7,
     gamingHours: 10000
   });
 
+  // Function to fetch Google rating (mock implementation)
+  const fetchGoogleRating = async () => {
+    try {
+      // Option 1: Real Google Places API (uncomment and add your API key)
+      // const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?place_id=YOUR_PLACE_ID&fields=rating&key=${process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY}`);
+      // const data = await response.json();
+      // return data.result?.rating || 4.7;
+      
+      // Option 2: Mock Google-like rating behavior
+      // Simulate realistic Google rating patterns (4.7-5.0 range with occasional dips)
+      const baseRating = 4.7;
+      const variation = Math.random() * 0.3; // 0-0.3 variation
+      const occasionalDip = Math.random() < 0.1 ? -0.2 : 0; // 10% chance of a dip
+      const finalRating = Math.max(4.0, Math.min(5.0, baseRating + variation + occasionalDip));
+      
+      return Math.round(finalRating * 10) / 10; // Round to 1 decimal place
+    } catch (error) {
+      console.error('Error fetching Google rating:', error);
+      // Fallback to random rating between 4.7-5.0
+      return Math.round((4.7 + Math.random() * 0.3) * 10) / 10;
+    }
+  };
+
   useEffect(() => {
-    const calculateDynamicStats = () => {
+    const calculateDynamicStats = async () => {
       const now = new Date();
       const startDate = new Date('2024-01-01'); // Starting date
       const daysPassed = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
       
       // Calculate increases based on days passed
-      const playerIncrease = Math.floor(daysPassed * 2.3); // ~2.3 new players per day
-      const tournamentIncrease = Math.floor(daysPassed * 0.8); // ~0.8 tournaments per day
-      const ratingIncrease = Math.min(daysPassed * 0.001, 0.1); // Small rating increase, capped at 0.1
-      const hoursIncrease = Math.floor(daysPassed * 45); // ~45 hours per day
+      const playerIncrease = Math.floor(daysPassed * 12.5); // 10-15 players per day (average 12.5)
+      const gamesIncrease = Math.floor(daysPassed * 25); // ~25 games per day
+      const hoursIncrease = Math.floor(daysPassed * 8); // 8 hours per day
+      
+      // Fetch Google rating
+      const googleRating = await fetchGoogleRating();
       
       setDynamicStats({
-        activePlayers: 500 + playerIncrease,
-        tournamentsWon: 150 + tournamentIncrease,
-        averageRating: Math.min(4.9 + ratingIncrease, 5.0),
+        activePlayers: 200 + playerIncrease,
+        gamesPlayed: 2500 + gamesIncrease,
+        averageRating: googleRating,
         gamingHours: 10000 + hoursIncrease
       });
     };
 
     calculateDynamicStats();
     
-    // Update every hour to keep stats fresh
-    const interval = setInterval(calculateDynamicStats, 60 * 60 * 1000);
+    // Update every 24 hours (daily refresh)
+    const interval = setInterval(calculateDynamicStats, 24 * 60 * 60 * 1000);
     
     return () => clearInterval(interval);
   }, []);
@@ -67,10 +92,22 @@ const Arcade: React.FC = () => {
   ];
 
   const gamingStats = [
-    { icon: Users, label: 'Active Players', value: `${dynamicStats.activePlayers}+` },
-    { icon: Trophy, label: 'Tournaments Won', value: `${dynamicStats.tournamentsWon}+` },
+    { 
+      icon: Users, 
+      label: 'Active Players', 
+      value: dynamicStats.activePlayers > 100000 ? `${Math.floor(dynamicStats.activePlayers / 1000)}K+` : `${dynamicStats.activePlayers}` 
+    },
+    { 
+      icon: Gamepad, 
+      label: 'Games Played', 
+      value: dynamicStats.gamesPlayed > 100000 ? `${Math.floor(dynamicStats.gamesPlayed / 1000)}K+` : `${dynamicStats.gamesPlayed}` 
+    },
     { icon: Star, label: 'Average Rating', value: `${dynamicStats.averageRating.toFixed(1)}/5` },
-    { icon: Zap, label: 'Gaming Hours', value: `${Math.floor(dynamicStats.gamingHours / 1000)}K+` }
+    { 
+      icon: Zap, 
+      label: 'Gaming Hours', 
+      value: dynamicStats.gamingHours > 100000 ? `${Math.floor(dynamicStats.gamingHours / 1000)}K+` : `${dynamicStats.gamingHours}` 
+    }
   ];
 
   return (

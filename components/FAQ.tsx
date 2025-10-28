@@ -129,13 +129,17 @@ const FAQ: React.FC = () => {
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
               Our team is here to help! Reach out to us anytime for more information about our facilities, events, or services.
             </p>
-            <motion.button
+            <motion.a
+              href="https://wa.me/918766741673?text=Hi%20I%20have%20a%20question%20about%20Raftaar%20Theme%20Park"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300"
+              className="inline-block bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 touch-manipulation"
+              style={{ WebkitTapHighlightColor: 'transparent' }}
             >
               Contact Us
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
       </div>
