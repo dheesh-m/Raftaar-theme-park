@@ -22,7 +22,6 @@ const Hero: React.FC = () => {
             loop
             muted
             playsInline
-            poster="/logo.jpg"
             className="hero-video-bg hero-fade-in w-full h-full object-cover sm:object-cover"
             style={{
               position: 'absolute',
@@ -36,14 +35,6 @@ const Hero: React.FC = () => {
             }}
           >
             <source src="/trialvid.mp4" type="video/mp4" />
-            <div className="relative w-full h-full">
-              <Image
-                src="https://images.unsplash.com/photo-1559033469-0740a1607c3c?auto=format&fit=crop&w=1740&q=80"
-                alt="Go-kart racing on a track"
-                fill
-                className="object-cover opacity-30"
-              />
-            </div>
           </video>
         </div>
       </div>
