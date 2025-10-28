@@ -9,7 +9,10 @@ module.exports = {
     extend: {
       fontFamily: {
         'blanka': ['Blanka', 'sans-serif'],
-        'inter': ['Inter', 'sans-serif'],
+        'rajdhani': ['Rajdhani', 'sans-serif'],
+        'orbitron': ['Orbitron', 'sans-serif'],
+        'exo': ['Exo 2', 'sans-serif'],
+        'sans': ['Rajdhani', 'Exo 2', 'Orbitron', 'sans-serif'],
       },
       colors: {
         'raftaar-red': '#ff0000',

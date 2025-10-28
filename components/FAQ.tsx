@@ -59,7 +59,7 @@ const FAQ: React.FC = () => {
         </motion.div>
 
         {/* FAQ List */}
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
           {faqs.map((faq, index) => (
             <motion.div
               key={index}
@@ -71,10 +71,10 @@ const FAQ: React.FC = () => {
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full p-6 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50 rounded-xl"
+                className="w-full p-4 sm:p-6 text-left focus:outline-none focus:ring-2 focus:ring-red-500/50 rounded-xl"
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold text-white pr-4">
+                  <h3 className="text-base sm:text-lg font-semibold text-white pr-2 sm:pr-4">
                     {faq.question}
                   </h3>
                   <motion.div

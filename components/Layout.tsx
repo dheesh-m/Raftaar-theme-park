@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="icon" href="/logo.jpg" />
       </Head>
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-red-900 text-white">
         <ScrollProgress />
         <Header />
         <main>{children}</main>

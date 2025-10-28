@@ -48,7 +48,7 @@ const Gallery: React.FC = () => {
   };
 
   return (
-        <section id="gallery" className="py-16 sm:py-24 md:py-32 bg-gray-800 text-white snap-start" style={{ marginTop: '70px' }}>
+        <section id="gallery" className="py-16 sm:py-24 md:py-32 text-white snap-start" style={{ marginTop: '70px' }}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -64,7 +64,7 @@ const Gallery: React.FC = () => {
         </motion.div>
 
         {/* Modern Gallery with Masonry Layout */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 sm:gap-6 space-y-4 sm:space-y-6 max-w-7xl mx-auto">
+        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-2 sm:gap-4 lg:gap-6 space-y-2 sm:space-y-4 lg:space-y-6 max-w-7xl mx-auto">
           {galleryImages.map((image, index) => (
             <motion.div
               key={index}
@@ -76,7 +76,7 @@ const Gallery: React.FC = () => {
                 ease: "easeOut"
               }}
               viewport={{ once: true }}
-              className="group relative break-inside-avoid mb-4 sm:mb-6 rounded-2xl overflow-hidden cursor-pointer shadow-2xl hover:shadow-red-500/20 transition-all duration-500"
+              className="group relative break-inside-avoid mb-2 sm:mb-4 lg:mb-6 rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer shadow-xl sm:shadow-2xl hover:shadow-red-500/20 transition-all duration-500"
               whileHover={{ 
                 scale: 1.05,
                 rotateY: 5,
@@ -88,7 +88,7 @@ const Gallery: React.FC = () => {
                 border: '1px solid rgba(239, 68, 68, 0.1)'
               }}
             >
-              <div className="relative h-64 sm:h-80 w-full overflow-hidden">
+              <div className="relative h-48 sm:h-64 lg:h-80 w-full overflow-hidden">
                 <Image
                   src={image.src}
                   alt={image.alt}

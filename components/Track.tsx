@@ -45,7 +45,7 @@ const Track: React.FC = () => {
   };
 
   return (
-        <section id="track" className="py-16 sm:py-24 md:py-32 text-center bg-black text-white snap-start">
+        <section id="track" className="py-16 sm:py-24 md:py-32 text-center text-white snap-start">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -54,14 +54,14 @@ const Track: React.FC = () => {
           viewport={{ once: true }}
         >
           <h2 className="heading-secondary mb-4">The Track</h2>
-          <p className="mt-4 max-w-2xl mx-auto text-gray-300 text-base sm:text-lg">
+          <p className="mt-4 max-w-2xl mx-auto text-gray-300 text-sm sm:text-base lg:text-lg">
             Experience the state-of-the-art 1.2 mile course with challenging hairpins and high-speed straights.
           </p>
         </motion.div>
 
         {/* Minimalistic Carousel */}
         <motion.div 
-          className="relative w-full max-w-5xl mx-auto mt-12 sm:mt-16"
+          className="relative w-full max-w-5xl mx-auto mt-8 sm:mt-12 lg:mt-16"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -69,7 +69,7 @@ const Track: React.FC = () => {
         >
           <div className="relative overflow-hidden rounded-xl">
             {/* Image Container */}
-            <div className="relative h-[250px] sm:h-[400px] md:h-[500px] overflow-hidden">
+            <div className="relative h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
               <motion.div
                 key={currentSlide}
                 initial={{ opacity: 0 }}

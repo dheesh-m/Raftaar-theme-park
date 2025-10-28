@@ -149,18 +149,6 @@ const StackedCards: React.FC = () => {
                         <p className="text-lg text-gray-200 mb-6 max-w-md">
                           {card.description}
                         </p>
-                        {isActive && (
-                          <motion.button
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.4, delay: 0.4 }}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 border border-white/30"
-                          >
-                            Learn More
-                          </motion.button>
-                        )}
                       </motion.div>
                     </div>
                   </div>

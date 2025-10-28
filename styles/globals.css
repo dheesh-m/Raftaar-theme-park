@@ -12,7 +12,7 @@
   font-style: normal;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700;800;900&display=swap');
 
 * {
   box-sizing: border-box;
@@ -33,8 +33,9 @@ body {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #000000; /* Pure black background */
+  font-family: 'Rajdhani', 'Exo 2', 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #000000 50%, #7f1d1d 75%, #9a3412 100%);
+  background-attachment: fixed;
   color: #ffffff; /* Pure white text for maximum contrast */
   margin: 0;
   padding: 0;
@@ -54,29 +55,35 @@ a {
 /* For Firefox */
 html {
   scrollbar-width: none;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #000000 50%, #7f1d1d 75%, #9a3412 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 /* Headings */
 .heading-primary {
-  font-family: 'Blanka', sans-serif;
+  font-family: 'Rajdhani', 'Orbitron', sans-serif;
   font-size: clamp(3rem, 20vw, 6rem);
   text-transform: uppercase;
   line-height: 1;
-  font-weight: 800;
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 
 .heading-secondary {
-  font-family: 'Blanka', sans-serif;
+  font-family: 'Rajdhani', 'Orbitron', sans-serif;
   font-size: clamp(2rem, 6vw, 3.5rem);
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .heading-tertiary {
-  font-family: 'Blanka', sans-serif;
+  font-family: 'Rajdhani', 'Orbitron', sans-serif;
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 600;
   color: #ef4444; /* Red accent color */
+  letter-spacing: 0.01em;
 }
 
 /* Accent */
@@ -84,6 +91,13 @@ html {
   background: linear-gradient(135deg, #dc2626, #ef4444); /* Red gradient */
   color: #ffffff;
   border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Bubit Text Styling */
+.bubit-text {
+  font-family: 'Blanka', 'Rajdhani', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 /* Header */

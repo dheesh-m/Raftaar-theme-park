@@ -40,50 +40,52 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Content */}
-      <div className="z-10 px-3 sm:px-4" style={{ marginTop: '70px' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="flex justify-center mb-6 sm:mb-8"
-        >
-          <Image
-            src="/logo.jpg"
-            alt="Raftaar Theme Park circular logo"
-            width={60}
-            height={60}
-            className="rounded-full object-cover sm:w-20 sm:h-20 md:w-24 md:h-24"
-            priority
-          />
-        </motion.div>
+      <div className="z-10 flex flex-col items-center justify-center min-h-screen px-3 sm:px-4 py-16 sm:py-20">
+        <div className="flex flex-col items-center space-y-6 sm:space-y-8 md:space-y-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="flex justify-center"
+          >
+            <Image
+              src="/logo.jpg"
+              alt="Raftaar Theme Park circular logo"
+              width={60}
+              height={60}
+              className="rounded-full object-cover sm:w-20 sm:h-20 md:w-24 md:h-24"
+              priority
+            />
+          </motion.div>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="heading-tertiary mb-4"
-        >
-          Raftaar Theme Park
-        </motion.h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1 }}
+            className="heading-tertiary text-center"
+          >
+            Raftaar Theme Park
+          </motion.h2>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="heading-primary mb-6 sm:mb-8"
-        >
-          RACE • REST • REVIVE
-        </motion.h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="heading-primary text-center"
+          >
+            RACE • REST • REVIVE
+          </motion.h1>
 
-        <motion.button
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          onClick={scrollToContact}
-          className="inline-block accent-gold font-bold uppercase tracking-widest text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:opacity-90 transition-all duration-300 shadow-lg"
-        >
-          Discover More →
-        </motion.button>
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 1.5 }}
+            onClick={scrollToContact}
+            className="block mx-auto accent-gold font-bold uppercase tracking-widest text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-4 rounded-lg hover:opacity-90 transition-all duration-300 shadow-lg"
+          >
+            Discover More →
+          </motion.button>
+        </div>
       </div>
     </section>
   );

@@ -143,11 +143,17 @@ const Events: React.FC = () => {
               
               {/* Bubit Logo */}
               <div className="flex items-center justify-center space-x-4 mb-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-4xl">🥤</span>
+                <div className="w-20 h-20 rounded-2xl overflow-hidden shadow-lg">
+                  <Image
+                    src="/bubitlogo.jpg"
+                    alt="Bubit Logo"
+                    width={80}
+                    height={80}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="text-left">
-                  <h3 className="heading-secondary text-white mb-1">Bubit</h3>
+                  <h3 className="heading-secondary text-white mb-1 bubit-text">Bubit</h3>
                   <div className="flex items-center space-x-2">
                     <div className="bg-pink-500 text-white text-xs px-3 py-1 rounded-full font-bold">
                       INDIA
@@ -165,8 +171,8 @@ const Events: React.FC = () => {
           </div>
 
           {/* Bubit Brand Showcase */}
-          <div className="bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-pink-500/20 mb-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12 border border-pink-500/20 mb-8 sm:mb-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-center">
               {/* Brand Info */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -174,13 +180,19 @@ const Events: React.FC = () => {
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
               >
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="w-16 h-16 bg-pink-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-3xl">🥤</span>
+              <div className="flex items-center space-x-3 sm:space-x-4 mb-4 sm:mb-6">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl overflow-hidden">
+                  <Image
+                    src="/bubitlogo.jpg"
+                    alt="Bubit Logo"
+                    width={64}
+                    height={64}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <div className="flex items-center space-x-3 mb-2">
-                    <h4 className="text-3xl font-bold text-white">Bubit</h4>
+                    <h4 className="text-3xl font-bold text-white bubit-text">Bubit</h4>
                     <div className="bg-pink-500 text-white text-xs px-2 py-1 rounded-full font-bold">
                       INDIA
                     </div>
@@ -188,15 +200,15 @@ const Events: React.FC = () => {
                   <p className="text-pink-400 font-semibold">Authentic Taiwanese Bubble Tea</p>
                 </div>
               </div>
-                <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+                <p className="text-gray-300 text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
                   Setting trends and tantalizing taste buds! Join us to experience the essence of Boba like never before. 
                   From fresh fruit boba to authentic Taiwanese treats, we bring you happiness in every cup.
                 </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {['Fresh Fruit Boba', 'Sparkling Boba', 'Authentic Boba', 'Ramen', 'Dumplings', 'Taiwanese Ice-Cream'].map((item, index) => (
                     <span
                       key={index}
-                      className="bg-pink-500/20 text-pink-300 text-sm px-4 py-2 rounded-full border border-pink-500/30"
+                      className="bg-pink-500/20 text-pink-300 text-xs sm:text-sm px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-pink-500/30"
                     >
                       {item}
                     </span>
@@ -230,7 +242,7 @@ const Events: React.FC = () => {
           </div>
 
           {/* Product Categories */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             
             {/* Fresh Fruit Boba */}
             <motion.div
@@ -240,7 +252,7 @@ const Events: React.FC = () => {
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
-              <div className="relative h-64 rounded-2xl overflow-hidden border-2 border-pink-500/30 group-hover:border-pink-500/60 transition-all duration-300">
+              <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-pink-500/30 group-hover:border-pink-500/60 transition-all duration-300">
                 <Image
                   src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600&h=600&fit=crop&crop=center"
                   alt="Fresh Fruit Boba"
@@ -264,9 +276,9 @@ const Events: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group cursor-pointer hidden sm:block"
             >
-              <div className="relative h-64 rounded-2xl overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all duration-300">
+              <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all duration-300">
                 <Image
                   src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&h=600&fit=crop&crop=center"
                   alt="Sparkling Boba"
@@ -290,9 +302,9 @@ const Events: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group cursor-pointer hidden sm:block"
             >
-              <div className="relative h-64 rounded-2xl overflow-hidden border-2 border-pink-500/30 group-hover:border-pink-500/60 transition-all duration-300">
+              <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-pink-500/30 group-hover:border-pink-500/60 transition-all duration-300">
                 <Image
                   src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&h=600&fit=crop&crop=center"
                   alt="Authentic Boba"
@@ -318,7 +330,7 @@ const Events: React.FC = () => {
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
-              <div className="relative h-64 rounded-2xl overflow-hidden border-2 border-orange-500/30 group-hover:border-orange-500/60 transition-all duration-300">
+              <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-orange-500/30 group-hover:border-orange-500/60 transition-all duration-300">
                 <Image
                   src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=600&fit=crop&crop=center"
                   alt="Ramen"
@@ -344,7 +356,7 @@ const Events: React.FC = () => {
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
-              <div className="relative h-64 rounded-2xl overflow-hidden border-2 border-red-500/30 group-hover:border-red-500/60 transition-all duration-300">
+              <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-red-500/30 group-hover:border-red-500/60 transition-all duration-300">
                 <Image
                   src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&h=600&fit=crop&crop=center"
                   alt="Dumplings"
@@ -368,9 +380,9 @@ const Events: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group cursor-pointer hidden sm:block"
             >
-              <div className="relative h-64 rounded-2xl overflow-hidden border-2 border-blue-500/30 group-hover:border-blue-500/60 transition-all duration-300">
+              <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-blue-500/30 group-hover:border-blue-500/60 transition-all duration-300">
                 <Image
                   src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&h=600&fit=crop&crop=center"
                   alt="Taiwanese Ice-Cream"
