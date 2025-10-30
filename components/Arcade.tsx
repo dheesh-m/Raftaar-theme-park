@@ -110,6 +110,8 @@ const Arcade: React.FC = () => {
     }
   ];
 
+  const [flippedCard, setFlippedCard] = useState<number | null>(null);
+
   return (
     <section id="arcade" className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-gray-900 to-black text-white snap-start">
       <div className="container mx-auto px-4">
@@ -140,52 +142,67 @@ const Arcade: React.FC = () => {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
-                {/* Image */}
-                <div className="relative h-48 sm:h-64 overflow-hidden">
-                  <Image
-                    src={feature.image}
-                    alt={feature.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  
-                  {/* Icon Overlay */}
-                  <div className="absolute top-6 left-6">
-                    <div className="p-3 bg-red-500 rounded-xl">
-                      <feature.icon size={24} className="text-white" />
+              <div className="flip-card-wrapper">
+                <div className={`flip-card${flippedCard === index ? ' flipped' : ''}`}>
+                  <div className="flip-card-front bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
+                    {/* Image */}
+                    <div className="relative h-48 sm:h-64 overflow-hidden">
+                      <Image
+                        src={feature.image}
+                        alt={feature.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      {/* Icon Overlay */}
+                      <div className="absolute top-6 left-6">
+                        <div className="p-3 bg-red-500 rounded-xl">
+                          <feature.icon size={24} className="text-white" />
+                        </div>
+                      </div>
+                    </div>
+                     {/* Content (front) */}
+                    <div className="p-6 sm:p-8">
+                      <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white group-hover:text-red-400 transition-colors duration-300">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-300 mb-4 sm:mb-6 text-base sm:text-lg">
+                        {feature.description}
+                      </p>
+                      {/* Features List */}
+                      <div className="space-y-2 sm:space-y-3">
+                        {feature.features.map((item, idx) => (
+                          <div key={idx} className="flex items-center space-x-3">
+                            <div className="w-2 h-2 bg-red-500 rounded-full" />
+                            <span className="text-gray-300 text-sm sm:text-base">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                      {/* CTA Button */}
+                      <motion.button
+                        type="button"
+                        onClick={() => setFlippedCard(flippedCard === index ? null : index)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="mt-4 sm:mt-6 w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 text-sm sm:text-base"
+                      >
+                        Explore Now
+                      </motion.button>
                     </div>
                   </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 sm:p-8">
-                  <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white group-hover:text-red-400 transition-colors duration-300">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-300 mb-4 sm:mb-6 text-base sm:text-lg">
-                    {feature.description}
-                  </p>
-
-                  {/* Features List */}
-                  <div className="space-y-2 sm:space-y-3">
-                    {feature.features.map((item, idx) => (
-                      <div key={idx} className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-red-500 rounded-full" />
-                        <span className="text-gray-300 text-sm sm:text-base">{item}</span>
-                      </div>
-                    ))}
+                  <div className="flip-card-back bg-gradient-to-br from-purple-700 to-red-500 text-white flex flex-col justify-center items-center rounded-2xl p-6 sm:p-8">
+                    <h3 className="text-2xl font-bold mb-2">More About {feature.title}</h3>
+                    <p className="text-base sm:text-lg mb-4">{feature.coolInfo || `Get ready for a unique gaming adventure with ${feature.title}! Enjoy perks, tournaments & much more. See you there!`}</p>
+                    <motion.button
+                      type="button"
+                      onClick={() => setFlippedCard(null)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-white text-red-500 font-bold px-4 py-2 mt-2 rounded-lg shadow"
+                    >
+                      Go Back
+                    </motion.button>
                   </div>
-
-                  {/* CTA Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-4 sm:mt-6 w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 text-sm sm:text-base"
-                  >
-                    Explore Now
-                  </motion.button>
                 </div>
               </div>
             </motion.div>
@@ -224,6 +241,34 @@ const Arcade: React.FC = () => {
         </motion.div>
 
       </div>
+      <style jsx global>{`
+  .flip-card-wrapper { perspective: 1200px; }
+  .flip-card {
+    width: 100%;
+    min-height: 420px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(.6,.03,.26,1.25);
+  }
+  .flip-card.flipped {
+    transform: rotateY(180deg);
+  }
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    min-height: 420px;
+    backface-visibility: hidden;
+    width: 100%;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .flip-card-back {
+    transform: rotateY(180deg);
+    justify-content: center;
+    align-items: center;
+  }
+`}</style>
     </section>
   );
 };

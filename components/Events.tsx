@@ -121,7 +121,7 @@ const Events: React.FC = () => {
                   className="block w-full bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors duration-300 text-sm sm:text-base text-center touch-manipulation select-none"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  Register Now
+                  Contact Now
                 </a>
               </div>
             </motion.div>
