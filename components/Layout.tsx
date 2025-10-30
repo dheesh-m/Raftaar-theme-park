@@ -21,6 +21,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Header />
         <main>{children}</main>
       </div>
+      <style jsx global>{`
+        /* Global mobile polish */
+        html, body { margin: 0; padding: 0; overflow-x: hidden; }
+        img, video { max-width: 100%; height: auto; display: block; }
+        html { -webkit-tap-highlight-color: transparent; }
+        /* Center content site-wide */
+        .container { width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
+        @media (min-width: 640px) { .container { padding-left: 1rem; padding-right: 1rem; } }
+        @media (min-width: 768px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+        @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; } }
+        /* Respect reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+        }
+      `}</style>
     </>
   );
 };

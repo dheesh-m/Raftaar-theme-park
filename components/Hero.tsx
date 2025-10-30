@@ -15,14 +15,26 @@ const Hero: React.FC = () => {
   return (
     <section id="home" className="h-screen min-h-[500px] sm:min-h-[600px] md:min-h-[700px] flex items-center justify-center text-center relative overflow-hidden snap-start" style={{ paddingTop: '70px' }}>
       {/* Video Background */}
-      <div className="absolute inset-0 z-0 flex justify-center items-center" style={{ top: '70px', height: 'calc(100vh - 70px)' }}>
+      <div className="absolute inset-0 z-0 flex justify-center items-center hero-video-wrapper" style={{ top: '70px', height: 'calc(100vh - 70px)' }}>
         <div className="w-full h-full relative overflow-hidden flex justify-center items-center">
+          {/* Mobile static fallback */}
+          <div className="mobile-hero-fallback absolute inset-0">
+            <Image
+              src="/1.jpg"
+              alt="Raftaar Theme Park"
+              fill
+              priority
+              className="object-cover"
+            />
+          </div>
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="hero-video-bg hero-fade-in w-full h-full object-cover sm:object-cover"
+            preload="metadata"
+            poster="/1.jpg"
+            className="hero-video-bg hero-fade-in w-full h-full object-cover"
             style={{
               position: 'absolute',
               top: '50%',
@@ -31,7 +43,8 @@ const Hero: React.FC = () => {
               minWidth: '100%',
               minHeight: '100%',
               width: '100%',
-              height: '100%'
+              height: '100%',
+              pointerEvents: 'none'
             }}
           >
             <source src="/trialvid.mp4" type="video/mp4" />
@@ -87,6 +100,21 @@ const Hero: React.FC = () => {
           </motion.button>
         </div>
       </div>
+      <style jsx>{`
+        /* Use dynamic viewport height on mobile to avoid browser UI causing jumps */
+        @media (max-width: 640px) {
+          .hero-video-wrapper { height: calc(100dvh - 70px) !important; }
+          .hero-video-bg { display: none !important; }
+          .mobile-hero-fallback { display: block !important; }
+        }
+        /* Hide image fallback on larger screens; show video */
+        @media (min-width: 641px) {
+          .mobile-hero-fallback { display: none !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-video-bg { animation: none !important; }
+        }
+      `}</style>
     </section>
   );
 };

@@ -69,10 +69,14 @@ const StackedCards: React.FC = () => {
 
   // Auto-rotate cards
   useEffect(() => {
+    const isReduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isSmallScreen = typeof window !== 'undefined' && window.matchMedia('(max-width: 639px)').matches; // <sm
+    if (isReduced || isSmallScreen) {
+      return;
+    }
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % cards.length);
-    }, 4000);
-
+    }, 5000);
     return () => clearInterval(interval);
   }, [cards.length]);
 
@@ -113,7 +117,7 @@ const StackedCards: React.FC = () => {
         {/* Stacked Cards Container */}
         <div className="relative max-w-4xl mx-auto">
           {/* Cards Stack */}
-          <div className="relative h-[500px] perspective-1000">
+          <div className="relative h-[360px] sm:h-[460px] md:h-[500px] perspective-1000">
             {cards.map((card, index) => {
               const isActive = index === currentIndex;
               const isPrev = index === (currentIndex - 1 + cards.length) % cards.length;
@@ -143,7 +147,7 @@ const StackedCards: React.FC = () => {
                     y: isPrev ? 20 : isNext ? 20 : 0
                   }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
-                  whileHover={isActive ? { scale: 1.02 } : {}}
+                  whileHover={isActive ? { scale: 1.01 } : {}}
                 >
                   <div className="relative w-full h-full">
                     {/* Background Image */}
@@ -187,8 +191,8 @@ const StackedCards: React.FC = () => {
               <ChevronLeft size={22} className="text-white sm:w-5 sm:h-5" />
             </button>
 
-            {/* Dots Indicator */}
-            <div className="flex space-x-2">
+            {/* Dots Indicator - hidden on mobile */}
+            <div className="hidden sm:flex space-x-2">
               {cards.map((_, index) => (
                 <button
                   key={index}

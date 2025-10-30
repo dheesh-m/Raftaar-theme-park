@@ -146,7 +146,7 @@ const Arcade: React.FC = () => {
                 <div className={`flip-card${flippedCard === index ? ' flipped' : ''}`}>
                   <div className="flip-card-front bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
                     {/* Image */}
-                    <div className="relative h-96 sm:h-[30rem] md:h-[36rem] overflow-hidden">
+                    <div className="relative h-64 sm:h-80 md:h-[30rem] lg:h-[36rem] overflow-hidden">
                       <Image
                         src={feature.image}
                         alt={feature.title}
@@ -162,15 +162,17 @@ const Arcade: React.FC = () => {
                       </div>
                     </div>
                      {/* Content (front) */}
-                    <div className="p-6 sm:p-8 relative z-10">
-                      <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white group-hover:text-red-400 transition-colors duration-300">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-300 mb-4 sm:mb-6 text-base sm:text-lg">
-                        {feature.description}
+                    <div className="p-4 sm:p-8 relative z-10">
+                      <h3 className="text-lg sm:text-2xl font-bold mb-2 sm:mb-4 text-white sm:group-hover:text-red-400 transition-colors duration-300">
+                         {feature.title}
+                       </h3>
+                      <p className="text-gray-200 mb-3 sm:mb-6 text-sm sm:text-lg bg-black/30 sm:bg-transparent px-2 py-1 sm:px-0 sm:py-0 rounded sm:rounded-none">
+                        {/* Short summary on mobile; richer text on desktop via CSS visibility */}
+                        <span className="sm:hidden">Quick fun. Tap to see more.</span>
+                        <span className="hidden sm:inline">{feature.description}</span>
                       </p>
-                      {/* Features List */}
-                      <div className="space-y-2 sm:space-y-3">
+                      {/* Hide long feature list on mobile for simplicity */}
+                      <div className="hidden sm:block space-y-2 sm:space-y-3">
                         {feature.features.map((item, idx) => (
                           <div key={idx} className="flex items-center space-x-3">
                             <div className="w-2 h-2 bg-red-500 rounded-full" />
@@ -184,7 +186,7 @@ const Arcade: React.FC = () => {
                         onClick={() => setFlippedCard(flippedCard === index ? null : index)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-4 sm:mt-6 w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 text-sm sm:text-base relative z-20"
+                        className="mt-3 sm:mt-6 w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 text-sm sm:text-base relative z-20"
                       >
                         Explore Now
                       </motion.button>
@@ -245,10 +247,18 @@ const Arcade: React.FC = () => {
   .flip-card-wrapper { perspective: 1200px; }
   .flip-card {
     width: 100%;
-    min-height: 650px;
+    min-height: 420px;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(.6,.03,.26,1.25);
+  }
+  @media (min-width: 768px) {
+    .flip-card { min-height: 560px; }
+    .flip-card-front, .flip-card-back { min-height: 560px; }
+  }
+  @media (min-width: 1024px) {
+    .flip-card { min-height: 650px; }
+    .flip-card-front, .flip-card-back { min-height: 650px; }
   }
   .flip-card.flipped {
     transform: rotateY(180deg);
@@ -256,7 +266,7 @@ const Arcade: React.FC = () => {
   .flip-card-front, .flip-card-back {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    min-height: 650px;
+    min-height: 420px;
     backface-visibility: hidden;
     width: 100%;
     border-radius: 1.5rem;
@@ -267,6 +277,11 @@ const Arcade: React.FC = () => {
     transform: rotateY(180deg);
     justify-content: center;
     align-items: center;
+  }
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .flip-card { transition: none !important; }
+    .flip-card.flipped { transform: none; }
   }
 `}</style>
     </section>
