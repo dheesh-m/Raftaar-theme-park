@@ -146,14 +146,15 @@ const Arcade: React.FC = () => {
                 <div className={`flip-card${flippedCard === index ? ' flipped' : ''}`}>
                   <div className="flip-card-front bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-red-500/50 transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20">
                     {/* Image */}
-                    <div className="relative h-48 sm:h-64 overflow-hidden">
+                    <div className="relative h-96 sm:h-[30rem] md:h-[36rem] overflow-hidden">
                       <Image
                         src={feature.image}
                         alt={feature.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                      {/* Overlay with hover effect and mobile transparency */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/20 md:opacity-40 md:group-hover:opacity-20 transition-opacity duration-500" />
                       {/* Icon Overlay */}
                       <div className="absolute top-6 left-6">
                         <div className="p-3 bg-red-500 rounded-xl">
@@ -162,7 +163,7 @@ const Arcade: React.FC = () => {
                       </div>
                     </div>
                      {/* Content (front) */}
-                    <div className="p-6 sm:p-8">
+                    <div className="p-6 sm:p-8 relative z-10">
                       <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white group-hover:text-red-400 transition-colors duration-300">
                         {feature.title}
                       </h3>
@@ -184,7 +185,7 @@ const Arcade: React.FC = () => {
                         onClick={() => setFlippedCard(flippedCard === index ? null : index)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="mt-4 sm:mt-6 w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 text-sm sm:text-base"
+                        className="mt-4 sm:mt-6 w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-all duration-300 text-sm sm:text-base relative z-20"
                       >
                         Explore Now
                       </motion.button>
@@ -192,7 +193,7 @@ const Arcade: React.FC = () => {
                   </div>
                   <div className="flip-card-back bg-gradient-to-br from-purple-700 to-red-500 text-white flex flex-col justify-center items-center rounded-2xl p-6 sm:p-8">
                     <h3 className="text-2xl font-bold mb-2">More About {feature.title}</h3>
-                    <p className="text-base sm:text-lg mb-4">{feature.coolInfo || `Get ready for a unique gaming adventure with ${feature.title}! Enjoy perks, tournaments & much more. See you there!`}</p>
+                    <p className="text-base sm:text-lg mb-4">Get ready for a unique gaming adventure with {feature.title}! Enjoy perks, tournaments & much more. See you there!</p>
                     <motion.button
                       type="button"
                       onClick={() => setFlippedCard(null)}
@@ -245,7 +246,7 @@ const Arcade: React.FC = () => {
   .flip-card-wrapper { perspective: 1200px; }
   .flip-card {
     width: 100%;
-    min-height: 420px;
+    min-height: 650px;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.8s cubic-bezier(.6,.03,.26,1.25);
@@ -256,7 +257,7 @@ const Arcade: React.FC = () => {
   .flip-card-front, .flip-card-back {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    min-height: 420px;
+    min-height: 650px;
     backface-visibility: hidden;
     width: 100%;
     border-radius: 1.5rem;
@@ -267,6 +268,44 @@ const Arcade: React.FC = () => {
     transform: rotateY(180deg);
     justify-content: center;
     align-items: center;
+  }
+  
+  /* Enhanced overlay transparency for images */
+  .flip-card-front .relative.overflow-hidden {
+    position: relative;
+  }
+  
+  /* Ensure images are visible by default and more transparent on hover */
+  .flip-card-front .relative.overflow-hidden > div:first-child {
+    opacity: 1;
+  }
+  
+  /* Desktop hover effect - reduce overlay opacity on hover */
+  @media (min-width: 768px) {
+    .group:hover .flip-card-front .absolute.inset-0 {
+      opacity: 0.2 !important;
+    }
+  }
+  
+  /* Mobile - keep overlay more transparent by default (no hover needed) */
+  @media (max-width: 767px) {
+    .flip-card-front .absolute.inset-0 {
+      opacity: 0.25 !important;
+    }
+    
+    /* Ensure content is always readable on mobile */
+    .flip-card-front .relative.z-10 {
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      margin-top: -2rem;
+      padding-top: 2rem;
+    }
+  }
+  
+  /* Touch-friendly hover for mobile devices with hover capability */
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .flip-card-front .absolute.inset-0 {
+      opacity: 0.2 !important;
+    }
   }
 `}</style>
     </section>
