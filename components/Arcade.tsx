@@ -153,8 +153,7 @@ const Arcade: React.FC = () => {
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      {/* Overlay with hover effect and mobile transparency */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/20 md:opacity-40 md:group-hover:opacity-20 transition-opacity duration-500" />
+                      {/* No overlay - clean images without filters */}
                       {/* Icon Overlay */}
                       <div className="absolute top-6 left-6">
                         <div className="p-3 bg-red-500 rounded-xl">
@@ -268,44 +267,6 @@ const Arcade: React.FC = () => {
     transform: rotateY(180deg);
     justify-content: center;
     align-items: center;
-  }
-  
-  /* Enhanced overlay transparency for images */
-  .flip-card-front .relative.overflow-hidden {
-    position: relative;
-  }
-  
-  /* Ensure images are visible by default and more transparent on hover */
-  .flip-card-front .relative.overflow-hidden > div:first-child {
-    opacity: 1;
-  }
-  
-  /* Desktop hover effect - reduce overlay opacity on hover */
-  @media (min-width: 768px) {
-    .group:hover .flip-card-front .absolute.inset-0 {
-      opacity: 0.2 !important;
-    }
-  }
-  
-  /* Mobile - keep overlay more transparent by default (no hover needed) */
-  @media (max-width: 767px) {
-    .flip-card-front .absolute.inset-0 {
-      opacity: 0.25 !important;
-    }
-    
-    /* Ensure content is always readable on mobile */
-    .flip-card-front .relative.z-10 {
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
-      margin-top: -2rem;
-      padding-top: 2rem;
-    }
-  }
-  
-  /* Touch-friendly hover for mobile devices with hover capability */
-  @media (hover: hover) and (pointer: fine) {
-    .group:hover .flip-card-front .absolute.inset-0 {
-      opacity: 0.2 !important;
-    }
   }
 `}</style>
     </section>

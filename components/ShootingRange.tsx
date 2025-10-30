@@ -87,12 +87,6 @@ const ShootingRange: React.FC = () => {
                   className="object-cover transition-transform duration-700 ease-out"
                     priority
                   />
-                <motion.div 
-                  className="absolute inset-0 bg-black/30"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                />
               </motion.div>
                   
                   {/* Content Overlay */}

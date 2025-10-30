@@ -154,8 +154,7 @@ const StackedCards: React.FC = () => {
                       className="object-cover"
                     />
                     
-                    {/* Gradient Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-50`} />
+                    {/* No gradient overlay - clean images */}
                     
                     {/* Content */}
                     <div className="absolute inset-0 flex flex-col justify-end p-8">
