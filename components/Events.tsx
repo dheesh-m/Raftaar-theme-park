@@ -232,10 +232,10 @@ const Events: React.FC = () => {
               >
                 <div className="relative h-80 rounded-2xl overflow-hidden border-2 border-pink-500/30">
                   <Image
-                    src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=800&h=600&fit=crop&crop=center"
+                    src="/fruit-boba.png"
                     alt="Bubit Bubble Tea Experience"
                     fill
-                    className="object-cover"
+                    className="object-contain scale-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                   <div className="absolute bottom-6 left-6 right-6">
@@ -260,10 +260,10 @@ const Events: React.FC = () => {
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-pink-500/30 group-hover:border-pink-500/60 transition-all duration-300">
                 <Image
-                  src="https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600&h=600&fit=crop&crop=center"
+                  src="/fruit-boba.png"
                   alt="Fresh Fruit Boba"
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -286,10 +286,10 @@ const Events: React.FC = () => {
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all duration-300">
                 <Image
-                  src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=600&h=600&fit=crop&crop=center"
+                  src="/sparkling-boba.png"
                   alt="Sparkling Boba"
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -312,10 +312,10 @@ const Events: React.FC = () => {
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-pink-500/30 group-hover:border-pink-500/60 transition-all duration-300">
                 <Image
-                  src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600&h=600&fit=crop&crop=center"
+                  src="/authentic-boba.png"
                   alt="Authentic Boba"
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -338,10 +338,10 @@ const Events: React.FC = () => {
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-orange-500/30 group-hover:border-orange-500/60 transition-all duration-300">
                 <Image
-                  src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&h=600&fit=crop&crop=center"
+                  src="/ramen.png"
                   alt="Ramen"
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -364,10 +364,10 @@ const Events: React.FC = () => {
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-red-500/30 group-hover:border-red-500/60 transition-all duration-300">
                 <Image
-                  src="https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&h=600&fit=crop&crop=center"
+                  src="/Dumplimgs.png"
                   alt="Dumplings"
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -390,10 +390,10 @@ const Events: React.FC = () => {
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-blue-500/30 group-hover:border-blue-500/60 transition-all duration-300">
                 <Image
-                  src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&h=600&fit=crop&crop=center"
+                  src="/taiwanese.png"
                   alt="Taiwanese Ice-Cream"
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">

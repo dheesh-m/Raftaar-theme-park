@@ -62,7 +62,7 @@ const Hero: React.FC = () => {
             className="flex justify-center"
           >
             <Image
-              src="/logo.jpg"
+              src="/logo.png"
               alt="Raftaar Theme Park circular logo"
               width={60}
               height={60}

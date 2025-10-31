@@ -101,7 +101,7 @@ The color scheme can be customized in `tailwind.config.js`:
 
 ### Images
 Replace images in the `/public` directory:
-- `logo.jpg` - Main logo
+- `logo.png` - Main logo
 - `trialvid.mp4` - Hero background video
 - `kart*.jpg` - Gallery images
 - `1.jpg`, `2.jpg`, `3.jpg` - Track images

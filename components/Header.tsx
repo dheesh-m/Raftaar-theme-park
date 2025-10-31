@@ -3,6 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { pageTransition } from './PageTransition';
+import LinkWithTransition from './LinkWithTransition';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -52,11 +54,17 @@ const Header: React.FC = () => {
     { href: '#contact', label: 'Contact', icon: '📞' },
   ];
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const scrollToSection = async (href: string) => {
+    await pageTransition(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        const offsetTop = (element as HTMLElement).offsetTop;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'instant'
+        });
+      }
+    }, '#DC2626');
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
   };
@@ -111,7 +119,7 @@ const Header: React.FC = () => {
           >
             <div className="relative">
               <Image
-                src="/logo.jpg"
+                src="/logo.png"
                 alt="Raftaar Theme Park logo"
                 width={36}
                 height={36}
