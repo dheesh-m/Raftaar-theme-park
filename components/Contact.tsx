@@ -203,12 +203,12 @@ const Contact: React.FC = () => {
                   </a>
                 </div>
 
-                <p className="footer-copyright">© 2024 Raftaar Theme Park</p>
+                <p className="footer-copyright"> © 2025 Raftaar Theme Park</p>
               </div>
             </div>
           </div>
 
-          {/* BREAK BELIEVE BUILD Text */}
+          {/* RAFTAAR Text */}
           <div className="footer-overlap-content">
             <span className="footer-overlap-text">Raftaar</span>
           </div>

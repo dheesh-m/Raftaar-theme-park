@@ -76,7 +76,7 @@ const Events: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-gray-100 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="bg-gray-100 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full"
             >
               <div className="relative h-48">
                 <img
@@ -91,11 +91,11 @@ const Events: React.FC = () => {
                 </div>
               </div>
               
-              <div className="p-4 sm:p-6">
+              <div className="p-4 sm:p-6 flex flex-col flex-1">
                 <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-gray-900">{event.title}</h3>
                 <p className="text-gray-600 mb-3 sm:mb-4 text-sm sm:text-base">{event.description}</p>
                 
-                <div className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6">
+                <div className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6 flex-1">
                   <div className="flex items-center text-gray-700">
                     <Calendar size={16} className="mr-2 text-red-500" />
                     <span className="text-xs sm:text-sm">{formatDate(event.date)}</span>
@@ -118,7 +118,7 @@ const Events: React.FC = () => {
                   href={`https://wa.me/918766741673?text=Hi%20I%20want%20to%20register%20for%20the%20event%3A%20${encodeURIComponent(event.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors duration-300 text-sm sm:text-base text-center touch-manipulation select-none"
+                  className="block w-full bg-red-500 hover:bg-red-600 active:bg-red-700 text-white font-bold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors duration-300 text-sm sm:text-base text-center touch-manipulation select-none mt-auto"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
                   Contact Now
@@ -251,12 +251,15 @@ const Events: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             
             {/* Fresh Fruit Boba */}
-            <motion.div
+            <motion.a
+              href="https://bubit.in/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group cursor-pointer block"
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-pink-500/30 group-hover:border-pink-500/60 transition-all duration-300">
                 <Image
@@ -265,19 +268,22 @@ const Events: React.FC = () => {
                   fill
                   className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Visit Bubit</span>
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h4 className="text-xl font-bold text-white mb-2">Fresh Fruit Boba</h4>
-                  <p className="text-gray-200 text-sm mb-3">Natural fruit flavors with chewy tapioca pearls</p>
-                  <div className="flex items-center justify-start">
-                    <span className="text-lg font-bold text-white">From ₹149</span>
-                  </div>
+                  <p className="text-gray-200 text-sm">Natural fruit flavors with chewy tapioca pearls</p>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
 
             {/* Sparkling Boba */}
-            <motion.div
+            <motion.a
+              href="https://bubit.in/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -291,19 +297,22 @@ const Events: React.FC = () => {
                   fill
                   className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Visit Bubit</span>
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h4 className="text-xl font-bold text-white mb-2">Sparkling Boba</h4>
-                  <p className="text-gray-200 text-sm mb-3">Fizzy bubble tea with a refreshing twist</p>
-                  <div className="flex items-center justify-start">
-                    <span className="text-lg font-bold text-white">From ₹169</span>
-                  </div>
+                  <p className="text-gray-200 text-sm">Fizzy bubble tea with a refreshing twist</p>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
 
             {/* Authentic Boba */}
-            <motion.div
+            <motion.a
+              href="https://bubit.in/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -317,24 +326,27 @@ const Events: React.FC = () => {
                   fill
                   className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Visit Bubit</span>
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h4 className="text-xl font-bold text-white mb-2">Authentic Boba</h4>
-                  <p className="text-gray-200 text-sm mb-3">Traditional Taiwanese bubble tea experience</p>
-                  <div className="flex items-center justify-start">
-                    <span className="text-lg font-bold text-white">From ₹129</span>
-                  </div>
+                  <p className="text-gray-200 text-sm">Traditional Taiwanese bubble tea experience</p>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
 
             {/* Ramen */}
-            <motion.div
+            <motion.a
+              href="https://bubit.in/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group cursor-pointer block"
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-orange-500/30 group-hover:border-orange-500/60 transition-all duration-300">
                 <Image
@@ -343,24 +355,27 @@ const Events: React.FC = () => {
                   fill
                   className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Visit Bubit</span>
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h4 className="text-xl font-bold text-white mb-2">Ramen</h4>
-                  <p className="text-gray-200 text-sm mb-3">Authentic Japanese noodle soup</p>
-                  <div className="flex items-center justify-start">
-                    <span className="text-lg font-bold text-white">From ₹199</span>
-                  </div>
+                  <p className="text-gray-200 text-sm">Authentic Japanese noodle soup</p>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
 
             {/* Dumplings */}
-            <motion.div
+            <motion.a
+              href="https://bubit.in/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group cursor-pointer block"
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-red-500/30 group-hover:border-red-500/60 transition-all duration-300">
                 <Image
@@ -369,19 +384,22 @@ const Events: React.FC = () => {
                   fill
                   className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Visit Bubit</span>
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h4 className="text-xl font-bold text-white mb-2">Dumplings</h4>
-                  <p className="text-gray-200 text-sm mb-3">Steamed and pan-fried delights</p>
-                  <div className="flex items-center justify-start">
-                    <span className="text-lg font-bold text-white">From ₹179</span>
-                  </div>
+                  <p className="text-gray-200 text-sm">Steamed and pan-fried delights</p>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
 
             {/* Taiwanese Ice-Cream */}
-            <motion.div
+            <motion.a
+              href="https://bubit.in/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -395,16 +413,16 @@ const Events: React.FC = () => {
                   fill
                   className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  <span className="text-white text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Visit Bubit</span>
+                </div>
                 <div className="absolute bottom-0 left-0 right-0 p-4">
                   <h4 className="text-xl font-bold text-white mb-2">Taiwanese Ice-Cream</h4>
-                  <p className="text-gray-200 text-sm mb-3">Sweet treats to cool you down</p>
-                  <div className="flex items-center justify-start">
-                    <span className="text-lg font-bold text-white">From ₹129</span>
-                  </div>
+                  <p className="text-gray-200 text-sm">Sweet treats to cool you down</p>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           </div>
 
 

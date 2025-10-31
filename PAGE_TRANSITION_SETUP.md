@@ -106,3 +106,4 @@ The transition works perfectly on mobile devices with:
 - The transition automatically handles hash links (#section) for smooth scrolling
 - External links (http, mailto, tel) bypass the transition automatically
 
+
