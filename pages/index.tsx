@@ -9,6 +9,7 @@ import Events from '../components/Events';
 import StackedCards from '../components/StackedCards';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
+import StretchedTextSection from '../components/StretchedTextSection';
 
 const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +37,7 @@ const Home: React.FC = () => {
       <StackedCards />
       <FAQ />
       <Contact />
+      <StretchedTextSection />
     </Layout>
   );
 };

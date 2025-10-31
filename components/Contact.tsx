@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-24 md:py-32 px-3 sm:px-4 md:px-12 bg-gradient-to-b from-gray-900 to-black text-white snap-start">
+    <section id="contact" className="relative py-16 sm:py-24 md:py-32 px-3 sm:px-4 md:px-12 bg-gradient-to-b from-gray-900 to-black text-white snap-start" style={{ position: 'relative', zIndex: 10, marginBottom: '-60vh', paddingBottom: '60vh' }}>
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -126,6 +126,7 @@ const Contact: React.FC = () => {
             ))}
           </div>
         </motion.div>
+
       </div>
     </section>
   );

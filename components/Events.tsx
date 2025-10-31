@@ -9,36 +9,36 @@ const Events: React.FC = () => {
   const events = [
     {
       id: 1,
-      title: 'Championship Series',
+      title: 'CORPORATE OUTINGS',
       date: '2024-02-15',
-      time: '7:00 PM',
+      time: 'Flexible',
       location: 'Main Track',
-      participants: '24',
-      description: 'Join our monthly championship series and compete for the ultimate racing title.',
+      participants: '10-50',
+      description: 'Perfect team-building experience for your company. Custom packages available for corporate events.',
       image: '/1.jpg',
-      status: 'upcoming'
+      status: 'available'
     },
     {
       id: 2,
-      title: 'Family Fun Day',
+      title: 'BIRTHDAY PARTIES',
       date: '2024-02-20',
-      time: '10:00 AM',
+      time: 'Flexible',
       location: 'All Tracks',
-      participants: '50',
-      description: 'Perfect for families with kids. Special rates and beginner-friendly sessions.',
+      participants: '5-30',
+      description: 'Make your special day unforgettable with exciting go-karting and entertainment packages.',
       image: '/2.jpg',
-      status: 'upcoming'
+      status: 'available'
     },
     {
       id: 3,
-      title: 'Night Racing',
+      title: 'DRIVER TRAINING PROGRAMS',
       date: '2024-02-25',
-      time: '8:00 PM',
-      location: 'Main Track',
-      participants: '16',
-      description: 'Experience the thrill of racing under the lights with our special night sessions.',
+      time: 'Flexible',
+      location: 'Training Track',
+      participants: 'Individual/Groups',
+      description: 'Professional driving instruction and skill development programs for all skill levels.',
       image: '/3.jpg',
-      status: 'upcoming'
+      status: 'available'
     }
   ];
 
@@ -62,9 +62,9 @@ const Events: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="heading-secondary text-white mb-4">Upcoming Events</h2>
+          <h2 className="heading-secondary text-white mb-4 uppercase">YOUR NEXT EVENT</h2>
           <p className="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto">
-            Join our exciting racing events and competitions. From championship series to family fun days.
+            Discover our exciting event packages. Perfect for corporate teams, celebrations, and skill development.
           </p>
         </motion.div>
 

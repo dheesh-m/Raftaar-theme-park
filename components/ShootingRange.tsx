@@ -54,7 +54,7 @@ const ShootingRange: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent uppercase">
             Shooting Range
           </h2>
           <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">

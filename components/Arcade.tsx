@@ -1,17 +1,17 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import Image from 'next/image';
-import { Gamepad2, Car, Zap, Users, Gamepad, Star } from 'lucide-react';
+import { Gamepad2, Car, Zap, Users, Gamepad, Star, Clock, Trophy } from 'lucide-react';
 
 const Arcade: React.FC = () => {
-  // Dynamic stats that increase every 24 hours
+  // Dynamic stats that increase daily/hourly
   const [dynamicStats, setDynamicStats] = useState({
-    activePlayers: 200,
-    gamesPlayed: 2500,
-    averageRating: 4.7,
-    gamingHours: 10000
+    uniqueCustomers: 31754,
+    totalLaps: 349294,
+    racingHours: 6020,
+    averageRating: 4.7
   });
 
   // Function to fetch Google rating (mock implementation)
@@ -44,27 +44,38 @@ const Arcade: React.FC = () => {
       const daysPassed = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
       
       // Calculate increases based on days passed
-      const playerIncrease = Math.floor(daysPassed * 12.5); // 10-15 players per day (average 12.5)
-      const gamesIncrease = Math.floor(daysPassed * 25); // ~25 games per day
-      const hoursIncrease = Math.floor(daysPassed * 8); // 8 hours per day
-      
-      // Fetch Google rating
-      const googleRating = await fetchGoogleRating();
+      // Unique Customers: random increase between 70-80 per day
+      const dailyCustomerIncrease = daysPassed * (70 + Math.random() * 10); // Random between 70-80 per day
+      // Number of Laps: increase by 970 per day
+      const lapsIncrease = daysPassed * 970;
+      // Racing Hours: 10 hours per day
+      const hoursIncrease = daysPassed * 10;
       
       setDynamicStats({
-        activePlayers: 200 + playerIncrease,
-        gamesPlayed: 2500 + gamesIncrease,
-        averageRating: googleRating,
-        gamingHours: 10000 + hoursIncrease
+        uniqueCustomers: 31754 + Math.floor(dailyCustomerIncrease),
+        totalLaps: 349294 + Math.floor(lapsIncrease),
+        racingHours: 6020 + Math.floor(hoursIncrease),
+        averageRating: 4.7 // Fixed rating
       });
     };
 
     calculateDynamicStats();
     
-    // Update every 24 hours (daily refresh)
-    const interval = setInterval(calculateDynamicStats, 24 * 60 * 60 * 1000);
+    // Update stats every hour for racing hours counter
+    const hourlyInterval = setInterval(() => {
+      setDynamicStats(prev => ({
+        ...prev,
+        racingHours: prev.racingHours + (10 / 24) // Add ~0.417 hours per hour (10 hours / 24 hours)
+      }));
+    }, 60 * 60 * 1000); // Every hour
     
-    return () => clearInterval(interval);
+    // Update daily stats every 24 hours
+    const dailyInterval = setInterval(calculateDynamicStats, 24 * 60 * 60 * 1000);
+    
+    return () => {
+      clearInterval(hourlyInterval);
+      clearInterval(dailyInterval);
+    };
   }, []);
 
   const arcadeFeatures = [
@@ -87,26 +98,75 @@ const Arcade: React.FC = () => {
       title: 'Other Arcade Games',
       description: 'Classic and modern arcade games for all ages and skill levels.',
       image: '/kart4.jpg',
-      features: ['Classic Games', 'Modern Titles', 'Prize System', 'All Ages Welcome']
+      features: ['Basketball', 'Multi Touch', 'Air Hockey', 'Rapid Reflex']
     }
   ];
 
-  const gamingStats = [
+  // Counter component for animated numbers
+  const AnimatedCounter: React.FC<{ targetValue: number; suffix?: string; prefix?: string; decimals?: number }> = ({ 
+    targetValue, 
+    suffix = '', 
+    prefix = '',
+    decimals = 0 
+  }) => {
+    const [displayValue, setDisplayValue] = useState(0);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+    useEffect(() => {
+      if (!isInView) return;
+
+      const duration = 2000; // 2 seconds
+      const steps = 60;
+      const increment = targetValue / steps;
+      const stepDuration = duration / steps;
+
+      let currentStep = 0;
+      const timer = setInterval(() => {
+        currentStep++;
+        const newValue = Math.min(increment * currentStep, targetValue);
+        setDisplayValue(newValue);
+
+        if (currentStep >= steps) {
+          clearInterval(timer);
+          setDisplayValue(targetValue);
+        }
+      }, stepDuration);
+
+      return () => clearInterval(timer);
+    }, [isInView, targetValue]);
+
+    const formattedValue = decimals > 0 
+      ? displayValue.toFixed(decimals)
+      : Math.floor(displayValue).toLocaleString();
+
+    return (
+      <span ref={ref}>
+        {prefix}{formattedValue}{suffix}
+      </span>
+    );
+  };
+
+  const raftaarStats = [
     { 
       icon: Users, 
-      label: 'Active Players', 
-      value: dynamicStats.activePlayers > 100000 ? `${Math.floor(dynamicStats.activePlayers / 1000)}K+` : `${dynamicStats.activePlayers}` 
+      label: 'Unique Customers',
+      getValue: () => <AnimatedCounter targetValue={Math.floor(dynamicStats.uniqueCustomers)} suffix="+" />
     },
     { 
-      icon: Gamepad, 
-      label: 'Games Played', 
-      value: dynamicStats.gamesPlayed > 100000 ? `${Math.floor(dynamicStats.gamesPlayed / 1000)}K+` : `${dynamicStats.gamesPlayed}` 
+      icon: Trophy, 
+      label: 'Number of Laps Till Date',
+      getValue: () => <AnimatedCounter targetValue={Math.floor(dynamicStats.totalLaps)} suffix=" laps" />
     },
-    { icon: Star, label: 'Average Rating', value: `${dynamicStats.averageRating.toFixed(1)}/5` },
     { 
-      icon: Zap, 
-      label: 'Gaming Hours', 
-      value: dynamicStats.gamingHours > 100000 ? `${Math.floor(dynamicStats.gamingHours / 1000)}K+` : `${dynamicStats.gamingHours}` 
+      icon: Clock, 
+      label: 'Number of Racing Hours',
+      getValue: () => <AnimatedCounter targetValue={Math.floor(dynamicStats.racingHours)} suffix=" hours" />
+    },
+    { 
+      icon: Star, 
+      label: 'Average Rating',
+      getValue: () => <AnimatedCounter targetValue={dynamicStats.averageRating} suffix="/5" decimals={1} />
     }
   ];
 
@@ -123,7 +183,7 @@ const Arcade: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-12 sm:mb-16"
         >
-          <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-2xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent uppercase">
             Arcade Zone
           </h2>
           <p className="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto">
@@ -211,7 +271,7 @@ const Arcade: React.FC = () => {
           ))}
         </div>
 
-        {/* Gaming Stats */}
+        {/* RAFTAAR Stats */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -219,11 +279,11 @@ const Arcade: React.FC = () => {
           viewport={{ once: true }}
           className="bg-gray-800/30 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-gray-700"
         >
-          <h3 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8 text-white">
-            Gaming Community Stats
+          <h3 className="text-xl sm:text-2xl font-bold text-center mb-6 sm:mb-8 text-white uppercase">
+            RAFTAAR STATS
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
-            {gamingStats.map((stat, index) => (
+            {raftaarStats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -235,7 +295,7 @@ const Arcade: React.FC = () => {
                 <div className="p-3 sm:p-4 bg-red-500/20 rounded-xl mb-3 sm:mb-4 group-hover:bg-red-500/30 transition-colors duration-300">
                   <stat.icon size={32} className="text-red-500 mx-auto" />
                 </div>
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">{stat.value}</div>
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">{stat.getValue()}</div>
                 <div className="text-gray-400 text-xs sm:text-sm">{stat.label}</div>
               </motion.div>
             ))}
