@@ -97,21 +97,39 @@ const StackedCards: React.FC = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+          <motion.h2 
+            className="text-4xl md:text-6xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true }}
+          >
             Experience the{' '}
-            <span className="bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent">
+            <motion.span 
+              className="bg-gradient-to-r from-red-500 to-purple-600 bg-clip-text text-transparent"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: [0.34, 1.56, 0.64, 1] }}
+              viewport={{ once: true }}
+            >
               Ultimate
-            </span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            </motion.span>
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true }}
+          >
             Discover what makes Raftaar Theme Park the premier destination for gaming and racing enthusiasts
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Stacked Cards Container */}
@@ -129,25 +147,36 @@ const StackedCards: React.FC = () => {
               return (
                 <motion.div
                   key={card.id}
-                  className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden ${
+                  className={`absolute inset-0 w-full h-full rounded-2xl overflow-hidden group ${
                     isActive ? 'z-30' : isPrev ? 'z-20' : 'z-10'
                   }`}
                   initial={{ 
                     opacity: 0, 
-                    scale: 0.8, 
-                    rotateY: isPrev ? -15 : isNext ? 15 : 0,
-                    x: isPrev ? -50 : isNext ? 50 : 0,
-                    y: isPrev ? 20 : isNext ? 20 : 0
+                    scale: 0.85, 
+                    rotateY: isPrev ? -20 : isNext ? 20 : 0,
+                    x: isPrev ? -60 : isNext ? 60 : 0,
+                    y: isPrev ? 30 : isNext ? 30 : 0,
+                    filter: 'blur(4px)'
                   }}
                   animate={{ 
-                    opacity: isActive ? 1 : 0.7, 
-                    scale: isActive ? 1 : 0.9,
-                    rotateY: isPrev ? -15 : isNext ? 15 : 0,
-                    x: isPrev ? -50 : isNext ? 50 : 0,
-                    y: isPrev ? 20 : isNext ? 20 : 0
+                    opacity: isActive ? 1 : 0.5, 
+                    scale: isActive ? 1 : 0.85,
+                    rotateY: isPrev ? -20 : isNext ? 20 : 0,
+                    x: isPrev ? -60 : isNext ? 60 : 0,
+                    y: isPrev ? 30 : isNext ? 30 : 0,
+                    filter: isActive ? 'blur(0px)' : 'blur(4px)'
                   }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  whileHover={isActive ? { scale: 1.01 } : {}}
+                  transition={{ 
+                    duration: 0.8, 
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    opacity: { duration: 0.5 },
+                    filter: { duration: 0.6 }
+                  }}
+                  whileHover={isActive ? { 
+                    scale: 1.02,
+                    y: -5,
+                    transition: { duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
+                  } : {}}
                 >
                   <div className="relative w-full h-full">
                     {/* Background Image */}
@@ -160,19 +189,39 @@ const StackedCards: React.FC = () => {
                     
                     {/* No gradient overlay - clean images */}
                     
+                    {/* Gradient Overlay for better text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
                     {/* Content */}
                     <div className="absolute inset-0 flex flex-col justify-end p-8">
                       <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: isActive ? 1 : 0.8, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.2 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ 
+                          opacity: isActive ? 1 : 0.6, 
+                          y: isActive ? 0 : 10
+                        }}
+                        transition={{ 
+                          duration: 0.6, 
+                          delay: isActive ? 0.3 : 0,
+                          ease: [0.25, 0.46, 0.45, 0.94]
+                        }}
                       >
-                        <h3 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+                        <motion.h3 
+                          className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-lg"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: isActive ? 1 : 0.8, x: 0 }}
+                          transition={{ duration: 0.5, delay: isActive ? 0.4 : 0, ease: [0.34, 1.56, 0.64, 1] }}
+                        >
                           {card.title}
-                        </h3>
-                        <p className="text-lg text-gray-200 mb-6 max-w-md">
+                        </motion.h3>
+                        <motion.p 
+                          className="text-lg text-gray-200 mb-6 max-w-md drop-shadow-md"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: isActive ? 1 : 0.7, x: 0 }}
+                          transition={{ duration: 0.5, delay: isActive ? 0.5 : 0, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        >
                           {card.description}
-                        </p>
+                        </motion.p>
                       </motion.div>
                     </div>
                   </div>
@@ -182,39 +231,57 @@ const StackedCards: React.FC = () => {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex justify-center items-center space-x-4 mt-8">
-            <button
+          <motion.div 
+            className="flex justify-center items-center space-x-4 mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true }}
+          >
+            <motion.button
               onClick={prevCard}
-              className="p-3 sm:p-3 bg-gray-800/70 hover:bg-gray-700/70 rounded-full transition-colors duration-300 shadow-lg"
+              className="p-3 sm:p-3 bg-gray-800/70 hover:bg-gray-700/70 rounded-full shadow-lg backdrop-blur-sm"
               aria-label="Previous card"
+              whileHover={{ scale: 1.1, x: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <ChevronLeft size={22} className="text-white sm:w-5 sm:h-5" />
-            </button>
+            </motion.button>
 
             {/* Dots Indicator - hidden on mobile */}
             <div className="hidden sm:flex space-x-2">
               {cards.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => goToCard(index)}
-                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
                     index === currentIndex
-                      ? 'bg-red-500 scale-110 sm:scale-125'
+                      ? 'bg-red-500'
                       : 'bg-gray-600 hover:bg-gray-400'
                   }`}
                   aria-label={`Go to card ${index + 1}`}
+                  animate={{
+                    scale: index === currentIndex ? 1.3 : 1,
+                    opacity: index === currentIndex ? 1 : 0.6
+                  }}
+                  whileHover={{ scale: 1.2 }}
+                  transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
                 />
               ))}
             </div>
 
-            <button
+            <motion.button
               onClick={nextCard}
-              className="p-3 sm:p-3 bg-gray-800/70 hover:bg-gray-700/70 rounded-full transition-colors duration-300 shadow-lg"
+              className="p-3 sm:p-3 bg-gray-800/70 hover:bg-gray-700/70 rounded-full shadow-lg backdrop-blur-sm"
               aria-label="Next card"
+              whileHover={{ scale: 1.1, x: 2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <ChevronRight size={22} className="text-white sm:w-5 sm:h-5" />
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </div>
     </section>
