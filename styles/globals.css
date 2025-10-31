@@ -23,6 +23,9 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  /* Enhanced smooth scrolling with hardware acceleration */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -30,6 +33,10 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
+  /* Smooth scroll performance optimizations */
+  overscroll-behavior: contain;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -678,13 +685,18 @@ a:focus-visible {
   border-radius: 4px;
 }
 
-/* Performance optimizations */
+/* Performance optimizations for smooth scrolling */
 * {
   will-change: auto;
 }
 
+/* Optimize motion elements for smooth animations */
 .motion-div {
   will-change: transform, opacity;
+  /* Enable hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Modern scroll animations */
@@ -739,22 +751,21 @@ a:focus-visible {
   will-change: transform;
 }
 
-/* Modern scroll momentum */
-html {
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
-}
-
-/* Enhanced scroll snap */
+/* Enhanced scroll snap with smoother behavior */
 body {
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   scroll-padding-top: 80px;
+  /* Prevent scroll chaining for better performance */
+  overscroll-behavior-y: contain;
 }
 
-/* Smooth section transitions */
+/* Smooth section transitions with better performance */
 section {
   scroll-snap-align: start;
   scroll-snap-stop: normal;
+  /* Enable GPU acceleration for smoother animations */
+  transform: translateZ(0);
+  will-change: scroll-position;
 }
 
 /* Mobile-specific optimizations */

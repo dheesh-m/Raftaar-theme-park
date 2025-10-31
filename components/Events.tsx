@@ -58,8 +58,8 @@ const Events: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          viewport={{ once: true, amount: 0.3 }}
           className="text-center mb-12 sm:mb-16"
         >
           <h2 className="heading-secondary text-white mb-4 uppercase">YOUR NEXT EVENT</h2>
@@ -74,8 +74,8 @@ const Events: React.FC = () => {
               key={event.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, amount: 0.3 }}
               className="bg-gray-100 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <div className="relative h-48">
@@ -132,8 +132,8 @@ const Events: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+          viewport={{ once: true, amount: 0.3 }}
           className="mt-20"
         >
           {/* Section Header */}
@@ -141,8 +141,8 @@ const Events: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, amount: 0.3 }}
               className="inline-block"
             >
               <div className="text-sm uppercase tracking-wider text-pink-500 mb-4 font-semibold">EXCLUSIVE FOOD PARTNER</div>
@@ -183,8 +183,8 @@ const Events: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                viewport={{ once: true, amount: 0.3 }}
               >
               <div className="flex items-center space-x-3 sm:space-x-4 mb-4 sm:mb-6">
                 <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl overflow-hidden">
@@ -226,8 +226,8 @@ const Events: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                viewport={{ once: true, amount: 0.3 }}
                 className="relative"
               >
                 <div className="relative h-80 rounded-2xl overflow-hidden border-2 border-pink-500/30">
@@ -254,8 +254,8 @@ const Events: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, amount: 0.3 }}
               className="group cursor-pointer"
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-pink-500/30 group-hover:border-pink-500/60 transition-all duration-300">
@@ -280,8 +280,8 @@ const Events: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, amount: 0.3 }}
               className="group cursor-pointer hidden sm:block"
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-purple-500/30 group-hover:border-purple-500/60 transition-all duration-300">
@@ -306,8 +306,8 @@ const Events: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, amount: 0.3 }}
               className="group cursor-pointer hidden sm:block"
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-pink-500/30 group-hover:border-pink-500/60 transition-all duration-300">
@@ -332,8 +332,8 @@ const Events: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, amount: 0.3 }}
               className="group cursor-pointer"
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-orange-500/30 group-hover:border-orange-500/60 transition-all duration-300">
@@ -358,8 +358,8 @@ const Events: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, amount: 0.3 }}
               className="group cursor-pointer"
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-red-500/30 group-hover:border-red-500/60 transition-all duration-300">
@@ -384,8 +384,8 @@ const Events: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+              viewport={{ once: true, amount: 0.3 }}
               className="group cursor-pointer hidden sm:block"
             >
               <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-blue-500/30 group-hover:border-blue-500/60 transition-all duration-300">
@@ -412,8 +412,8 @@ const Events: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true, amount: 0.3 }}
             className="text-center mt-16"
           >
             <div className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 backdrop-blur-sm rounded-2xl p-8 border border-pink-500/20 max-w-4xl mx-auto">

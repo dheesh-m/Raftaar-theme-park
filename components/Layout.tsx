@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Header from './Header';
 import ScrollProgress from './ScrollProgress';
+import Footer from './Footer';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,6 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <ScrollProgress />
         <Header />
         <main>{children}</main>
+        <Footer />
       </div>
       <style jsx global>{`
         /* Load local Lovelo font */
