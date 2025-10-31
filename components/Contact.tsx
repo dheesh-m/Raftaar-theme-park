@@ -39,8 +39,8 @@ const Contact: React.FC = () => {
       icon: MapPin,
       title: 'Stop by the cafe',
       description: 'Drop in for a match or a bite—see you soon!',
-      details: 'Survey number 128/1, Raftaar Theme Park - Gokarting, Rifle Shooting, Arcade Zone, PS5, Racing Simulator, Jeevan Nagar, Tathawade, Dattwadi, Pimpri-Chinchwad, Maharashtra 411033',
-      href: 'https://www.google.com/maps/search/Survey+number+128%2F1%2C+Raftaar+Theme+Park+-+Gokarting%2C+Rifle+Shooting%2C+Arcade+Zone%2C+PS5%2C+Racing+Simulator%2C+Jeevan+Nagar%2C+Tathawade%2C+Dattwadi%2C+Pimpri-Chinchwad%2C+Maharashtra+411033'
+      details: 'Raftaar Location',
+      href: 'https://www.google.com/maps/search/Survey+number+128%2F1%2C+Raftaar+Theme+Park+-+Gokarting%2C+Rifle+Shooting%2C+Arcade+Zone%2C+PS5%2C+Racing+Simulator%2C+Jeevan+Nagar%2C+Tathawade%2C+Dattwadi%2C+Pimpri-Chinchwad%2C+Maharashtra+411033' 
     }
   ];
 
@@ -87,9 +87,9 @@ const Contact: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.02, y: -5 }}
-              className="group"
+              className="group h-full"
             >
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 hover:bg-gray-700/50 transition-all duration-300 border border-gray-700 hover:border-purple-500/50 h-full">
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 hover:bg-gray-700/50 transition-all duration-300 border border-gray-700 hover:border-purple-500/50 h-full flex flex-col">
                 {/* Icon */}
                 <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-purple-500/30 transition-colors duration-300">
                   <info.icon size={24} className="text-white" />
@@ -101,12 +101,12 @@ const Contact: React.FC = () => {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-gray-300 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed">
+                <p className="text-gray-300 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed flex-grow">
                   {info.description}
                 </p>
                 
                 {/* Contact Details */}
-                <p className="text-purple-400 text-xs sm:text-sm font-medium group-hover:text-purple-300 transition-colors duration-300">
+                <p className="text-purple-400 text-xs sm:text-sm font-medium group-hover:text-purple-300 transition-colors duration-300 mt-auto">
                   {info.details}
                 </p>
               </div>
