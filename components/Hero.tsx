@@ -1,16 +1,77 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const Hero: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoError, setVideoError] = useState(false);
+
   const scrollToContact = () => {
     const element = document.querySelector('#contact');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Handle video errors
+    const handleError = (e: Event) => {
+      console.error('Video failed to load', e);
+      setVideoError(true);
+    };
+
+    // Try to play video when it's ready
+    const handleCanPlay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Video started playing successfully
+            setVideoError(false);
+          })
+          .catch((error) => {
+            // Autoplay was prevented or video failed to load
+            console.warn('Video autoplay failed:', error);
+            setVideoError(false); // Still show video, just might not autoplay
+          });
+      }
+    };
+
+    const handleLoadedMetadata = () => {
+      // Try to play when metadata is loaded
+      handleCanPlay();
+    };
+
+    // Add event listeners
+    video.addEventListener('error', handleError);
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('loadeddata', () => {
+      setVideoError(false);
+    });
+
+    // Set video source and load
+    video.load();
+
+    // Try to play after a short delay (for cases where video is already loaded)
+    const timeoutId = setTimeout(() => {
+      if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+        handleCanPlay();
+      }
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      video.removeEventListener('error', handleError);
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+  }, []);
 
   return (
     <section id="home" className="h-screen min-h-[500px] sm:min-h-[600px] md:min-h-[700px] flex items-center justify-center text-center relative overflow-hidden snap-start" style={{ paddingTop: '70px' }}>
@@ -27,28 +88,33 @@ const Hero: React.FC = () => {
               className="object-cover"
             />
           </div>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="/1.jpg"
-            className="hero-video-bg hero-fade-in w-full h-full object-cover"
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              minWidth: '100%',
-              minHeight: '100%',
-              width: '100%',
-              height: '100%',
-              pointerEvents: 'none'
-            }}
-          >
-            <source src="/trialvid.mp4" type="video/mp4" />
-          </video>
+          {!videoError && (
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              poster="/1.jpg"
+              className="hero-video-bg hero-fade-in w-full h-full object-cover"
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                minWidth: '100%',
+                minHeight: '100%',
+                width: '100%',
+                height: '100%',
+                pointerEvents: 'none',
+                zIndex: 1
+              }}
+            >
+              <source src="/trial.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
         </div>
       </div>
 
