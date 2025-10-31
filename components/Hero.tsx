@@ -84,9 +84,13 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className="heading-primary text-center"
+            className="heading-primary text-center hero-main-text"
           >
-            RACE • REST • REVIVE
+            <span className="hero-word">RACE</span>
+            <span className="hero-separator-desktop"> • </span>
+            <span className="hero-word">REST</span>
+            <span className="hero-separator-desktop"> • </span>
+            <span className="hero-word">REVIVE</span>
           </motion.h1>
 
           <motion.button
@@ -113,6 +117,35 @@ const Hero: React.FC = () => {
         }
         @media (prefers-reduced-motion: reduce) {
           .hero-video-bg { animation: none !important; }
+        }
+        
+        .hero-main-text {
+          white-space: nowrap;
+          overflow: visible;
+        }
+        
+        .hero-word {
+          display: inline;
+        }
+        
+        .hero-separator-desktop {
+          display: inline;
+        }
+        
+        /* Mobile - stack vertically */
+        @media (max-width: 640px) {
+          .hero-main-text {
+            white-space: normal !important;
+            line-height: 1.2;
+          }
+          
+          .hero-word {
+            display: block;
+          }
+          
+          .hero-separator-desktop {
+            display: none;
+          }
         }
       `}</style>
     </section>

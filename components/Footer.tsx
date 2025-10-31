@@ -10,9 +10,9 @@ const Footer: React.FC = () => {
         {/* Main Text Section */}
         <div className="w-full flex items-center justify-center" style={{ minHeight: 'clamp(300px, 40vw, 500px)', padding: 'clamp(3rem, 8vw, 6rem) 2rem' }}>
           <h1 className="footer-main-text">
-            <span className="block">race</span>
-            <span className="block">rest</span>
-            <span className="block">revive</span>
+            <span className="footer-text-word">race</span>
+            <span className="footer-text-word">rest</span>
+            <span className="footer-text-word">revive</span>
           </h1>
         </div>
       </section>
@@ -38,8 +38,13 @@ const Footer: React.FC = () => {
           display: block;
         }
         
-        .footer-main-text span {
-          display: block;
+        .footer-text-word {
+          display: inline;
+          white-space: pre;
+        }
+        
+        .footer-text-word:not(:last-child)::after {
+          content: ' ';
         }
 
         @media (max-width: 768px) {
@@ -55,9 +60,13 @@ const Footer: React.FC = () => {
             line-height: 0.95;
           }
           
-          .footer-main-text span {
+          .footer-text-word {
             display: block;
             margin-bottom: 0.1em;
+          }
+          
+          .footer-text-word::after {
+            content: '';
           }
         }
       `}</style>
