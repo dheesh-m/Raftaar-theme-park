@@ -10,7 +10,9 @@ const Footer: React.FC = () => {
         {/* Main Text Section */}
         <div className="w-full flex items-center justify-center" style={{ minHeight: 'clamp(300px, 40vw, 500px)', padding: 'clamp(3rem, 8vw, 6rem) 2rem' }}>
           <h1 className="footer-main-text">
-            RACE REST REVIVE
+            <span className="block">race</span>
+            <span className="block">rest</span>
+            <span className="block">revive</span>
           </h1>
         </div>
       </section>
@@ -26,9 +28,8 @@ const Footer: React.FC = () => {
           text-align: center;
           letter-spacing: clamp(0.02em, 0.2vw, 0.1em);
           line-height: 0.9;
-          text-transform: uppercase;
+          text-transform: lowercase;
           font-family: 'Lovelo', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-          white-space: nowrap;
           width: 100%;
           overflow: visible;
           transform: scaleY(1.1);
@@ -36,11 +37,13 @@ const Footer: React.FC = () => {
           padding: 0;
           display: block;
         }
+        
+        .footer-main-text span {
+          display: block;
+        }
 
         @media (max-width: 768px) {
           .footer-main-text {
-            white-space: normal;
-            word-spacing: 0.1em;
             font-size: clamp(2.5rem, 12vw, 8rem);
             line-height: 0.95;
           }
@@ -49,7 +52,12 @@ const Footer: React.FC = () => {
         @media (max-width: 640px) {
           .footer-main-text {
             font-size: clamp(2rem, 10vw, 6rem);
-            line-height: 1;
+            line-height: 0.95;
+          }
+          
+          .footer-main-text span {
+            display: block;
+            margin-bottom: 0.1em;
           }
         }
       `}</style>
