@@ -1,41 +1,24 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Phone, Mail, MapPin, Instagram, MessageCircle, Facebook } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Phone, Mail, MapPin, Instagram, Facebook } from 'lucide-react';
+
+// WhatsApp Icon Component
+const WhatsAppIcon = ({ size = 24, className = "" }: { size?: number; className?: string }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+);
 
 const Contact: React.FC = () => {
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down');
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const footerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(footerRef, { once: true, margin: "-100px" });
-
-  // Track scroll direction
-  useEffect(() => {
-    let ticking = false;
-
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          
-          if (currentScrollY > lastScrollY && currentScrollY > 50) {
-            setScrollDirection('down');
-          } else if (currentScrollY < lastScrollY && currentScrollY > 50) {
-            setScrollDirection('up');
-          }
-          
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
-        
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
 
   const contactInfo = [
     {
@@ -64,11 +47,11 @@ const Contact: React.FC = () => {
   const socialLinks = [
     { icon: Facebook, href: 'https://www.facebook.com/people/Raftaarwin/61555175682926/?mibextid=LQQJ4d&rdid=ssskiU9BczyA5OQR&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2FhTzj7XnsFJjADZi9%2F%3Fmibextid%3DLQQJ4d', label: 'Facebook' },
     { icon: Instagram, href: 'https://www.instagram.com/raftaar.win/?igsh=MmlranhxamQxc2Fm&utm_source=qr#', label: 'Instagram' },
-    { icon: MessageCircle, href: 'https://wa.me/918766741673?text=Hi', label: 'WhatsApp' }
+    { icon: WhatsAppIcon, href: 'https://wa.me/918766741673?text=Hi', label: 'WhatsApp' }
   ];
 
   return (
-    <section id="contact" className="relative py-16 sm:py-24 md:py-32 px-3 sm:px-4 md:px-12 bg-gradient-to-b from-gray-900 to-black text-white snap-start" style={{ position: 'relative', zIndex: scrollDirection === 'up' ? 10 : 5, marginBottom: 0, paddingBottom: 0, overflow: 'visible' }}>
+    <section id="contact" className="relative py-16 sm:py-24 md:py-32 px-3 sm:px-4 md:px-12 bg-gradient-to-b from-gray-900 to-black text-white snap-start">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
         <motion.div
@@ -159,206 +142,6 @@ const Contact: React.FC = () => {
         </motion.div>
 
       </div>
-
-      {/* Footer Section with Details */}
-      <div ref={footerRef} className="relative w-screen mt-8" style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="footer-overlap-section"
-          style={{
-            position: 'relative',
-            zIndex: scrollDirection === 'up' ? 1 : 100,
-            transition: 'z-index 0.3s ease'
-          }}
-        >
-          {/* Footer Details Section */}
-          <div className="footer-details-container">
-            <div className="footer-details-grid">
-              {/* Left Side */}
-              <div className="footer-left">
-                <p className="footer-detail-item">Corporate Identification Number: U34300KA2020PTC139964</p>
-                <p className="footer-detail-item">Corporate Telephone Number: +91 8766741673</p>
-                <p className="footer-address">
-                  Survey number 128/1, Raftaar Theme Park - Gokarting, Rifle Shooting, Arcade Zone, PS5, Racing Simulator, Jeevan Nagar, Tathawade, Dattwadi, Pimpri-Chinchwad, Maharashtra 411033
-                </p>
-              </div>
-
-              {/* Right Side */}
-              <div className="footer-right">
-                <p className="footer-detail-item">GST: 29AAGCE1484R1ZV</p>
-                <p className="footer-detail-item">email: contact@raftaar.win</p>
-                
-                
-                <div className="footer-social-icons">
-                  <a href="https://www.instagram.com/raftaar.win/" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="Instagram">
-                    <Instagram size={20} />
-                  </a>
-                  <a href="tel:+918766741673" className="footer-social-icon" aria-label="Phone">
-                    <Phone size={20} />
-                  </a>
-                  <a href="https://wa.me/918766741673?text=Hi" target="_blank" rel="noopener noreferrer" className="footer-social-icon" aria-label="WhatsApp">
-                    <MessageCircle size={20} />
-                  </a>
-                </div>
-
-                <p className="footer-copyright"> © 2025 Raftaar Theme Park</p>
-              </div>
-            </div>
-          </div>
-
-          {/* RAFTAAR Text */}
-          <div className="footer-overlap-content">
-            <span className="footer-overlap-text">Raftaar</span>
-          </div>
-        </motion.div>
-      </div>
-
-      <style jsx global>{`
-        .footer-overlap-section {
-          width: 100vw;
-          background: #DC2626;
-          box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
-          margin-left: calc(-50vw + 50%);
-          margin-right: calc(-50vw + 50%);
-        }
-        
-        .footer-details-container {
-          width: 100%;
-          padding: 3rem 2rem 2rem;
-          max-width: 1400px;
-          margin: 0 auto;
-        }
-        
-        .footer-details-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 3rem;
-          margin-bottom: 2rem;
-        }
-        
-        .footer-left {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-        
-        .footer-right {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-          align-items: flex-end;
-          text-align: right;
-        }
-        
-        .footer-detail-item {
-          color: #000000;
-          font-size: 0.875rem;
-          line-height: 1.5;
-          font-weight: 400;
-        }
-        
-        .footer-address {
-          color: #000000;
-          font-size: 0.875rem;
-          line-height: 1.5;
-          font-weight: 400;
-          margin-bottom: 0.5rem;
-        }
-        
-        .footer-links-row {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 1rem;
-          margin-top: 0.5rem;
-        }
-        
-        .footer-link {
-          color: #000000;
-          font-size: 0.875rem;
-          text-decoration: none;
-          font-weight: 400;
-          transition: opacity 0.2s ease;
-        }
-        
-        .footer-link:hover {
-          opacity: 0.7;
-        }
-        
-        .footer-social-icons {
-          display: flex;
-          gap: 1rem;
-          margin: 0.5rem 0;
-          justify-content: flex-end;
-        }
-        
-        .footer-social-icon {
-          color: #000000;
-          transition: opacity 0.2s ease;
-        }
-        
-        .footer-social-icon:hover {
-          opacity: 0.7;
-        }
-        
-        .footer-copyright {
-          color: #000000;
-          font-size: 0.875rem;
-          margin-top: 0.5rem;
-        }
-        
-        .footer-overlap-content {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: clamp(5rem, 12vw, 10rem) 2rem;
-          min-height: clamp(250px, 35vw, 400px);
-        }
-        
-        .footer-overlap-text {
-          font-size: clamp(5rem, 16vw, 18rem);
-          font-weight: 900;
-          color: #FFFFFF;
-          text-align: center;
-          letter-spacing: clamp(0.03em, 0.15vw, 0.1em);
-          line-height: 0.85;
-          text-transform: uppercase;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-          white-space: nowrap;
-          width: 100%;
-          overflow: hidden;
-          transform: scaleY(1.1);
-        }
-        
-        @media (max-width: 1024px) {
-          .footer-details-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .footer-details-container {
-            padding: 2rem 1.5rem 1.5rem;
-          }
-          
-          .footer-overlap-text {
-            white-space: normal;
-            word-spacing: 0.1em;
-            font-size: clamp(3rem, 12vw, 8rem);
-          }
-          
-          .footer-links-row {
-            gap: 0.75rem;
-          }
-          
-          .footer-link {
-            font-size: 0.75rem;
-          }
-        }
-      `}</style>
     </section>
   );
 };
