@@ -55,7 +55,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 duration: 2.5,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: 1
+                delay: 0
               }}
               className="mb-3 relative mt-24 sm:mt-32"
             >
