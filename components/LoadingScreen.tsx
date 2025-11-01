@@ -44,7 +44,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           className="fixed inset-0 z-50 bg-black flex items-center justify-center"
         >
           <div className="text-center relative">
-            {/* Single Spinning Wheel with Drifting */}
+            {/* Firefly GIF */}
             <motion.div
               initial={{ x: -150, opacity: 0 }}
               animate={{ 
@@ -54,131 +54,20 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               transition={{ 
                 duration: 2.5,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
+                delay: 1
               }}
-              className="mb-12 relative"
+              className="mb-3 relative mt-24 sm:mt-32"
             >
-              {/* Go-Kart Tire */}
-              <motion.div
-                className="w-24 h-24 mx-auto relative"
-                animate={{
-                  rotate: [0, 360]
-                }}
-                transition={{
-                  duration: 0.6,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-              >
-                {/* Tire Tread */}
-                <div className="w-24 h-24 bg-black rounded-full relative shadow-2xl">
-                  {/* Tire Tread Pattern */}
-                  <div className="absolute inset-1 border-2 border-gray-800 rounded-full"></div>
-                  <div className="absolute inset-2 border border-gray-700 rounded-full"></div>
-                  
-                  {/* Tread Grooves */}
-                  {[...Array(6)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-0.5 h-8 bg-gray-600 rounded-full"
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                        transform: `translate(-50%, -50%) rotate(${i * 30}deg)`,
-                        marginTop: '-1rem'
-                      }}
-                    />
-                  ))}
-                  
-                  {/* Wheel Hub */}
-                  <div className="absolute inset-6 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center">
-                    <div className="w-3 h-3 bg-gray-500 rounded-full"></div>
-                  </div>
-                  
-                  {/* Hub Bolts */}
-                  {[...Array(5)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-1 h-1 bg-gray-400 rounded-full"
-                      style={{
-                        left: '50%',
-                        top: '50%',
-                        transform: `translate(-50%, -50%) rotate(${i * 72}deg) translateY(-8px)`,
-                      }}
-                    />
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Speed Lines */}
-              <motion.div
-                className="absolute top-1/2 -left-16 w-12 h-0.5 bg-white/70"
-                animate={{
-                  x: [-30, -50, -70],
-                  opacity: [0, 1, 0]
-                }}
-                transition={{
-                  duration: 0.8,
-                  repeat: Infinity,
-                  ease: "easeOut"
-                }}
-              />
-              <motion.div
-                className="absolute top-1/2 -left-20 w-8 h-0.5 bg-white/50"
-                animate={{
-                  x: [-30, -50, -70],
-                  opacity: [0, 1, 0]
-                }}
-                transition={{
-                  duration: 0.8,
-                  repeat: Infinity,
-                  delay: 0.1,
-                  ease: "easeOut"
-                }}
-              />
-
-              {/* Tire Smoke Trail */}
-              <div className="absolute -left-28 top-1/2 transform -translate-y-1/2">
-                {[...Array(12)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-3 h-3 bg-gray-500/70 rounded-full blur-sm"
-                    animate={{
-                      x: [0, -30, -60, -90],
-                      y: [0, -8 + i * 1.2, -15 + i * 1.8, -25 + i * 2.5],
-                      scale: [0.3, 0.8, 0.6, 0.2],
-                      opacity: [0.9, 0.6, 0.3, 0]
-                    }}
-                    transition={{
-                      duration: 2.2,
-                      repeat: Infinity,
-                      delay: i * 0.1,
-                      ease: "easeOut"
-                    }}
-                  />
-                ))}
-              </div>
-
-              {/* Ground Smoke */}
-              <div className="absolute -left-20 top-1/2 transform translate-y-8">
-                {[...Array(6)].map((_, i) => (
-                  <motion.div
-                    key={`ground-${i}`}
-                    className="absolute w-4 h-2 bg-gray-600/50 rounded-full blur-md"
-                    animate={{
-                      x: [0, -20, -40],
-                      y: [0, -2 + i * 0.5, -4 + i * 0.8],
-                      scale: [0.4, 0.8, 0.3],
-                      opacity: [0.7, 0.4, 0]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      delay: i * 0.2,
-                      ease: "easeOut"
-                    }}
-                  />
-                ))}
+              <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto relative">
+                <Image
+                  src="/firefly.gif"
+                  alt="Firefly"
+                  width={320}
+                  height={320}
+                  className="w-full h-full object-contain"
+                  unoptimized
+                />
               </div>
             </motion.div>
 

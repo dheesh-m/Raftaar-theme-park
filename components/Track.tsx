@@ -145,35 +145,29 @@ const Track: React.FC = () => {
                 </div>
 
             {/* Navigation Buttons */}
-            <motion.button
+            <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 bg-white/90 hover:bg-white text-black rounded-2xl shadow-lg z-10 flex items-center justify-center backdrop-blur-sm"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 bg-white/90 hover:bg-white text-black rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 z-10 flex items-center justify-center backdrop-blur-sm"
               aria-label="Previous image"
-              whileHover={{ scale: 1.1, x: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <div className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
                   <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-            </motion.button>
+            </button>
             
-            <motion.button
+            <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 bg-white/90 hover:bg-white text-black rounded-2xl shadow-lg z-10 flex items-center justify-center backdrop-blur-sm"
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 bg-white/90 hover:bg-white text-black rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 z-10 flex items-center justify-center backdrop-blur-sm"
               aria-label="Next image"
-              whileHover={{ scale: 1.1, x: 2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <div className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center">
                 <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
                   <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
-            </motion.button>
+            </button>
           </div>
 
           {/* Dots Indicator */}

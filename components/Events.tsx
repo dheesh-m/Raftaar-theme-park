@@ -130,6 +130,7 @@ const Events: React.FC = () => {
 
         {/* Bubit Eats & Treats Section */}
         <motion.div
+          id="bubit"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -337,94 +338,22 @@ const Events: React.FC = () => {
               </div>
             </motion.a>
 
-            {/* Ramen */}
-            <motion.a
-              href="https://bubit.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="group cursor-pointer block"
-            >
-              <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-orange-500/30 group-hover:border-orange-500/60 transition-all duration-300">
-                <Image
-                  src="/ramen.png"
-                  alt="Ramen"
-                  fill
-                  className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                  <span className="text-white text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Visit Bubit</span>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h4 className="text-xl font-bold text-white mb-2">Ramen</h4>
-                  <p className="text-gray-200 text-sm">Authentic Japanese noodle soup</p>
-                </div>
-              </div>
-            </motion.a>
-
-            {/* Dumplings */}
-            <motion.a
-              href="https://bubit.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              viewport={{ once: true }}
-              className="group cursor-pointer block"
-            >
-              <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-red-500/30 group-hover:border-red-500/60 transition-all duration-300">
-                <Image
-                  src="/Dumplimgs.png"
-                  alt="Dumplings"
-                  fill
-                  className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                  <span className="text-white text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Visit Bubit</span>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h4 className="text-xl font-bold text-white mb-2">Dumplings</h4>
-                  <p className="text-gray-200 text-sm">Steamed and pan-fried delights</p>
-                </div>
-              </div>
-            </motion.a>
-
-            {/* Taiwanese Ice-Cream */}
-            <motion.a
-              href="https://bubit.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="group cursor-pointer hidden sm:block"
-            >
-              <div className="relative h-48 sm:h-56 lg:h-64 rounded-xl sm:rounded-2xl overflow-hidden border-2 border-blue-500/30 group-hover:border-blue-500/60 transition-all duration-300">
-                <Image
-                  src="/taiwanese.png"
-                  alt="Taiwanese Ice-Cream"
-                  fill
-                  className="object-contain scale-75 group-hover:scale-85 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
-                  <span className="text-white text-lg sm:text-xl font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">Visit Bubit</span>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h4 className="text-xl font-bold text-white mb-2">Taiwanese Ice-Cream</h4>
-                  <p className="text-gray-200 text-sm">Sweet treats to cool you down</p>
-                </div>
-              </div>
-            </motion.a>
           </div>
 
+          {/* And More Available */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mt-8"
+          >
+            <div className="bg-gradient-to-r from-pink-500/10 to-purple-500/10 backdrop-blur-sm rounded-2xl p-6 border border-pink-500/20 max-w-4xl mx-auto">
+              <h4 className="text-xl font-bold text-white">
+                and more available
+              </h4>
+            </div>
+          </motion.div>
 
           {/* Bottom CTA */}
           <motion.div

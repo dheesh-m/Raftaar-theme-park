@@ -15,7 +15,7 @@ interface LinkWithTransitionProps extends React.AnchorHTMLAttributes<HTMLAnchorE
 const LinkWithTransition: React.FC<LinkWithTransitionProps> = ({
   href,
   children,
-  transitionColor = '#DC2626',
+  transitionColor = '#16213e',
   scroll = true,
   onClick,
   ...props

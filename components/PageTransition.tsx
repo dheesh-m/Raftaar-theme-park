@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Premium easing curves
-const easeInOutExpo = [0.87, 0, 0.13, 1]; // Exponential smooth curve
-const premiumEase = [0.25, 0.46, 0.45, 0.94]; // Premium smooth curve
+// Ultra smooth easing curves for liquid-like flow
+const liquidEase = [0.25, 0.1, 0.25, 1]; // Very smooth liquid flow in
+const liquidEaseOut = [0.16, 1, 0.3, 1]; // Very smooth liquid flow out with slow fade
+const smoothFadeIn = [0.4, 0, 0.2, 1]; // Gentle fade in
+const smoothFadeOut = [0.2, 0, 0, 1]; // Very slow, gradual fade out
 
 interface TransitionOverlayProps {
   isActive: boolean;
@@ -15,29 +17,29 @@ interface TransitionOverlayProps {
 
 const TransitionOverlay: React.FC<TransitionOverlayProps> = ({ 
   isActive, 
-  color = '#DC2626',
+  color = '#16213e',
   onComplete 
 }) => {
-  const [phase, setPhase] = useState<'expand' | 'shrink' | 'hidden'>('hidden');
+  const [phase, setPhase] = useState<'expand' | 'zoom-out' | 'hidden'>('hidden');
 
   useEffect(() => {
     if (isActive && phase === 'hidden') {
       // Start expanding immediately
       setPhase('expand');
       
-      // After expansion (0.5s), start shrinking/fading
-      const shrinkTimer = setTimeout(() => {
-        setPhase('shrink');
-      }, 500);
+      // After expansion (0.9s), start zoom out and fade
+      const zoomOutTimer = setTimeout(() => {
+        setPhase('zoom-out');
+      }, 900);
       
-      // After shrink completes (0.5s), hide
+      // After zoom out completes (1s), hide
       const completeTimer = setTimeout(() => {
         setPhase('hidden');
         onComplete();
-      }, 1000);
+      }, 1900);
 
       return () => {
-        clearTimeout(shrinkTimer);
+        clearTimeout(zoomOutTimer);
         clearTimeout(completeTimer);
       };
     } else if (!isActive) {
@@ -50,61 +52,70 @@ const TransitionOverlay: React.FC<TransitionOverlayProps> = ({
       {phase !== 'hidden' && (
         <motion.div
           key="transition-overlay"
+          data-transition-overlay
           initial={{
-            clipPath: 'circle(0% at 50% 50%)',
             scale: 0,
-            opacity: 1,
-            backdropFilter: 'blur(0px)'
+            opacity: 0
           }}
           animate={
             phase === 'expand' ? {
-              clipPath: 'circle(150% at 50% 50%)',
-              scale: 1.6,
-              backdropFilter: 'blur(20px)',
+              scale: 1,
               opacity: 1
             } : {
-              clipPath: 'circle(150% at 50% 50%)',
-              scale: 0.8,
-              backdropFilter: 'blur(0px)',
+              scale: 0,
               opacity: 0
             }
           }
           exit={{
             opacity: 0,
-            transition: { duration: 0.3 }
+            scale: 0,
+            transition: { 
+              duration: 0.8,
+              ease: smoothFadeOut
+            }
           }}
           transition={{
-            clipPath: {
-              duration: 0.5,
-              ease: easeInOutExpo
+            scale: phase === 'expand' ? {
+              duration: 0.9,
+              ease: liquidEase,
+              type: "tween"
+            } : {
+              duration: 1.0,
+              ease: liquidEaseOut,
+              type: "tween"
             },
-            scale: {
-              duration: 0.5,
-              ease: easeInOutExpo
-            },
-            backdropFilter: {
-              duration: 0.5,
-              ease: premiumEase
-            },
-            opacity: {
-              duration: 0.5,
-              ease: premiumEase
+            opacity: phase === 'expand' ? {
+              duration: 0.7,
+              ease: smoothFadeIn,
+              type: "tween"
+            } : {
+              duration: 1.0,
+              ease: smoothFadeOut,
+              type: "tween"
             }
           }}
           style={{
             position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            background: `linear-gradient(135deg, ${color} 0%, ${color}dd 100%)`,
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
+            top: '50%',
+            left: '50%',
+            width: '200vmax',
+            height: '200vmax',
+            background: color,
+            borderRadius: '50%',
             zIndex: 99999,
             pointerEvents: 'none',
             transformOrigin: 'center center',
-            willChange: 'clip-path, transform, opacity, backdrop-filter',
-            clipPath: 'circle(0% at 50% 50%)'
+            willChange: 'transform, opacity',
+            transform: 'translate(-50%, -50%)',
+            margin: 0,
+            padding: 0,
+            boxSizing: 'border-box',
+            WebkitTransform: 'translate(-50%, -50%)',
+            WebkitTransformOrigin: 'center center',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            perspective: 1000,
+            WebkitPerspective: 1000
           }}
         />
       )}
@@ -119,7 +130,7 @@ let transitionState: {
   resolve: (() => void) | null;
 } = {
   isActive: false,
-  color: '#DC2626',
+  color: '#16213e',
   resolve: null
 };
 
@@ -128,7 +139,7 @@ let setOverlayState: ((state: boolean) => void) | null = null;
 // Apple-style matte blur expand transition function
 export const pageTransition = (
   callback: () => void,
-  color: string = '#DC2626'
+  color: string = '#16213e'
 ): Promise<void> => {
   return new Promise((resolve) => {
     console.log('🔥 pageTransition called');
@@ -136,11 +147,14 @@ export const pageTransition = (
     // Prevent scrolling during transition
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    // Add class for additional styling if needed
+    document.body.classList.add('transition-active');
 
     // Set transition state
     transitionState.color = color;
     transitionState.resolve = () => {
       document.body.style.overflow = originalOverflow;
+      document.body.classList.remove('transition-active');
       resolve();
     };
 
@@ -150,13 +164,13 @@ export const pageTransition = (
       setOverlayState(true);
     }
 
-    // Phase 1: Expand from center (0.5s)
+    // Phase 1: Expand from center (0.9s)
     setTimeout(() => {
       console.log('🔥 Executing callback');
-      // Execute callback during full cover
+      // Execute callback during full cover - scroll happens here
       callback();
 
-      // Phase 2: Shrink and fade (0.5s) - start after expand
+      // Phase 2: Shrink and fade (1.0s) - start after expand
       setTimeout(() => {
         console.log('🔥 Starting shrink/fade');
         if (setOverlayState) {
@@ -169,16 +183,16 @@ export const pageTransition = (
             transitionState.resolve();
             transitionState.resolve = null;
           }
-        }, 500);
+        }, 1000);
       }, 50);
-    }, 500);
+    }, 900);
   });
 };
 
 // Global Transition Manager Component
 export const PageTransitionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isOverlayActive, setIsOverlayActive] = useState(false);
-  const [overlayColor, setOverlayColor] = useState('#DC2626');
+  const [overlayColor, setOverlayColor] = useState('#16213e');
 
   useEffect(() => {
     setOverlayState = (active: boolean) => {
@@ -207,6 +221,50 @@ export const PageTransitionProvider: React.FC<{ children: React.ReactNode }> = (
           setIsOverlayActive(false);
         }}
       />
+      <style jsx global>{`
+        /* Ensure smooth circular transition from center - Desktop & Mobile */
+        [data-transition-overlay] {
+          position: fixed !important;
+          top: 50% !important;
+          left: 50% !important;
+          transform: translate(-50%, -50%) !important;
+          transform-origin: center center !important;
+          -webkit-transform: translate(-50%, -50%) !important;
+          -webkit-transform-origin: center center !important;
+          /* GPU acceleration for smooth performance */
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          /* Smooth rendering */
+          image-rendering: -webkit-optimize-contrast;
+          image-rendering: crisp-edges;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+          [data-transition-overlay] {
+            /* Enhanced mobile performance */
+            will-change: transform, opacity !important;
+            -webkit-will-change: transform, opacity !important;
+            /* Prevent jank on mobile */
+            -webkit-tap-highlight-color: transparent;
+            touch-action: none;
+            /* Smooth rendering on mobile */
+            -webkit-transform: translate3d(-50%, -50%, 0) !important;
+            transform: translate3d(-50%, -50%, 0) !important;
+          }
+        }
+        
+        /* Additional smoothness for all devices */
+        [data-transition-overlay] {
+          transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+          -webkit-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+        }
+        
+        /* Prevent scroll during transition - use overflow only */
+        body.transition-active {
+          overflow: hidden !important;
+        }
+      `}</style>
     </>
   );
 };

@@ -49,24 +49,41 @@ const Header: React.FC = () => {
     { href: '#shooting', label: 'Shooting Range', icon: '🎯' },
     { href: '#arcade', label: 'Arcade', icon: '🎮' },
     { href: '#events', label: 'Events', icon: '📅' },
+    { href: '#bubit', label: 'BubIT', icon: '🧋' },
     { href: '#experience', label: 'Experience', icon: '⭐' },
     { href: '#faq', label: 'FAQ', icon: '❓' },
     { href: '#contact', label: 'Contact', icon: '📞' },
   ];
 
   const scrollToSection = async (href: string) => {
-    await pageTransition(() => {
-      const element = document.querySelector(href);
-      if (element) {
-        const offsetTop = (element as HTMLElement).offsetTop;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'instant'
-        });
-      }
-    }, '#DC2626');
+    // Calculate scroll position BEFORE transition starts
+    const element = document.querySelector(href);
+    let targetScrollPosition = 0;
+    
+    if (element) {
+      const headerOffset = 70; // Height of the header
+      const elementRect = (element as HTMLElement).getBoundingClientRect();
+      const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      targetScrollPosition = currentScrollY + elementRect.top - headerOffset;
+    }
+    
+    // Close menus immediately
     setIsMobileMenuOpen(false);
     setActiveDropdown(null);
+    
+    // Execute scroll during transition
+    await pageTransition(() => {
+      if (element) {
+        window.scrollTo({
+          top: Math.max(0, targetScrollPosition),
+          behavior: 'instant'
+        });
+        // Also update hash for browser history
+        if (href.startsWith('#')) {
+          window.history.replaceState(null, '', href);
+        }
+      }
+    }, '#16213e');
   };
 
   const handleDropdownToggle = (e: React.MouseEvent) => {

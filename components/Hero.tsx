@@ -108,7 +108,8 @@ const Hero: React.FC = () => {
                 width: '100%',
                 height: '100%',
                 pointerEvents: 'none',
-                zIndex: 1
+                zIndex: 1,
+                objectFit: 'cover'
               }}
             >
               <source src="/trial.mp4" type="video/mp4" />
@@ -173,14 +174,25 @@ const Hero: React.FC = () => {
       <style jsx>{`
         /* Use dynamic viewport height on mobile to avoid browser UI causing jumps */
         @media (max-width: 640px) {
-          .hero-video-wrapper { height: calc(100dvh - 70px) !important; }
-          .hero-video-bg { display: none !important; }
-          .mobile-hero-fallback { display: block !important; }
+          .hero-video-wrapper { 
+            height: calc(100dvh - 70px) !important;
+            bottom: 0 !important;
+            top: 70px !important;
+          }
+          .hero-video-bg {
+            object-fit: cover !important;
+            width: 100% !important;
+            height: 100% !important;
+            min-width: 100% !important;
+            min-height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
+            transform: none !important;
+            position: absolute !important;
+          }
         }
-        /* Hide image fallback on larger screens; show video */
-        @media (min-width: 641px) {
-          .mobile-hero-fallback { display: none !important; }
-        }
+        /* Hide image fallback on all screens; show video */
+        .mobile-hero-fallback { display: none !important; }
         @media (prefers-reduced-motion: reduce) {
           .hero-video-bg { animation: none !important; }
         }
