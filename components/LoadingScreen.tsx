@@ -61,7 +61,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             >
               <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 mx-auto relative">
                 <Image
-                  src="/firefly.gif"
+                  src="/Firefly.gif"
                   alt="Firefly"
                   width={320}
                   height={320}
