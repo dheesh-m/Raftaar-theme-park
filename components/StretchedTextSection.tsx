@@ -53,7 +53,8 @@ const StretchedTextSection: React.FC = () => {
           font-stretch: condensed !important;
           display: block !important;
           width: 100% !important;
-          font-family: 'Lovelo', sans-serif !important;
+          font-family: 'Blanka', sans-serif !important;
+          font-weight: 400 !important;
           color: white !important;
           font-size: clamp(2rem, 8vw, 4rem) !important;
           margin: 0 !important;

@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
-            className="heading-tertiary text-center"
+            className="heading-tertiary text-center hero-raftaar-title"
           >
             Raftaar Theme Park
           </motion.h2>
@@ -151,7 +151,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className="heading-primary text-center hero-main-text"
+            className="heading-primary text-center hero-main-text hero-race-rest-revive"
           >
             <span className="hero-word">RACE</span>
             <span className="hero-separator-desktop"> • </span>
@@ -171,7 +171,7 @@ const Hero: React.FC = () => {
           </motion.button>
         </div>
       </div>
-      <style jsx>{`
+      <style jsx global>{`
         /* Use dynamic viewport height on mobile to avoid browser UI causing jumps */
         @media (max-width: 640px) {
           .hero-video-wrapper { 
@@ -195,6 +195,24 @@ const Hero: React.FC = () => {
         .mobile-hero-fallback { display: none !important; }
         @media (prefers-reduced-motion: reduce) {
           .hero-video-bg { animation: none !important; }
+        }
+        
+        /* Apply Blanka font to RACE • REST • REVIVE - override global heading styles */
+        .hero-race-rest-revive,
+        .hero-race-rest-revive *,
+        h1.hero-race-rest-revive,
+        h1.hero-race-rest-revive.heading-primary {
+          font-family: 'Blanka', sans-serif !important;
+          font-weight: 400 !important;
+        }
+        
+        /* Apply Blanka font to Raftaar Theme Park - override global heading styles */
+        .hero-raftaar-title,
+        .hero-raftaar-title *,
+        h2.hero-raftaar-title,
+        h2.hero-raftaar-title.heading-tertiary {
+          font-family: 'Blanka', sans-serif !important;
+          font-weight: 400 !important;
         }
         
         .hero-main-text {

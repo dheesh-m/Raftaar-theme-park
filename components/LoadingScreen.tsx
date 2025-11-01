@@ -76,7 +76,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl font-bold text-white mb-2"
+              className="text-4xl font-bold text-white mb-2 loading-raftaar-title"
             >
               RAFTAAR
             </motion.h1>
@@ -84,7 +84,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-lg text-gray-400 mb-8"
+              className="text-lg text-gray-400 mb-8 loading-theme-park"
             >
               THEME PARK
             </motion.p>
@@ -137,6 +137,21 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           </div>
         </motion.div>
       )}
+      <style jsx global>{`
+        /* Apply Blanka font to Loading Screen text */
+        .loading-raftaar-title,
+        .loading-raftaar-title * {
+          font-family: 'Blanka', sans-serif !important;
+          font-weight: 400 !important;
+          text-transform: uppercase !important;
+        }
+        .loading-theme-park,
+        .loading-theme-park * {
+          font-family: 'Blanka', sans-serif !important;
+          font-weight: 400 !important;
+          text-transform: uppercase !important;
+        }
+      `}</style>
     </AnimatePresence>
   );
 };

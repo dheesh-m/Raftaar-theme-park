@@ -32,6 +32,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           font-style: normal;
           font-display: swap;
         }
+        /* Load local Blanka font */
+        @font-face {
+          font-family: 'Blanka';
+          src: url('/Blanka-Regular.otf') format('opentype');
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
         /* Global mobile polish */
         html, body { margin: 0; padding: 0; overflow-x: hidden; }
         img, video { max-width: 100%; height: auto; display: block; }

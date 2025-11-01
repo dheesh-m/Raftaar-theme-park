@@ -38,39 +38,105 @@ const Arcade: React.FC = () => {
   };
 
   useEffect(() => {
-    const calculateDynamicStats = async () => {
+    // Store the base date in localStorage to track when we last updated
+    const baseDateKey = 'raftaar_base_date';
+    const baseStatsKey = 'raftaar_base_stats';
+    
+    const calculateDynamicStats = () => {
+      // Get today's date at midnight for consistent daily calculations
       const now = new Date();
-      const startDate = new Date('2024-01-01'); // Starting date
-      const daysPassed = Math.floor((now.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       
-      // Calculate increases based on days passed
-      // Unique Customers: random increase between 70-80 per day
-      const dailyCustomerIncrease = daysPassed * (70 + Math.random() * 10); // Random between 70-80 per day
-      // Number of Laps: increase by 970 per day
-      const lapsIncrease = daysPassed * 970;
-      // Racing Hours: 10 hours per day
-      const hoursIncrease = daysPassed * 10;
+      let baseDateStr = typeof window !== 'undefined' ? localStorage.getItem(baseDateKey) : null;
+      let baseStatsStr = typeof window !== 'undefined' ? localStorage.getItem(baseStatsKey) : null;
+      
+      let baseDate: Date;
+      let baseStats: { uniqueCustomers: number; totalLaps: number; racingHours: number };
+      
+      if (baseDateStr && baseStatsStr) {
+        // Use stored base date and stats
+        baseDate = new Date(baseDateStr);
+        baseStats = JSON.parse(baseStatsStr);
+        
+        // Calculate days since base date
+        const daysSinceBase = Math.floor((today.getTime() - baseDate.getTime()) / (1000 * 60 * 60 * 24));
+        
+        if (daysSinceBase > 0) {
+          // Update base stats for days passed
+          let customerIncrease = 0;
+          for (let i = 0; i < daysSinceBase; i++) {
+            customerIncrease += 70 + Math.floor(Math.random() * 11);
+          }
+          
+          baseStats.uniqueCustomers += customerIncrease;
+          baseStats.totalLaps += daysSinceBase * 970;
+          baseStats.racingHours += daysSinceBase * 10;
+          
+          // Update stored values
+          if (typeof window !== 'undefined') {
+            localStorage.setItem(baseDateKey, today.toISOString());
+            localStorage.setItem(baseStatsKey, JSON.stringify(baseStats));
+          }
+        }
+      } else {
+        // First time: initialize with base values as of today
+        baseDate = today;
+        baseStats = {
+          uniqueCustomers: 31754,
+          totalLaps: 349294,
+          racingHours: 6020
+        };
+        
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(baseDateKey, today.toISOString());
+          localStorage.setItem(baseStatsKey, JSON.stringify(baseStats));
+        }
+      }
       
       setDynamicStats({
-        uniqueCustomers: 31754 + Math.floor(dailyCustomerIncrease),
-        totalLaps: 349294 + Math.floor(lapsIncrease),
-        racingHours: 6020 + Math.floor(hoursIncrease),
-        averageRating: 4.7 // Fixed rating
+        uniqueCustomers: baseStats.uniqueCustomers,
+        totalLaps: baseStats.totalLaps,
+        racingHours: baseStats.racingHours,
+        averageRating: 4.7
       });
     };
 
+    // Calculate immediately on mount
     calculateDynamicStats();
     
-    // Update stats every hour for racing hours counter
+    // Update stats every hour for racing hours counter (10 hours daily = 10/24 = 0.4167 hours per hour)
     const hourlyInterval = setInterval(() => {
       setDynamicStats(prev => ({
         ...prev,
-        racingHours: prev.racingHours + (10 / 24) // Add ~0.417 hours per hour (10 hours / 24 hours)
+        racingHours: prev.racingHours + (10 / 24) // Add ~0.4167 hours per hour (10 hours / 24 hours)
       }));
     }, 60 * 60 * 1000); // Every hour
     
     // Update daily stats every 24 hours
-    const dailyInterval = setInterval(calculateDynamicStats, 24 * 60 * 60 * 1000);
+    const dailyInterval = setInterval(() => {
+      if (typeof window !== 'undefined') {
+        const today = new Date();
+        const todayStr = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toISOString();
+        const baseStatsStr = localStorage.getItem(baseStatsKey);
+        
+        if (baseStatsStr) {
+          const baseStats = JSON.parse(baseStatsStr);
+          baseStats.uniqueCustomers += (70 + Math.floor(Math.random() * 11)); // Add random integer between 70-80 (inclusive) per day
+          baseStats.totalLaps += 970; // Add 970 laps per day
+          baseStats.racingHours += 10; // Add 10 hours per day
+          
+          localStorage.setItem(baseDateKey, todayStr);
+          localStorage.setItem(baseStatsKey, JSON.stringify(baseStats));
+          
+          setDynamicStats(prev => ({
+            ...prev,
+            uniqueCustomers: baseStats.uniqueCustomers,
+            totalLaps: baseStats.totalLaps,
+            racingHours: baseStats.racingHours
+          }));
+        }
+      }
+    }, 24 * 60 * 60 * 1000); // Every 24 hours
     
     return () => {
       clearInterval(hourlyInterval);
@@ -111,30 +177,39 @@ const Arcade: React.FC = () => {
   }) => {
     const [displayValue, setDisplayValue] = useState(0);
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-100px" });
+    const isInView = useInView(ref, { once: false, margin: "-100px" });
 
     useEffect(() => {
       if (!isInView) return;
 
       const duration = 2000; // 2 seconds
       const steps = 60;
-      const increment = targetValue / steps;
+      const startValue = displayValue;
+      const difference = targetValue - startValue;
+      
+      // If the difference is very small or already at target, set directly
+      if (Math.abs(difference) < 0.01) {
+        setDisplayValue(targetValue);
+        return;
+      }
+
+      const increment = difference / steps;
       const stepDuration = duration / steps;
 
       let currentStep = 0;
       const timer = setInterval(() => {
         currentStep++;
-        const newValue = Math.min(increment * currentStep, targetValue);
+        const newValue = Math.min(startValue + (increment * currentStep), targetValue);
         setDisplayValue(newValue);
 
-        if (currentStep >= steps) {
+        if (currentStep >= steps || newValue >= targetValue) {
           clearInterval(timer);
           setDisplayValue(targetValue);
         }
       }, stepDuration);
 
       return () => clearInterval(timer);
-    }, [isInView, targetValue]);
+    }, [isInView, targetValue, displayValue]);
 
     const formattedValue = decimals > 0 
       ? displayValue.toFixed(decimals)
